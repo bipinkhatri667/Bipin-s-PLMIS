@@ -1,0 +1,4282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f766e">
+<title>Bipin Khatri | Personal Learning Management System</title>
+
+<style>
+/* =========================================================
+   PLMS - SINGLE FILE
+   HTML + CSS + JAVASCRIPT
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --primary:#0f766e;
+    --primary-dark:#115e59;
+    --secondary:#14b8a6;
+    --bg:#f1f5f9;
+    --card:#ffffff;
+    --text:#1e293b;
+    --muted:#64748b;
+    --border:#e2e8f0;
+    --success:#16a34a;
+    --danger:#dc2626;
+    --warning:#d97706;
+    --info:#2563eb;
+    --sidebar:#0f172a;
+    --sidebar-hover:#1e293b;
+    --shadow:0 8px 25px rgba(15,23,42,.08);
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+button,
+input,
+textarea,
+select{
+    font-family:inherit;
+}
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+#loginPage{
+    min-height:100vh;
+    display:flex;
+    background:#fff;
+}
+
+.login-left{
+    width:45%;
+    min-height:100vh;
+    background:linear-gradient(145deg,#064e3b,#0f766e,#14b8a6);
+    color:white;
+    padding:50px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.login-brand{
+    max-width:550px;
+    margin:auto;
+}
+
+.logo{
+    width:75px;
+    height:75px;
+    border-radius:20px;
+    background:rgba(255,255,255,.15);
+    border:2px solid rgba(255,255,255,.35);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.login-left h1{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.login-slogan{
+    font-size:20px;
+    opacity:.9;
+    line-height:1.5;
+    margin-bottom:30px;
+}
+
+.target-box{
+    padding:22px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:18px;
+    margin-bottom:30px;
+}
+
+.target-box small{
+    display:block;
+    opacity:.75;
+    margin-bottom:8px;
+}
+
+.target-box strong{
+    font-size:18px;
+    line-height:1.5;
+}
+
+.login-right{
+    width:55%;
+    overflow:hidden;
+    background:#f8fafc;
+    display:flex;
+    flex-direction:column;
+}
+
+.news-area{
+    background:#fff;
+    border-bottom:1px solid var(--border);
+}
+
+.news-title{
+    padding:12px 25px;
+    font-weight:bold;
+    color:var(--primary);
+    border-bottom:1px solid var(--border);
+}
+
+.news-window{
+    overflow:hidden;
+    white-space:nowrap;
+    padding:15px 0;
+}
+
+.news-track{
+    display:inline-flex;
+    gap:50px;
+    animation:newsScroll 65s linear infinite;
+}
+
+.news-window:hover .news-track{
+    animation-play-state:paused;
+}
+
+.news-item{
+    color:var(--text);
+    text-decoration:none;
+    font-size:14px;
+}
+
+.news-item:hover{
+    color:var(--primary);
+}
+
+@keyframes newsScroll{
+    from{
+        transform:translateX(100%);
+    }
+    to{
+        transform:translateX(-100%);
+    }
+}
+
+.quick-access{
+    padding:30px;
+}
+
+.quick-access h2{
+    margin-bottom:20px;
+}
+
+.quick-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.quick-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:20px;
+    text-decoration:none;
+    color:var(--text);
+    transition:.2s;
+    box-shadow:var(--shadow);
+}
+
+.quick-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--primary);
+}
+
+.quick-icon{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.quick-card strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.quick-card span{
+    font-size:12px;
+    color:var(--muted);
+}
+
+.login-box{
+    max-width:430px;
+    width:calc(100% - 60px);
+    margin:auto;
+    background:#fff;
+    border:1px solid var(--border);
+    padding:35px;
+    border-radius:20px;
+    box-shadow:var(--shadow);
+}
+
+.login-box h2{
+    margin-bottom:8px;
+}
+
+.login-box p{
+    color:var(--muted);
+    margin-bottom:25px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:7px;
+    font-size:14px;
+}
+
+.input-wrap{
+    position:relative;
+}
+
+.form-control{
+    width:100%;
+    padding:13px 15px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    outline:none;
+}
+
+.form-control:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(15,118,110,.1);
+}
+
+.code-toggle{
+    position:absolute;
+    right:10px;
+    top:8px;
+    border:none;
+    background:none;
+    cursor:pointer;
+    padding:5px;
+}
+
+.login-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:var(--primary);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.login-btn:hover{
+    background:var(--primary-dark);
+}
+
+.login-error{
+    display:none;
+    background:#fee2e2;
+    color:#991b1b;
+    padding:10px;
+    border-radius:8px;
+    margin-bottom:15px;
+    font-size:13px;
+}
+
+/* =========================================================
+   APP
+========================================================= */
+
+#appPage{
+    display:none;
+    min-height:100vh;
+}
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:260px;
+    height:100vh;
+    background:var(--sidebar);
+    color:white;
+    overflow-y:auto;
+    z-index:1000;
+}
+
+.sidebar-brand{
+    padding:25px 20px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.sidebar-brand h2{
+    font-size:20px;
+}
+
+.sidebar-brand p{
+    color:#94a3b8;
+    font-size:12px;
+    margin-top:5px;
+}
+
+.nav{
+    padding:15px 10px;
+}
+
+.nav-title{
+    color:#64748b;
+    font-size:11px;
+    text-transform:uppercase;
+    padding:15px 12px 8px;
+}
+
+.nav-item{
+    width:100%;
+    padding:12px;
+    border:none;
+    background:none;
+    color:#cbd5e1;
+    text-align:left;
+    border-radius:8px;
+    cursor:pointer;
+    margin-bottom:3px;
+    font-size:14px;
+}
+
+.nav-item:hover,
+.nav-item.active{
+    background:var(--sidebar-hover);
+    color:white;
+}
+
+.main{
+    margin-left:260px;
+    min-height:100vh;
+}
+
+.topbar{
+    height:70px;
+    background:white;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 30px;
+    position:sticky;
+    top:0;
+    z-index:900;
+}
+
+.topbar h1{
+    font-size:21px;
+}
+
+.user-area{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.user-avatar{
+    width:40px;
+    height:40px;
+    background:var(--primary);
+    color:white;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+.logout-btn{
+    border:none;
+    background:#fee2e2;
+    color:#991b1b;
+    padding:9px 13px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.content{
+    padding:30px;
+}
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.welcome{
+    margin-bottom:25px;
+}
+
+.welcome h2{
+    margin-bottom:6px;
+}
+
+.welcome p{
+    color:var(--muted);
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.stat-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:20px;
+    box-shadow:var(--shadow);
+}
+
+.stat-card small{
+    color:var(--muted);
+}
+
+.stat-card h2{
+    margin-top:8px;
+    font-size:28px;
+}
+
+.progress-bar{
+    height:9px;
+    background:#e2e8f0;
+    border-radius:10px;
+    overflow:hidden;
+    margin-top:10px;
+}
+
+.progress-fill{
+    height:100%;
+    background:var(--primary);
+    border-radius:10px;
+    transition:.3s;
+}
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:22px;
+    box-shadow:var(--shadow);
+}
+
+.card h3{
+    margin-bottom:18px;
+}
+
+.assessment-dashboard-btn{
+    background:var(--primary);
+    color:white;
+    border:none;
+    padding:13px 18px;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+.subject-progress{
+    margin-bottom:18px;
+}
+
+.subject-progress-head{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:6px;
+    font-size:14px;
+}
+
+.subject-progress .progress-fill{
+    background:var(--secondary);
+}
+
+/* =========================================================
+   CURRICULUM
+========================================================= */
+
+.section-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.curriculum-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.subject-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:20px;
+    cursor:pointer;
+    transition:.2s;
+    box-shadow:var(--shadow);
+}
+
+.subject-card:hover{
+    transform:translateY(-3px);
+    border-color:var(--primary);
+}
+
+.subject-card-top{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.subject-number{
+    width:40px;
+    height:40px;
+    border-radius:10px;
+    background:#ccfbf1;
+    color:var(--primary-dark);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+}
+
+.subject-card h3{
+    margin:0;
+    font-size:16px;
+}
+
+.subject-card p{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:6px;
+}
+
+.subject-card .progress-bar{
+    margin-top:16px;
+}
+
+/* =========================================================
+   TOPICS
+========================================================= */
+
+.back-btn{
+    border:none;
+    background:#e2e8f0;
+    padding:9px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-bottom:20px;
+}
+
+.topic-list{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.topic-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+}
+
+.topic-header{
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+}
+
+.topic-header h3{
+    font-size:16px;
+}
+
+.topic-status{
+    font-size:12px;
+    padding:5px 9px;
+    border-radius:20px;
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.topic-status.completed{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.topic-body{
+    display:none;
+    border-top:1px solid var(--border);
+    padding:20px;
+}
+
+.topic-body.open{
+    display:block;
+}
+
+.topic-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.field label{
+    font-size:13px;
+    font-weight:bold;
+}
+
+.field input,
+.field textarea,
+.field select{
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:10px;
+    outline:none;
+}
+
+.field textarea{
+    min-height:90px;
+    resize:vertical;
+}
+
+.full-width{
+    grid-column:1/-1;
+}
+
+.checkbox-row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.save-note{
+    color:var(--success);
+    font-size:12px;
+    margin-top:10px;
+    opacity:0;
+    transition:.2s;
+}
+
+.save-note.show{
+    opacity:1;
+}
+
+/* =========================================================
+   GOALS
+========================================================= */
+
+.goal-form{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr auto;
+    gap:10px;
+    margin-bottom:25px;
+}
+
+.goal-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.goal-item{
+    background:white;
+    border:1px solid var(--border);
+    padding:18px;
+    border-radius:12px;
+}
+
+.goal-head{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+}
+
+.goal-actions button{
+    border:none;
+    background:none;
+    cursor:pointer;
+}
+
+/* =========================================================
+   ASSESSMENT
+========================================================= */
+
+.assessment-tabs{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.tab-btn{
+    border:none;
+    background:white;
+    border:1px solid var(--border);
+    padding:11px 18px;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.tab-btn.active{
+    background:var(--primary);
+    color:white;
+}
+
+.test-list{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.test-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:20px;
+    box-shadow:var(--shadow);
+}
+
+.test-card h3{
+    margin-bottom:8px;
+}
+
+.test-card p{
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:15px;
+}
+
+.start-btn{
+    width:100%;
+    border:none;
+    background:var(--primary);
+    color:white;
+    padding:11px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.chapter-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.chapter-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:13px;
+    padding:18px;
+    cursor:pointer;
+}
+
+.chapter-card:hover{
+    border-color:var(--primary);
+}
+
+.quiz-container{
+    max-width:850px;
+    margin:auto;
+}
+
+.quiz-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:15px;
+}
+
+.question-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:25px;
+    box-shadow:var(--shadow);
+}
+
+.question-number{
+    color:var(--primary);
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.question-text{
+    font-size:19px;
+    line-height:1.5;
+    margin-bottom:22px;
+}
+
+.option{
+    width:100%;
+    text-align:left;
+    padding:14px;
+    border:2px solid var(--border);
+    background:white;
+    border-radius:9px;
+    margin-bottom:10px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.option:hover{
+    border-color:var(--primary);
+}
+
+.option.correct{
+    border-color:var(--success);
+    background:#dcfce7;
+    color:#166534;
+}
+
+.option.wrong{
+    border-color:var(--danger);
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.option.disabled{
+    cursor:not-allowed;
+}
+
+.answer-box{
+    margin-top:18px;
+    padding:15px;
+    border-radius:10px;
+    display:none;
+}
+
+.answer-box.correct{
+    display:block;
+    background:#dcfce7;
+    color:#166534;
+}
+
+.answer-box.wrong{
+    display:block;
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.next-btn{
+    margin-top:18px;
+    border:none;
+    background:var(--primary);
+    color:white;
+    padding:11px 20px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.result-card{
+    background:white;
+    border:1px solid var(--border);
+    padding:35px;
+    border-radius:15px;
+    text-align:center;
+    max-width:600px;
+    margin:40px auto;
+}
+
+.result-score{
+    font-size:50px;
+    color:var(--primary);
+    font-weight:bold;
+    margin:15px 0;
+}
+
+/* =========================================================
+   RESOURCES
+========================================================= */
+
+.resource-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.resource-card{
+    background:white;
+    border:1px solid var(--border);
+    padding:20px;
+    border-radius:13px;
+}
+
+.resource-card a{
+    color:var(--primary);
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1000px){
+
+    .login-left,
+    .login-right{
+        width:100%;
+    }
+
+    #loginPage{
+        flex-direction:column;
+    }
+
+    .login-left{
+        min-height:auto;
+        padding:35px 25px;
+    }
+
+    .login-left h1{
+        font-size:32px;
+    }
+
+    .quick-grid{
+        grid-template-columns:1fr;
+    }
+
+    .sidebar{
+        width:220px;
+    }
+
+    .main{
+        margin-left:220px;
+    }
+
+    .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .dashboard-grid{
+        grid-template-columns:1fr;
+    }
+
+    .curriculum-grid,
+    .chapter-grid,
+    .test-list,
+    .resource-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:700px){
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .stats-grid{
+        grid-template-columns:1fr;
+    }
+
+    .topic-grid{
+        grid-template-columns:1fr;
+    }
+
+    .goal-form{
+        grid-template-columns:1fr;
+    }
+
+    .topbar{
+        padding:0 15px;
+    }
+
+    .content{
+        padding:15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =======================================================
+     LOGIN PAGE
+======================================================= -->
+
+<section id="loginPage">
+
+    <div class="login-left">
+
+        <div class="login-brand">
+
+            <div class="logo">BK</div>
+
+            <h1>Bipin Khatri</h1>
+
+            <div class="login-slogan">
+                Personal Learning Management System
+                <br>
+                Learn • Practice • Assess • Improve
+            </div>
+
+            <div class="target-box">
+                <small>MY CURRENT TARGET</small>
+                <strong>
+                    Agriculture Officer Competitive Examination
+                    — Systematic preparation through a personal learning system.
+                </strong>
+            </div>
+
+            <div class="login-box">
+
+                <h2>Secure Login</h2>
+
+                <p>
+                    Enter your personal 10-digit security code.
+                </p>
+
+                <div id="loginError" class="login-error">
+                    Invalid security code. Please try again.
+                </div>
+
+                <form id="loginForm">
+
+                    <div class="form-group">
+
+                        <label>Security Code</label>
+
+                        <div class="input-wrap">
+
+                            <input
+                                type="password"
+                                id="securityCode"
+                                class="form-control"
+                                maxlength="10"
+                                inputmode="numeric"
+                                autocomplete="off"
+                                placeholder="Enter 10-digit code"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="code-toggle"
+                                onclick="toggleCode()"
+                                id="toggleCodeBtn">
+                                👁
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <button class="login-btn" type="submit">
+                        Login to PLMS
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="login-right">
+
+        <div class="news-area">
+
+            <div class="news-title">
+                📰 Latest News
+            </div>
+
+            <div class="news-window">
+
+                <div class="news-track" id="newsTrack"></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="quick-access">
+
+            <h2>⚡ Quick Access</h2>
+
+            <div class="quick-grid">
+
+                <a
+                    class="quick-card"
+                    href="https://epaper.gorkhapatraonline.com/single/gorkhapatra"
+                    target="_blank">
+
+                    <div class="quick-icon">📰</div>
+
+                    <strong>Gorkhapatra e-Paper</strong>
+
+                    <span>Read today's Gorkhapatra edition</span>
+
+                </a>
+
+
+                <a
+                    class="quick-card"
+                    href="https://www.ujyaaloonline.com/"
+                    target="_blank">
+
+                    <div class="quick-icon">📻</div>
+
+                    <strong>Ujyaalo Radio</strong>
+
+                    <span>Listen to Ujyaalo online</span>
+
+                </a>
+
+
+                <a
+                    class="quick-card"
+                    href="https://www.indiabix.com/"
+                    target="_blank">
+
+                    <div class="quick-icon">🧠</div>
+
+                    <strong>IndiaBIX</strong>
+
+                    <span>Aptitude and competitive practice</span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     APPLICATION
+======================================================= -->
+
+<section id="appPage">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <h2>📚 Bipin's PLMS</h2>
+
+            <p>Personal Learning Management System</p>
+
+        </div>
+
+        <nav class="nav">
+
+            <div class="nav-title">Main</div>
+
+            <button class="nav-item active" onclick="showPage('dashboard',this)">
+                🏠 Dashboard
+            </button>
+
+            <button class="nav-item" onclick="showPage('goals',this)">
+                🎯 Goals
+            </button>
+
+            <button class="nav-item" onclick="showPage('curriculum',this)">
+                📚 Curriculum
+            </button>
+
+            <button class="nav-item" onclick="showPage('assessments',this)">
+                📝 Quiz / Assessment
+            </button>
+
+            <button class="nav-item" onclick="showPage('resources',this)">
+                🔗 Resource Library
+            </button>
+
+            <button class="nav-item" onclick="showPage('progress',this)">
+                📈 Progress
+            </button>
+
+            <div class="nav-title">System</div>
+
+            <button class="nav-item" onclick="exportData()">
+                💾 Export Data
+            </button>
+
+            <button class="nav-item" onclick="resetData()">
+                ♻ Reset Progress
+            </button>
+
+            <button class="nav-item" onclick="logout()">
+                🚪 Logout
+            </button>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <h1 id="pageTitle">Dashboard</h1>
+
+            <div class="user-area">
+
+                <span>Bipin Khatri</span>
+
+                <div class="user-avatar">BK</div>
+
+                <button class="logout-btn" onclick="logout()">
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <div class="content">
+
+            <!-- ============================================
+                 DASHBOARD
+            ============================================= -->
+
+            <section id="dashboard" class="page active">
+
+                <div class="welcome">
+
+                    <h2>Welcome back, Bipin 👋</h2>
+
+                    <p>
+                        Track your Agriculture Officer preparation
+                        from one place.
+                    </p>
+
+                </div>
+
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+
+                        <small>Overall Progress</small>
+
+                        <h2 id="overallProgress">0%</h2>
+
+                        <div class="progress-bar">
+                            <div
+                                id="overallProgressBar"
+                                class="progress-fill"
+                                style="width:0%">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <small>Topics Completed</small>
+
+                        <h2 id="completedTopics">0</h2>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <small>Study Hours</small>
+
+                        <h2 id="totalHours">0</h2>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <small>Needs Revision</small>
+
+                        <h2 id="revisionTopics">0</h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-grid">
+
+                    <div class="card">
+
+                        <h3>📊 Subject Progress</h3>
+
+                        <div id="dashboardSubjects"></div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <h3>📝 Assessment</h3>
+
+                        <p>
+                            Test yourself using mock tests and
+                            chapterwise tests.
+                        </p>
+
+                        <button
+                            class="assessment-dashboard-btn"
+                            onclick="showPageById('assessments')">
+
+                            Start Quiz / Assessment
+
+                        </button>
+
+                        <div style="margin-top:20px">
+
+                            <small>
+                                Average Quiz Score
+                            </small>
+
+                            <h2 id="quizAverage">0%</h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ============================================
+                 GOALS
+            ============================================= -->
+
+            <section id="goals" class="page">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>🎯 Learning Goals</h2>
+                        <p style="color:var(--muted)">
+                            Set and track your learning targets.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <form
+                        class="goal-form"
+                        id="goalForm">
+
+                        <input
+                            class="form-control"
+                            id="goalTitle"
+                            placeholder="Goal title"
+                            required>
+
+                        <input
+                            class="form-control"
+                            id="goalTarget"
+                            type="number"
+                            min="1"
+                            placeholder="Target %"
+                            value="100">
+
+                        <input
+                            class="form-control"
+                            id="goalDeadline"
+                            type="date">
+
+                        <button class="login-btn">
+                            Add Goal
+                        </button>
+
+                    </form>
+
+                    <div id="goalList" class="goal-list"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ============================================
+                 CURRICULUM
+            ============================================= -->
+
+            <section id="curriculum" class="page">
+
+                <div id="curriculumHome">
+
+                    <div class="section-heading">
+
+                        <div>
+                            <h2>📚 Agriculture Officer Curriculum</h2>
+                            <p style="color:var(--muted)">
+                                Select a subject to study its individual topics.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="curriculumGrid"
+                        class="curriculum-grid">
+                    </div>
+
+                </div>
+
+
+                <div id="subjectDetail" style="display:none">
+
+                    <button
+                        class="back-btn"
+                        onclick="backToCurriculum()">
+                        ← Back to Curriculum
+                    </button>
+
+                    <div id="subjectDetailContent"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ============================================
+                 ASSESSMENTS
+            ============================================= -->
+
+            <section id="assessments" class="page">
+
+                <div id="assessmentHome">
+
+                    <div class="section-heading">
+
+                        <div>
+                            <h2>📝 Quiz / Assessment</h2>
+                            <p style="color:var(--muted)">
+                                Test your knowledge and identify weak areas.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="assessment-tabs">
+
+                        <button
+                            id="mockTab"
+                            class="tab-btn active"
+                            onclick="assessmentTab('mock')">
+                            Mock Test
+                        </button>
+
+                        <button
+                            id="chapterTab"
+                            class="tab-btn"
+                            onclick="assessmentTab('chapter')">
+                            Chapterwise Test
+                        </button>
+
+                    </div>
+
+
+                    <div id="mockTests"></div>
+
+                    <div
+                        id="chapterTests"
+                        style="display:none">
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="quizArea"
+                    style="display:none">
+                </div>
+
+            </section>
+
+
+            <!-- ============================================
+                 RESOURCES
+            ============================================= -->
+
+            <section id="resources" class="page">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>🔗 Resource Library</h2>
+                        <p style="color:var(--muted)">
+                            Useful learning portals.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="resource-grid">
+
+                    <div class="resource-card">
+
+                        <h3>📰 Gorkhapatra</h3>
+
+                        <p style="margin:10px 0;color:var(--muted)">
+                            e-Paper and current affairs.
+                        </p>
+
+                        <a
+                            href="https://epaper.gorkhapatraonline.com/single/gorkhapatra"
+                            target="_blank">
+                            Open e-Paper →
+                        </a>
+
+                    </div>
+
+
+                    <div class="resource-card">
+
+                        <h3>📻 Ujyaalo</h3>
+
+                        <p style="margin:10px 0;color:var(--muted)">
+                            News and radio resources.
+                        </p>
+
+                        <a
+                            href="https://www.ujyaaloonline.com/"
+                            target="_blank">
+                            Open Ujyaalo →
+                        </a>
+
+                    </div>
+
+
+                    <div class="resource-card">
+
+                        <h3>🧠 IndiaBIX</h3>
+
+                        <p style="margin:10px 0;color:var(--muted)">
+                            Reasoning, aptitude and practice.
+                        </p>
+
+                        <a
+                            href="https://www.indiabix.com/"
+                            target="_blank">
+                            Open IndiaBIX →
+                        </a>
+
+                    </div>
+
+
+                    <div class="resource-card">
+
+                        <h3>📚 General Resources</h3>
+
+                        <p style="margin:10px 0;color:var(--muted)">
+                            Add your own study resources inside
+                            each curriculum topic.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ============================================
+                 PROGRESS
+            ============================================= -->
+
+            <section id="progress" class="page">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>📈 Detailed Progress</h2>
+                        <p style="color:var(--muted)">
+                            Monitor your complete learning progress.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+                    <div id="progressDetails"></div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</section>
+
+
+<script>
+/* =========================================================
+   PLMS JAVASCRIPT
+========================================================= */
+
+
+/* =========================================================
+   SECURITY
+========================================================= */
+
+/*
+  IMPORTANT:
+  This code is intentionally NOT placed in index.html.
+
+  However, because this is a static client-side application,
+  the code can still be discovered by someone inspecting
+  JavaScript.
+
+  For real authentication use Firebase/Supabase/backend.
+*/
+
+const PLMS_SECURITY_CODE = "5831049276";
+
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+const STORAGE_KEY = "bipin_plms_data_v1";
+
+
+let appData = {
+    subjects:{},
+    goals:[],
+    assessments:{
+        attempts:[]
+    }
+};
+
+
+/* =========================================================
+   CURRICULUM
+========================================================= */
+
+const CURRICULUM = [
+
+{
+    id:"general-awareness",
+    name:"General Awareness and Contemporary Issues",
+    paper:"Paper I",
+    topics:[
+        "Geography of Nepal",
+        "Natural Resources of Nepal",
+        "Population and Demography",
+        "History of Nepal",
+        "Constitution of Nepal",
+        "Federal Governance",
+        "Provincial Governance",
+        "Local Governance",
+        "Public Administration",
+        "Public Service Delivery",
+        "Economic Development",
+        "Current Affairs",
+        "Science and Technology",
+        "Environment and Climate Change",
+        "International Organizations",
+        "Contemporary Issues"
+    ]
+},
+
+{
+    id:"logical-reasoning",
+    name:"Logical Reasoning",
+    paper:"Paper I",
+    topics:[
+        "Analogy",
+        "Classification",
+        "Series",
+        "Coding-Decoding",
+        "Blood Relations",
+        "Direction Sense",
+        "Logical Statements",
+        "Syllogism",
+        "Decision Making"
+    ]
+},
+
+{
+    id:"numerical-reasoning",
+    name:"Numerical Reasoning",
+    paper:"Paper I",
+    topics:[
+        "Number System",
+        "Percentage",
+        "Ratio and Proportion",
+        "Profit and Loss",
+        "Simple and Compound Interest",
+        "Average",
+        "Time and Work",
+        "Data Interpretation"
+    ]
+},
+
+{
+    id:"spatial-reasoning",
+    name:"Spatial Reasoning",
+    paper:"Paper I",
+    topics:[
+        "Figure Series",
+        "Mirror Images",
+        "Water Images",
+        "Paper Folding",
+        "Paper Cutting",
+        "Embedded Figures",
+        "Cubes and Dice",
+        "Spatial Visualization"
+    ]
+},
+
+{
+    id:"agri-history",
+    name:"History and Current Status of Agriculture Sector in Nepal",
+    paper:"Paper I – Technical",
+    topics:[
+        "History of Agriculture in Nepal",
+        "Current Status of Agriculture",
+        "Agriculture Contribution to GDP",
+        "Agricultural Commercialization",
+        "Major Agricultural Programs"
+    ]
+},
+
+{
+    id:"agri-research-extension-education",
+    name:"Agriculture Research, Extension and Education",
+    paper:"Paper I – Technical",
+    topics:[
+        "Agricultural Research System",
+        "Agricultural Extension System",
+        "Agricultural Education",
+        "Research-Extension-Farmer Linkage",
+        "Agricultural Innovation"
+    ]
+},
+
+{
+    id:"natural-resources",
+    name:"Natural Resources, Environment Conservation, Climate Change and Disaster-Risk Management",
+    paper:"Paper I – Technical",
+    topics:[
+        "Natural Resources",
+        "Biodiversity Conservation",
+        "Environment Conservation",
+        "Climate Change",
+        "Climate Smart Agriculture",
+        "Disaster Risk Management",
+        "Drought",
+        "Flood",
+        "Landslide",
+        "Agricultural Adaptation"
+    ]
+},
+
+{
+    id:"legislation-policy-trade",
+    name:"Legislations, Plan, Policies, Strategies and Global Trade in Agriculture",
+    paper:"Paper I – Technical",
+    topics:[
+        "Agricultural Policies",
+        "Agricultural Acts and Regulations",
+        "Agricultural Plans",
+        "Agricultural Strategies",
+        "Seed Act and Regulations",
+        "Pesticide Regulations",
+        "Food Safety Regulations",
+        "International Trade",
+        "WTO and Agriculture",
+        "Agricultural Export and Import"
+    ]
+},
+
+{
+    id:"agri-tech-management",
+    name:"Agricultural Technology and Management",
+    paper:"Paper I – Technical",
+    topics:[
+        "Seed Quality",
+        "Seed Production",
+        "Integrated Pest Management",
+        "Pollinators",
+        "Precision Agriculture",
+        "Farm Mechanization",
+        "Agricultural Machinery",
+        "Protected Cultivation",
+        "Irrigation Management",
+        "Fertilizer Management",
+        "Organic Agriculture",
+        "Good Agricultural Practices",
+        "Postharvest Management",
+        "Value Chain",
+        "Agricultural Marketing",
+        "Digital Agriculture",
+        "ICT in Agriculture",
+        "Farmer Field School",
+        "Food Security",
+        "Sustainable Agriculture"
+    ]
+},
+
+{
+    id:"agri-extension",
+    name:"Agricultural Extension",
+    paper:"Paper II – Section A",
+    topics:[
+        "Extension Education, Training and Leadership Development",
+        "Communication, Innovation, Diffusion and Technology Transfer",
+        "Extension System & Program Planning"
+    ]
+},
+
+{
+    id:"agri-economics",
+    name:"Agricultural Economics",
+    paper:"Paper II – Section A",
+    topics:[
+        "Principles of Economics",
+        "Agricultural Economics",
+        "Program Planning, M&E and Data Management"
+    ]
+},
+
+{
+    id:"soil-science",
+    name:"Soil Science",
+    paper:"Paper II – Section B",
+    topics:[
+        "General Introduction to Soil Science",
+        "Soil Fertility and Plant Nutrition",
+        "Soil Survey and Water Conservation"
+    ]
+},
+
+{
+    id:"agronomy",
+    name:"Agronomy",
+    paper:"Paper II – Section B",
+    topics:[
+        "Basics of Agronomy",
+        "Seed Technology",
+        "Crop Production Technology",
+        "Underutilized Crops",
+        "Plant Breeding and Research Design"
+    ]
+},
+
+{
+    id:"horticulture",
+    name:"Horticulture",
+    paper:"Paper II – Section C",
+    topics:[
+        "Fruit Science",
+        "Vegetable Science",
+        "Spices",
+        "Flower Crops",
+        "Plantation Crops",
+        "Vegetable Seed Production",
+        "Postharvest Physiology and Management",
+        "Nursery Management",
+        "Modern Horticulture",
+        "Plant Growth and Development"
+    ]
+},
+
+{
+    id:"plant-protection",
+    name:"Plant Protection",
+    paper:"Paper II – Section D",
+    topics:[
+        "General Plant Protection",
+        "Entomology",
+        "Industrial Entomology",
+        "Pests of National Importance",
+        "Plant Pathology",
+        "Mushroom Production",
+        "Plant Protection Laboratory Techniques"
+    ]
+},
+
+{
+    id:"group-test",
+    name:"Group Test and Individual Presentation",
+    paper:"Post Written Examination",
+    topics:[
+        "Energy Crisis",
+        "Poverty Reduction",
+        "Agricultural Land Fragmentation",
+        "Agricultural Land Encroachment",
+        "Health Insurance",
+        "Food Security",
+        "Talent Migration",
+        "Agricultural Commercialization",
+        "Climate Change",
+        "Rural Development"
+    ]
+}
+
+];
+
+
+/* =========================================================
+   MOCK TEST DATA
+========================================================= */
+
+const MOCK_TESTS = [
+
+{
+    id:"mock-1",
+    title:"Mock Test Set 1",
+    description:"General Agriculture Officer Practice",
+    questions:[
+        {
+            q:"Which of the following is a major objective of agricultural extension?",
+            options:[
+                "Increasing only farm size",
+                "Improving farmers' knowledge and skills",
+                "Reducing agricultural education",
+                "Replacing all farmers"
+            ],
+            answer:1,
+            explanation:"Agricultural extension primarily helps farmers improve knowledge, skills, decision-making and adoption of useful technologies."
+        },
+
+        {
+            q:"Which nutrient is generally required by plants in the largest quantity?",
+            options:[
+                "Nitrogen",
+                "Zinc",
+                "Boron",
+                "Molybdenum"
+            ],
+            answer:0,
+            explanation:"Nitrogen is one of the primary macronutrients and is required by plants in relatively large amounts."
+        },
+
+        {
+            q:"IPM stands for:",
+            options:[
+                "Integrated Plant Marketing",
+                "Integrated Pest Management",
+                "International Pest Monitoring",
+                "Integrated Production Method"
+            ],
+            answer:1,
+            explanation:"IPM means Integrated Pest Management, which combines compatible pest-management methods to keep pest populations below economically damaging levels."
+        },
+
+        {
+            q:"Which institution is primarily responsible for agricultural research in Nepal?",
+            options:[
+                "NARC",
+                "NEA",
+                "NRB",
+                "NTA"
+            ],
+            answer:0,
+            explanation:"Nepal Agricultural Research Council (NARC) is Nepal's principal agricultural research organization."
+        },
+
+        {
+            q:"What does M&E commonly mean in development programs?",
+            options:[
+                "Management and Economy",
+                "Monitoring and Evaluation",
+                "Marketing and Extension",
+                "Measurement and Economics"
+            ],
+            answer:1,
+            explanation:"M&E means Monitoring and Evaluation. It is used to track implementation and assess results."
+        }
+    ]
+},
+
+{
+    id:"mock-2",
+    title:"Mock Test Set 2",
+    description:"Agriculture + Reasoning Practice",
+    questions:[
+        {
+            q:"A technology is more likely to spread among farmers when it has clear relative advantage and compatibility. This relates to:",
+            options:[
+                "Diffusion of innovation",
+                "Soil classification",
+                "Crop rotation",
+                "Farm accounting"
+            ],
+            answer:0,
+            explanation:"Diffusion of innovation explains how an innovation spreads through members of a social system over time."
+        },
+
+        {
+            q:"What is the main purpose of soil testing?",
+            options:[
+                "To determine soil color only",
+                "To estimate nutrient status and guide management",
+                "To increase soil erosion",
+                "To remove all soil organisms"
+            ],
+            answer:1,
+            explanation:"Soil testing helps determine nutrient status and other soil properties so that appropriate soil and fertilizer management decisions can be made."
+        },
+
+        {
+            q:"Which crop is commonly classified as a cereal?",
+            options:[
+                "Wheat",
+                "Lentil",
+                "Potato",
+                "Mustard"
+            ],
+            answer:0,
+            explanation:"Wheat is a cereal crop belonging to the grass family Poaceae."
+        },
+
+        {
+            q:"If 20% of 500 is calculated, the answer is:",
+            options:[
+                "50",
+                "75",
+                "100",
+                "125"
+            ],
+            answer:2,
+            explanation:"20% of 500 = 500 × 20/100 = 100."
+        },
+
+        {
+            q:"Which practice helps reduce postharvest losses?",
+            options:[
+                "Improper storage",
+                "Delayed harvesting without reason",
+                "Proper handling and storage",
+                "Mechanical damage"
+            ],
+            answer:2,
+            explanation:"Proper harvesting, handling, packaging, transportation and storage can substantially reduce postharvest losses."
+        }
+    ]
+},
+
+{
+    id:"mock-3",
+    title:"Mock Test Set 3",
+    description:"Technical Subject Practice",
+    questions:[
+        {
+            q:"Which process converts atmospheric nitrogen into forms usable by plants through biological activity?",
+            options:[
+                "Nitrogen fixation",
+                "Transpiration",
+                "Photosynthesis",
+                "Respiration"
+            ],
+            answer:0,
+            explanation:"Nitrogen fixation converts atmospheric nitrogen into biologically usable nitrogen compounds, commonly through microorganisms."
+        },
+
+        {
+            q:"Which of the following is an example of vegetative propagation?",
+            options:[
+                "Seed sowing",
+                "Grafting",
+                "Pollination",
+                "Fertilization"
+            ],
+            answer:1,
+            explanation:"Grafting is a vegetative propagation method in which plant parts are joined to establish a new plant."
+        },
+
+        {
+            q:"The first step in many extension programs is:",
+            options:[
+                "Situation/problem analysis",
+                "Final reporting",
+                "Budget closure",
+                "Project termination"
+            ],
+            answer:0,
+            explanation:"Situation or problem analysis helps identify needs, constraints and opportunities before designing an extension intervention."
+        },
+
+        {
+            q:"Which organism causes many fungal plant diseases?",
+            options:[
+                "Fungi",
+                "Earthworms",
+                "Birds",
+                "Mammals"
+            ],
+            answer:0,
+            explanation:"Fungi are major plant pathogens and cause numerous diseases affecting crops."
+        },
+
+        {
+            q:"Which approach combines different methods to manage pests?",
+            options:[
+                "IPM",
+                "Monoculture only",
+                "Single pesticide approach",
+                "Zero monitoring"
+            ],
+            answer:0,
+            explanation:"Integrated Pest Management combines biological, cultural, mechanical, physical and chemical methods as appropriate."
+        }
+    ]
+}
+
+];
+
+
+/* =========================================================
+   NEWS
+========================================================= */
+
+const NEWS = [
+
+{
+    title:"Gorkhapatra Online – Latest News",
+    url:"https://gorkhapatraonline.com/categories/news-today"
+},
+
+{
+    title:"Gorkhapatra Online – National News",
+    url:"https://gorkhapatraonline.com/categories/national"
+},
+
+{
+    title:"Gorkhapatra Online – Agriculture",
+    url:"https://gorkhapatraonline.com/"
+},
+
+{
+    title:"Ujyaalo Online – Latest News",
+    url:"https://www.ujyaaloonline.com/"
+},
+
+{
+    title:"Ujyaalo Radio Network",
+    url:"https://www.ujyaaloonline.com/"
+},
+
+{
+    title:"Nepal Current Affairs",
+    url:"https://gorkhapatraonline.com/"
+},
+
+{
+    title:"National Development Updates",
+    url:"https://gorkhapatraonline.com/"
+},
+
+{
+    title:"Agriculture and Rural Development News",
+    url:"https://www.ujyaaloonline.com/"
+},
+
+{
+    title:"Competitive Examination Current Affairs",
+    url:"https://www.indiabix.com/"
+},
+
+{
+    title:"Daily News and Learning Resources",
+    url:"https://www.indiabix.com/"
+}
+
+];
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+document.addEventListener("DOMContentLoaded",function(){
+
+    loadData();
+
+    renderNews();
+
+    renderCurriculum();
+
+    renderMockTests();
+
+    renderChapterTests();
+
+    renderGoals();
+
+    updateDashboard();
+
+    document
+        .getElementById("loginForm")
+        .addEventListener("submit",login);
+
+    document
+        .getElementById("goalForm")
+        .addEventListener("submit",addGoal);
+
+    if(sessionStorage.getItem("plmsLoggedIn")==="true"){
+        openApplication();
+    }
+
+});
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+function login(e){
+
+    e.preventDefault();
+
+    const code =
+        document
+        .getElementById("securityCode")
+        .value
+        .trim();
+
+    const error =
+        document.getElementById("loginError");
+
+    if(!/^\d{10}$/.test(code)){
+
+        error.textContent =
+            "Security code must contain exactly 10 digits.";
+
+        error.style.display="block";
+
+        return;
+    }
+
+    if(code===PLMS_SECURITY_CODE){
+
+        sessionStorage.setItem(
+            "plmsLoggedIn",
+            "true"
+        );
+
+        error.style.display="none";
+
+        openApplication();
+
+    }else{
+
+        error.textContent =
+            "Invalid security code. Please try again.";
+
+        error.style.display="block";
+
+    }
+
+}
+
+
+function openApplication(){
+
+    document.getElementById("loginPage").style.display="none";
+
+    document.getElementById("appPage").style.display="block";
+
+    updateDashboard();
+
+}
+
+
+function toggleCode(){
+
+    const input =
+        document.getElementById("securityCode");
+
+    const button =
+        document.getElementById("toggleCodeBtn");
+
+    if(input.type==="password"){
+
+        input.type="text";
+        button.textContent="🙈";
+
+    }else{
+
+        input.type="password";
+        button.textContent="👁";
+
+    }
+
+}
+
+
+function logout(){
+
+    sessionStorage.removeItem("plmsLoggedIn");
+
+    document.getElementById("appPage").style.display="none";
+
+    document.getElementById("loginPage").style.display="flex";
+
+    document.getElementById("securityCode").value="";
+
+}
+
+
+/* =========================================================
+   STORAGE FUNCTIONS
+========================================================= */
+
+function loadData(){
+
+    const saved =
+        localStorage.getItem(STORAGE_KEY);
+
+    if(saved){
+
+        try{
+
+            appData =
+                JSON.parse(saved);
+
+        }catch(error){
+
+            appData={
+                subjects:{},
+                goals:[],
+                assessments:{
+                    attempts:[]
+                }
+            };
+
+        }
+
+    }
+
+    ensureCurriculumData();
+
+}
+
+
+function saveData(){
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(appData)
+    );
+
+}
+
+
+function ensureCurriculumData(){
+
+    CURRICULUM.forEach(subject=>{
+
+        if(!appData.subjects[subject.id]){
+
+            appData.subjects[subject.id]={
+                topics:{}
+            };
+
+        }
+
+        subject.topics.forEach((topic,index)=>{
+
+            const topicId =
+                slugify(topic);
+
+            if(!appData.subjects[subject.id].topics[topicId]){
+
+                appData.subjects[subject.id].topics[topicId]={
+                    name:topic,
+                    study:false,
+                    notes:"",
+                    resources:"",
+                    questions:0,
+                    revision:false,
+                    confidence:0,
+                    studyHours:0
+                };
+
+            }
+
+        });
+
+    });
+
+    saveData();
+
+}
+
+
+function slugify(text){
+
+    return text
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g,"-")
+        .replace(/(^-|-$)/g,"");
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function showPage(pageId,button){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(p=>p.classList.remove("active"));
+
+    document
+        .getElementById(pageId)
+        .classList.add("active");
+
+    document
+        .querySelectorAll(".nav-item")
+        .forEach(b=>b.classList.remove("active"));
+
+    if(button){
+        button.classList.add("active");
+    }
+
+    const titles={
+        dashboard:"Dashboard",
+        goals:"Learning Goals",
+        curriculum:"Curriculum",
+        assessments:"Quiz / Assessment",
+        resources:"Resource Library",
+        progress:"Progress"
+    };
+
+    document.getElementById("pageTitle").textContent =
+        titles[pageId] || "PLMS";
+
+    if(pageId==="dashboard"){
+        updateDashboard();
+    }
+
+    if(pageId==="progress"){
+        renderProgress();
+    }
+
+}
+
+
+function showPageById(pageId){
+
+    const button =
+        [...document.querySelectorAll(".nav-item")]
+        .find(b=>b.textContent.toLowerCase().includes(
+            pageId==="assessments" ? "assessment" : pageId
+        ));
+
+    showPage(pageId,button);
+
+}
+
+
+/* =========================================================
+   NEWS
+========================================================= */
+
+function renderNews(){
+
+    const track =
+        document.getElementById("newsTrack");
+
+    const items =
+        NEWS.map(n=>`
+
+            <a
+                class="news-item"
+                href="${n.url}"
+                target="_blank">
+
+                📰 ${escapeHTML(n.title)}
+
+            </a>
+
+        `).join("");
+
+    /*
+       Duplicate once so the ticker has continuous content.
+    */
+
+    track.innerHTML =
+        items + items;
+
+}
+
+
+/* =========================================================
+   CURRICULUM
+========================================================= */
+
+function renderCurriculum(){
+
+    const container =
+        document.getElementById("curriculumGrid");
+
+    container.innerHTML =
+        CURRICULUM.map((subject,index)=>{
+
+            const progress =
+                calculateSubjectProgress(subject.id);
+
+            return `
+
+            <div
+                class="subject-card"
+                onclick="openSubject('${subject.id}')">
+
+                <div class="subject-card-top">
+
+                    <div style="display:flex;gap:12px">
+
+                        <div class="subject-number">
+                            ${index+1}
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                ${escapeHTML(subject.name)}
+                            </h3>
+
+                            <p>
+                                ${escapeHTML(subject.paper)}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <strong>
+                        ${progress}%
+                    </strong>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        style="width:${progress}%">
+                    </div>
+
+                </div>
+
+                <p style="margin-top:10px">
+                    ${subject.topics.length} topics
+                </p>
+
+            </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+function openSubject(subjectId){
+
+    const subject =
+        CURRICULUM.find(s=>s.id===subjectId);
+
+    if(!subject)return;
+
+    document.getElementById("curriculumHome")
+        .style.display="none";
+
+    document.getElementById("subjectDetail")
+        .style.display="block";
+
+    renderSubject(subjectId);
+
+}
+
+
+function backToCurriculum(){
+
+    document.getElementById("subjectDetail")
+        .style.display="none";
+
+    document.getElementById("curriculumHome")
+        .style.display="block";
+
+    renderCurriculum();
+
+}
+
+
+function renderSubject(subjectId){
+
+    const subject =
+        CURRICULUM.find(s=>s.id===subjectId);
+
+    const data =
+        appData.subjects[subjectId];
+
+    const progress =
+        calculateSubjectProgress(subjectId);
+
+    const container =
+        document.getElementById("subjectDetailContent");
+
+    container.innerHTML=`
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>
+                    ${escapeHTML(subject.name)}
+                </h2>
+
+                <p style="color:var(--muted)">
+                    ${escapeHTML(subject.paper)}
+                </p>
+
+            </div>
+
+            <strong>
+                ${progress}% Complete
+            </strong>
+
+        </div>
+
+        <div class="progress-bar" style="margin-bottom:25px">
+
+            <div
+                class="progress-fill"
+                style="width:${progress}%">
+            </div>
+
+        </div>
+
+        <div class="topic-list">
+
+            ${subject.topics.map((topic,index)=>{
+
+                const topicId =
+                    slugify(topic);
+
+                const t =
+                    data.topics[topicId];
+
+                const completed =
+                    t.study;
+
+                return `
+
+                <div class="topic-card">
+
+                    <div
+                        class="topic-header"
+                        onclick="toggleTopic('${subjectId}','${topicId}')">
+
+                        <h3>
+                            ${index+1}. ${escapeHTML(topic)}
+                        </h3>
+
+                        <span
+                            id="status-${subjectId}-${topicId}"
+                            class="topic-status ${completed?'completed':''}">
+
+                            ${completed ? "✓ Completed" : "In Progress"}
+
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        id="topic-${subjectId}-${topicId}"
+                        class="topic-body">
+
+                        <div class="topic-grid">
+
+                            <div class="field">
+
+                                <label>
+                                    📖 Study
+                                </label>
+
+                                <div class="checkbox-row">
+
+                                    <input
+                                        type="checkbox"
+                                        ${t.study?"checked":""}
+                                        onchange="updateTopic('${subjectId}','${topicId}','study',this.checked)">
+
+                                    <span>
+                                        Mark topic as studied
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>
+                                    🔁 Revision
+                                </label>
+
+                                <div class="checkbox-row">
+
+                                    <input
+                                        type="checkbox"
+                                        ${t.revision?"checked":""}
+                                        onchange="updateTopic('${subjectId}','${topicId}','revision',this.checked)">
+
+                                    <span>
+                                        Needs revision
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>
+                                    💪 Confidence
+                                </label>
+
+                                <select
+                                    onchange="updateTopic('${subjectId}','${topicId}','confidence',this.value)">
+
+                                    <option value="0" ${t.confidence==0?"selected":""}>
+                                        Not Rated
+                                    </option>
+
+                                    <option value="1" ${t.confidence==1?"selected":""}>
+                                        1 - Very Low
+                                    </option>
+
+                                    <option value="2" ${t.confidence==2?"selected":""}>
+                                        2 - Low
+                                    </option>
+
+                                    <option value="3" ${t.confidence==3?"selected":""}>
+                                        3 - Moderate
+                                    </option>
+
+                                    <option value="4" ${t.confidence==4?"selected":""}>
+                                        4 - Good
+                                    </option>
+
+                                    <option value="5" ${t.confidence==5?"selected":""}>
+                                        5 - Excellent
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>
+                                    ⏱ Study Hours
+                                </label>
+
+                                <input
+                                    type="number"
+                                    min="0"
+                                    step=".25"
+                                    value="${t.studyHours}"
+                                    onchange="updateTopic('${subjectId}','${topicId}','studyHours',this.value)">
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>
+                                    ❓ Questions Practiced
+                                </label>
+
+                                <input
+                                    type="number"
+                                    min="0"
+                                    value="${t.questions}"
+                                    onchange="updateTopic('${subjectId}','${topicId}','questions',this.value)">
+
+                            </div>
+
+
+                            <div class="field full-width">
+
+                                <label>
+                                    📝 Notes
+                                </label>
+
+                                <textarea
+                                    placeholder="Write your study notes..."
+                                    onchange="updateTopic('${subjectId}','${topicId}','notes',this.value)"
+                                >${escapeHTML(t.notes)}</textarea>
+
+                            </div>
+
+
+                            <div class="field full-width">
+
+                                <label>
+                                    🔗 Resources
+                                </label>
+
+                                <textarea
+                                    placeholder="Add book names, URLs, PDFs, websites, references..."
+                                    onchange="updateTopic('${subjectId}','${topicId}','resources',this.value)"
+                                >${escapeHTML(t.resources)}</textarea>
+
+                            </div>
+
+                        </div>
+
+                        <div
+                            id="save-${subjectId}-${topicId}"
+                            class="save-note">
+                            ✓ Automatically saved
+                        </div>
+
+                    </div>
+
+                </div>
+
+                `;
+
+            }).join("")}
+
+        </div>
+
+    `;
+
+}
+
+
+function toggleTopic(subjectId,topicId){
+
+    const body =
+        document.getElementById(
+            `topic-${subjectId}-${topicId}`
+        );
+
+    body.classList.toggle("open");
+
+}
+
+
+function updateTopic(subjectId,topicId,field,value){
+
+    const topic =
+        appData.subjects[subjectId].topics[topicId];
+
+    if(field==="study" || field==="revision"){
+
+        topic[field]=Boolean(value);
+
+    }else if(
+        field==="confidence" ||
+        field==="questions" ||
+        field==="studyHours"
+    ){
+
+        topic[field]=Number(value);
+
+    }else{
+
+        topic[field]=value;
+
+    }
+
+    saveData();
+
+    const saveNote =
+        document.getElementById(
+            `save-${subjectId}-${topicId}`
+        );
+
+    if(saveNote){
+
+        saveNote.classList.add("show");
+
+        setTimeout(()=>{
+            saveNote.classList.remove("show");
+        },1200);
+
+    }
+
+    updateDashboard();
+
+    renderCurriculum();
+
+    updateTopicStatus(subjectId,topicId);
+
+}
+
+
+function updateTopicStatus(subjectId,topicId){
+
+    const topic =
+        appData.subjects[subjectId].topics[topicId];
+
+    const status =
+        document.getElementById(
+            `status-${subjectId}-${topicId}`
+        );
+
+    if(!status)return;
+
+    if(topic.study){
+
+        status.className=
+            "topic-status completed";
+
+        status.textContent=
+            "✓ Completed";
+
+    }else{
+
+        status.className=
+            "topic-status";
+
+        status.textContent=
+            "In Progress";
+
+    }
+
+}
+
+
+/* =========================================================
+   PROGRESS CALCULATIONS
+========================================================= */
+
+function calculateSubjectProgress(subjectId){
+
+    const subject =
+        CURRICULUM.find(s=>s.id===subjectId);
+
+    if(!subject)return 0;
+
+    const topics =
+        appData.subjects[subjectId].topics;
+
+    const completed =
+        subject.topics.filter(topic=>
+            topics[slugify(topic)]?.study
+        ).length;
+
+    return Math.round(
+        completed /
+        subject.topics.length *
+        100
+    );
+
+}
+
+
+function calculateOverallProgress(){
+
+    let total=0;
+    let completed=0;
+
+    CURRICULUM.forEach(subject=>{
+
+        subject.topics.forEach(topic=>{
+
+            total++;
+
+            if(
+                appData.subjects[subject.id]
+                .topics[slugify(topic)]
+                .study
+            ){
+
+                completed++;
+
+            }
+
+        });
+
+    });
+
+    return total
+        ? Math.round(completed/total*100)
+        : 0;
+
+}
+
+
+function getTotalHours(){
+
+    let hours=0;
+
+    Object.values(appData.subjects)
+        .forEach(subject=>{
+
+            Object.values(subject.topics)
+                .forEach(topic=>{
+
+                    hours+=Number(topic.studyHours)||0;
+
+                });
+
+        });
+
+    return Math.round(hours*100)/100;
+
+}
+
+
+function getCompletedTopics(){
+
+    let count=0;
+
+    Object.values(appData.subjects)
+        .forEach(subject=>{
+
+            Object.values(subject.topics)
+                .forEach(topic=>{
+
+                    if(topic.study)count++;
+
+                });
+
+        });
+
+    return count;
+
+}
+
+
+function getRevisionTopics(){
+
+    let count=0;
+
+    Object.values(appData.subjects)
+        .forEach(subject=>{
+
+            Object.values(subject.topics)
+                .forEach(topic=>{
+
+                    if(topic.revision)count++;
+
+                });
+
+        });
+
+    return count;
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function updateDashboard(){
+
+    const progress =
+        calculateOverallProgress();
+
+    document.getElementById(
+        "overallProgress"
+    ).textContent =
+        progress+"%";
+
+    document.getElementById(
+        "overallProgressBar"
+    ).style.width =
+        progress+"%";
+
+    document.getElementById(
+        "completedTopics"
+    ).textContent =
+        getCompletedTopics();
+
+    document.getElementById(
+        "totalHours"
+    ).textContent =
+        getTotalHours();
+
+    document.getElementById(
+        "revisionTopics"
+    ).textContent =
+        getRevisionTopics();
+
+    renderDashboardSubjects();
+
+    updateQuizAverage();
+
+}
+
+
+function renderDashboardSubjects(){
+
+    const container =
+        document.getElementById(
+            "dashboardSubjects"
+        );
+
+    container.innerHTML =
+        CURRICULUM.map(subject=>{
+
+            const progress =
+                calculateSubjectProgress(subject.id);
+
+            return `
+
+            <div class="subject-progress">
+
+                <div class="subject-progress-head">
+
+                    <span>
+                        ${escapeHTML(subject.name)}
+                    </span>
+
+                    <strong>
+                        ${progress}%
+                    </strong>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        style="width:${progress}%">
+                    </div>
+
+                </div>
+
+            </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================================
+   GOALS
+========================================================= */
+
+function addGoal(e){
+
+    e.preventDefault();
+
+    const title =
+        document.getElementById("goalTitle")
+        .value.trim();
+
+    const target =
+        Number(
+            document.getElementById("goalTarget")
+            .value
+        );
+
+    const deadline =
+        document.getElementById("goalDeadline")
+        .value;
+
+    appData.goals.push({
+
+        id:Date.now(),
+
+        title:title,
+
+        target:target,
+
+        deadline:deadline,
+
+        progress:0
+
+    });
+
+    saveData();
+
+    e.target.reset();
+
+    renderGoals();
+
+}
+
+
+function renderGoals(){
+
+    const container =
+        document.getElementById("goalList");
+
+    if(!appData.goals.length){
+
+        container.innerHTML=`
+
+            <div style="color:var(--muted)">
+                No goals added yet.
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    container.innerHTML =
+        appData.goals.map(goal=>`
+
+        <div class="goal-item">
+
+            <div class="goal-head">
+
+                <strong>
+                    ${escapeHTML(goal.title)}
+                </strong>
+
+                <div class="goal-actions">
+
+                    <button
+                        onclick="deleteGoal(${goal.id})">
+                        🗑
+                    </button>
+
+                </div>
+
+            </div>
+
+            <p style="color:var(--muted);font-size:13px">
+
+                Target: ${goal.target}%
+
+                ${goal.deadline
+                    ? " | Deadline: "+goal.deadline
+                    : ""}
+
+            </p>
+
+            <div style="margin-top:10px">
+
+                <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="${goal.progress}"
+                    style="width:100%"
+                    onchange="updateGoal(${goal.id},this.value)">
+
+                <small>
+                    Progress: ${goal.progress}%
+                </small>
+
+            </div>
+
+        </div>
+
+        `).join("");
+
+}
+
+
+function updateGoal(id,value){
+
+    const goal =
+        appData.goals.find(g=>g.id===id);
+
+    if(goal){
+
+        goal.progress=
+            Number(value);
+
+        saveData();
+
+        renderGoals();
+
+    }
+
+}
+
+
+function deleteGoal(id){
+
+    if(!confirm("Delete this goal?"))return;
+
+    appData.goals =
+        appData.goals.filter(g=>g.id!==id);
+
+    saveData();
+
+    renderGoals();
+
+}
+
+
+/* =========================================================
+   ASSESSMENT
+========================================================= */
+
+function assessmentTab(type){
+
+    document.getElementById("mockTab")
+        .classList.toggle(
+            "active",
+            type==="mock"
+        );
+
+    document.getElementById("chapterTab")
+        .classList.toggle(
+            "active",
+            type==="chapter"
+        );
+
+    document.getElementById("mockTests")
+        .style.display =
+        type==="mock" ? "block" : "none";
+
+    document.getElementById("chapterTests")
+        .style.display =
+        type==="chapter" ? "block" : "none";
+
+}
+
+
+function renderMockTests(){
+
+    const container =
+        document.getElementById("mockTests");
+
+    container.innerHTML=`
+
+        <div class="test-list">
+
+            ${MOCK_TESTS.map(test=>`
+
+                <div class="test-card">
+
+                    <h3>
+                        ${escapeHTML(test.title)}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(test.description)}
+                    </p>
+
+                    <p>
+                        Questions:
+                        <strong>
+                            ${test.questions.length}
+                        </strong>
+                    </p>
+
+                    <button
+                        class="start-btn"
+                        onclick="startMockTest('${test.id}')">
+
+                        Start Mock Test
+
+                    </button>
+
+                </div>
+
+            `).join("")}
+
+        </div>
+
+    `;
+
+}
+
+
+function renderChapterTests(){
+
+    const container =
+        document.getElementById("chapterTests");
+
+    container.innerHTML=`
+
+        <div class="chapter-grid">
+
+            ${CURRICULUM.map(subject=>`
+
+                <div
+                    class="chapter-card"
+                    onclick="startChapterTest('${subject.id}')">
+
+                    <h3>
+                        ${escapeHTML(subject.name)}
+                    </h3>
+
+                    <p
+                        style="color:var(--muted);
+                        margin-top:8px;
+                        font-size:13px">
+
+                        ${subject.topics.length}
+                        curriculum topics
+
+                    </p>
+
+                    <div
+                        style="margin-top:12px;
+                        color:var(--primary);
+                        font-weight:bold">
+
+                        Start Test →
+
+                    </div>
+
+                </div>
+
+            `).join("")}
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   QUIZ STATE
+========================================================= */
+
+let quizState={
+    type:null,
+    testId:null,
+    subjectId:null,
+    questions:[],
+    current:0,
+    score:0,
+    answered:false
+};
+
+
+function startMockTest(testId){
+
+    const test =
+        MOCK_TESTS.find(t=>t.id===testId);
+
+    if(!test)return;
+
+    quizState={
+        type:"mock",
+        testId:testId,
+        subjectId:null,
+        questions:test.questions,
+        current:0,
+        score:0,
+        answered:false
+    };
+
+    openQuiz();
+
+}
+
+
+function startChapterTest(subjectId){
+
+    const subject =
+        CURRICULUM.find(s=>s.id===subjectId);
+
+    if(!subject)return;
+
+    const questions =
+        generateChapterQuestions(subject);
+
+    quizState={
+        type:"chapter",
+        testId:null,
+        subjectId:subjectId,
+        questions:questions,
+        current:0,
+        score:0,
+        answered:false
+    };
+
+    openQuiz();
+
+}
+
+
+function generateChapterQuestions(subject){
+
+    /*
+      Generic demo question bank for all curriculum chapters.
+
+      You can later replace these with your complete
+      Agriculture Officer question bank.
+    */
+
+    const questions=[];
+
+    subject.topics.slice(0,5).forEach((topic,index)=>{
+
+        questions.push({
+
+            q:
+                `Which statement is most directly related to "${topic}"?`,
+
+            options:[
+
+                `Understanding and applying principles of ${topic}`,
+
+                "Ignoring the topic during preparation",
+
+                "Avoiding field-level application",
+
+                "Studying unrelated subjects only"
+
+            ],
+
+            answer:0,
+
+            explanation:
+                `The topic "${topic}" should be studied by understanding its core principles, applications, examples and relevance to agricultural practice and competitive examinations.`
+
+        });
+
+    });
+
+    return questions;
+
+}
+
+
+function openQuiz(){
+
+    document.getElementById("assessmentHome")
+        .style.display="none";
+
+    document.getElementById("quizArea")
+        .style.display="block";
+
+    renderQuiz();
+
+}
+
+
+function renderQuiz(){
+
+    const container =
+        document.getElementById("quizArea");
+
+    const q =
+        quizState.questions[
+            quizState.current
+        ];
+
+    if(!q){
+
+        renderQuizResult();
+
+        return;
+
+    }
+
+    quizState.answered=false;
+
+    container.innerHTML=`
+
+        <div class="quiz-container">
+
+            <button
+                class="back-btn"
+                onclick="exitQuiz()">
+
+                ← Exit Test
+
+            </button>
+
+            <div class="quiz-top">
+
+                <strong>
+                    Question
+                    ${quizState.current+1}
+                    /
+                    ${quizState.questions.length}
+                </strong>
+
+                <strong>
+                    Score: ${quizState.score}
+                </strong>
+
+            </div>
+
+
+            <div class="progress-bar"
+                 style="margin-bottom:20px">
+
+                <div
+                    class="progress-fill"
+                    style="width:${
+                        ((quizState.current) /
+                        quizState.questions.length)*100
+                    }%">
+                </div>
+
+            </div>
+
+
+            <div class="question-card">
+
+                <div class="question-number">
+                    Question ${quizState.current+1}
+                </div>
+
+                <div class="question-text">
+                    ${escapeHTML(q.q)}
+                </div>
+
+                <div>
+
+                    ${q.options.map((option,index)=>`
+
+                        <button
+                            id="option-${index}"
+                            class="option"
+                            onclick="checkAnswer(${index})">
+
+                            <strong>
+                                ${String.fromCharCode(65+index)}.
+                            </strong>
+
+                            ${escapeHTML(option)}
+
+                        </button>
+
+                    `).join("")}
+
+                </div>
+
+
+                <div
+                    id="answerBox"
+                    class="answer-box">
+                </div>
+
+
+                <button
+                    id="nextButton"
+                    class="next-btn"
+                    style="display:none"
+                    onclick="nextQuestion()">
+
+                    ${quizState.current ===
+                      quizState.questions.length-1
+                        ? "Finish Test"
+                        : "Next Question →"}
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+function checkAnswer(selectedIndex){
+
+    if(quizState.answered)return;
+
+    quizState.answered=true;
+
+    const q =
+        quizState.questions[
+            quizState.current
+        ];
+
+    const buttons =
+        document.querySelectorAll(".option");
+
+    buttons.forEach(btn=>{
+        btn.classList.add("disabled");
+    });
+
+    const selected =
+        document.getElementById(
+            `option-${selectedIndex}`
+        );
+
+    const correct =
+        document.getElementById(
+            `option-${q.answer}`
+        );
+
+    if(selectedIndex===q.answer){
+
+        quizState.score++;
+
+        selected.classList.add("correct");
+
+        const box =
+            document.getElementById("answerBox");
+
+        box.className=
+            "answer-box correct";
+
+        box.innerHTML=`
+
+            <strong>✓ Correct!</strong>
+
+            <br><br>
+
+            ${escapeHTML(q.explanation)}
+
+        `;
+
+    }else{
+
+        selected.classList.add("wrong");
+
+        correct.classList.add("correct");
+
+        const box =
+            document.getElementById("answerBox");
+
+        box.className=
+            "answer-box wrong";
+
+        box.innerHTML=`
+
+            <strong>✗ Wrong Answer</strong>
+
+            <br><br>
+
+            <strong>
+                Correct Answer:
+                ${String.fromCharCode(65+q.answer)}
+                — ${escapeHTML(q.options[q.answer])}
+            </strong>
+
+            <br><br>
+
+            <strong>Explanation:</strong>
+
+            ${escapeHTML(q.explanation)}
+
+        `;
+
+    }
+
+    document.getElementById(
+        "nextButton"
+    ).style.display="inline-block";
+
+}
+
+
+function nextQuestion(){
+
+    quizState.current++;
+
+    renderQuiz();
+
+}
+
+
+function renderQuizResult(){
+
+    const percentage =
+        Math.round(
+            quizState.score /
+            quizState.questions.length *
+            100
+        );
+
+    recordAssessmentResult(
+        percentage
+    );
+
+    const message =
+        percentage>=80
+        ? "Excellent performance! 🎉"
+        : percentage>=60
+        ? "Good performance. Keep improving! 👍"
+        : "More revision is recommended. 📖";
+
+    document.getElementById("quizArea")
+        .innerHTML=`
+
+        <div class="result-card">
+
+            <h2>Assessment Complete</h2>
+
+            <div class="result-score">
+                ${percentage}%
+            </div>
+
+            <p>
+                Score:
+                <strong>
+                    ${quizState.score}
+                </strong>
+                /
+                ${quizState.questions.length}
+            </p>
+
+            <p style="margin-top:15px;color:var(--muted)">
+                ${message}
+            </p>
+
+            <button
+                class="assessment-dashboard-btn"
+                onclick="exitQuiz()">
+
+                Back to Assessments
+
+            </button>
+
+        </div>
+
+        `;
+
+}
+
+
+function exitQuiz(){
+
+    document.getElementById("quizArea")
+        .style.display="none";
+
+    document.getElementById("assessmentHome")
+        .style.display="block";
+
+    updateDashboard();
+
+}
+
+
+function recordAssessmentResult(score){
+
+    appData.assessments.attempts.push({
+
+        date:new Date().toISOString(),
+
+        type:quizState.type,
+
+        testId:quizState.testId,
+
+        subjectId:quizState.subjectId,
+
+        score:score,
+
+        total:quizState.questions.length
+
+    });
+
+
+    /*
+       Connect chapterwise test results to
+       curriculum progress automatically.
+    */
+
+    if(
+        quizState.type==="chapter" &&
+        quizState.subjectId
+    ){
+
+        const subject =
+            appData.subjects[
+                quizState.subjectId
+            ];
+
+        const percentage=score;
+
+        Object.values(subject.topics)
+            .forEach(topic=>{
+
+                topic.questions =
+                    Number(topic.questions||0)+
+                    quizState.questions.length;
+
+                if(percentage>=80){
+
+                    topic.confidence =
+                        Math.max(
+                            Number(topic.confidence||0),
+                            5
+                        );
+
+                }else if(percentage>=60){
+
+                    topic.confidence =
+                        Math.max(
+                            Number(topic.confidence||0),
+                            4
+                        );
+
+                }else{
+
+                    topic.revision=true;
+
+                }
+
+            });
+
+    }
+
+    saveData();
+
+}
+
+
+/* =========================================================
+   QUIZ AVERAGE
+========================================================= */
+
+function updateQuizAverage(){
+
+    const attempts =
+        appData.assessments.attempts;
+
+    if(!attempts.length){
+
+        document.getElementById(
+            "quizAverage"
+        ).textContent="0%";
+
+        return;
+
+    }
+
+    const average =
+        attempts.reduce(
+            (sum,a)=>sum+Number(a.score),
+            0
+        ) / attempts.length;
+
+    document.getElementById(
+        "quizAverage"
+    ).textContent=
+        Math.round(average)+"%";
+
+}
+
+
+/* =========================================================
+   PROGRESS PAGE
+========================================================= */
+
+function renderProgress(){
+
+    const container =
+        document.getElementById(
+            "progressDetails"
+        );
+
+    const attempts =
+        appData.assessments.attempts;
+
+    let html="";
+
+    CURRICULUM.forEach(subject=>{
+
+        const progress =
+            calculateSubjectProgress(subject.id);
+
+        const data =
+            appData.subjects[subject.id];
+
+        let hours=0;
+        let revision=0;
+        let confidence=0;
+
+        Object.values(data.topics)
+            .forEach(topic=>{
+
+                hours +=
+                    Number(topic.studyHours)||0;
+
+                if(topic.revision)
+                    revision++;
+
+                confidence +=
+                    Number(topic.confidence)||0;
+
+            });
+
+        const avgConfidence =
+            subject.topics.length
+            ? (
+                confidence /
+                subject.topics.length
+            ).toFixed(1)
+            : 0;
+
+        html+=`
+
+            <div
+                style="
+                    margin-bottom:25px;
+                    padding-bottom:20px;
+                    border-bottom:1px solid var(--border)
+                ">
+
+                <div
+                    style="
+                        display:flex;
+                        justify-content:space-between;
+                        margin-bottom:8px
+                    ">
+
+                    <strong>
+                        ${escapeHTML(subject.name)}
+                    </strong>
+
+                    <strong>
+                        ${progress}%
+                    </strong>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        style="width:${progress}%">
+                    </div>
+
+                </div>
+
+                <div
+                    style="
+                        display:flex;
+                        gap:30px;
+                        margin-top:10px;
+                        color:var(--muted);
+                        font-size:13px
+                    ">
+
+                    <span>
+                        ⏱ ${hours.toFixed(1)} hours
+                    </span>
+
+                    <span>
+                        💪 Confidence ${avgConfidence}/5
+                    </span>
+
+                    <span>
+                        🔁 ${revision} need revision
+                    </span>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
+    if(attempts.length){
+
+        html+=`
+
+            <h3 style="margin:25px 0 15px">
+                📝 Recent Assessment Results
+            </h3>
+
+            ${attempts
+                .slice()
+                .reverse()
+                .slice(0,10)
+                .map(a=>`
+
+                <div
+                    style="
+                        display:flex;
+                        justify-content:space-between;
+                        padding:12px 0;
+                        border-bottom:1px solid var(--border)
+                    ">
+
+                    <span>
+                        ${a.type==="mock"
+                            ? "Mock Test"
+                            : "Chapterwise Test"}
+                    </span>
+
+                    <strong>
+                        ${a.score}%
+                    </strong>
+
+                </div>
+
+                `)
+                .join("")}
+
+        `;
+
+    }
+
+    container.innerHTML=html;
+
+}
+
+
+/* =========================================================
+   EXPORT DATA
+========================================================= */
+
+function exportData(){
+
+    const dataStr =
+        JSON.stringify(
+            appData,
+            null,
+            2
+        );
+
+    const blob =
+        new Blob(
+            [dataStr],
+            {type:"application/json"}
+        );
+
+    const url =
+        URL.createObjectURL(blob);
+
+    const a =
+        document.createElement("a");
+
+    a.href=url;
+
+    a.download=
+        "bipin-plms-backup.json";
+
+    a.click();
+
+    URL.revokeObjectURL(url);
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetData(){
+
+    if(!confirm(
+        "Are you sure you want to reset ALL learning progress?"
+    ))return;
+
+    localStorage.removeItem(
+        STORAGE_KEY
+    );
+
+    appData={
+        subjects:{},
+        goals:[],
+        assessments:{
+            attempts:[]
+        }
+    };
+
+    ensureCurriculumData();
+
+    renderCurriculum();
+
+    renderGoals();
+
+    updateDashboard();
+
+    alert(
+        "PLMS progress has been reset."
+    );
+
+}
+
+
+/* =========================================================
+   SECURITY / HTML ESCAPE
+========================================================= */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+</script>
+
+</body>
+</html>
