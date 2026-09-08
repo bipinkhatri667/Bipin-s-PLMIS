@@ -1,1716 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Personal Learning Management System</title>
-
-<style>
-/* =========================================================
-   GLOBAL
-========================================================= */
-
-* {
-    box-sizing: border-box;
-}
-
-:root {
-    --primary: #2563eb;
-    --primary-dark: #1d4ed8;
-    --secondary: #0f766e;
-    --success: #16a34a;
-    --warning: #d97706;
-    --danger: #dc2626;
-    --dark: #172033;
-    --text: #374151;
-    --muted: #6b7280;
-    --border: #e5e7eb;
-    --bg: #f5f7fb;
-    --card: #ffffff;
-    --sidebar: #111827;
-}
-
-html,
-body {
-    margin: 0;
-    padding: 0;
-    min-height: 100%;
-    font-family:
-        Inter,
-        "Segoe UI",
-        Arial,
-        sans-serif;
-    background: var(--bg);
-    color: var(--text);
-}
-
-button,
-input,
-textarea,
-select {
-    font: inherit;
-}
-
-button {
-    cursor: pointer;
-}
-
-a {
-    color: inherit;
-}
-
-
-/* =========================================================
-   LOGIN PAGE
-========================================================= */
-
-#loginView {
-    min-height: 100vh;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 25% 75%;
-    background: var(--bg);
-}
-
-/* LEFT */
-
-.login-left {
-    min-height: 100vh;
-    background: #ffffff;
-    border-right: 1px solid var(--border);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-
-    padding: 45px 30px;
-}
-
-.logo-wrap {
-    width: 100%;
-    text-align: center;
-}
-
-/*
-   IMPORTANT:
-   Keep plmslogo.jpg in the same folder as index.html
-*/
-
-.login-logo {
-    width: 130px;
-    height: 130px;
-
-    display: block;
-    margin: 0 auto 18px auto;
-
-    object-fit: contain;
-    border-radius: 14px;
-}
-
-/* If the logo cannot load, show a visual fallback */
-
-.logo-fallback {
-    width: 130px;
-    height: 130px;
-
-    margin: 0 auto 18px auto;
-
-    display: none;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 18px;
-
-    background: #2563eb;
-    color: #ffffff;
-
-    font-size: 36px;
-    font-weight: 900;
-}
-
-.login-site-name {
-    font-size: 20px;
-    line-height: 1.35;
-    font-weight: 800;
-    color: var(--dark);
-    text-align: center;
-}
-
-.login-slogan {
-    margin-top: 8px;
-
-    font-size: 13px;
-    color: var(--muted);
-
-    text-align: center;
-}
-
-.login-divider {
-    width: 85%;
-
-    margin: 28px auto 30px auto;
-
-    border: 0;
-    border-top: 2px dotted #cbd5e1;
-}
-
-/* SECURITY */
-
-.security-box {
-    width: 100%;
-    max-width: 300px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    text-align: center;
-
-    margin: 0 auto;
-}
-
-.security-label {
-    display: block;
-
-    width: 100%;
-
-    margin-bottom: 10px;
-
-    font-size: 13px;
-    font-weight: 700;
-
-    color: var(--text);
-
-    text-align: center;
-}
-
-.security-input {
-    width: 100%;
-    height: 42px;
-
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-
-    padding: 0 14px;
-
-    outline: none;
-
-    text-align: center;
-
-    font-size: 15px;
-    letter-spacing: 2px;
-}
-
-.security-input:focus {
-    border-color: var(--primary);
-
-    box-shadow:
-        0 0 0 3px rgba(37, 99, 235, 0.12);
-}
-
-.unlock-btn {
-    width: 100%;
-    height: 42px;
-
-    margin-top: 12px;
-
-    border: 0;
-    border-radius: 8px;
-
-    background: var(--primary);
-    color: white;
-
-    font-size: 14px;
-    font-weight: 700;
-
-    transition: 0.2s;
-}
-
-.unlock-btn:hover {
-    background: var(--primary-dark);
-    transform: translateY(-1px);
-}
-
-.login-message {
-    min-height: 20px;
-
-    margin-top: 10px;
-
-    font-size: 12px;
-
-    text-align: center;
-}
-
-/* RIGHT */
-
-.login-right {
-    min-height: 100vh;
-
-    padding: 28px 30px;
-
-    overflow-y: auto;
-}
-
-.quick-heading {
-    margin: 0 0 12px 0;
-
-    font-size: 20px;
-    font-weight: 800;
-
-    color: var(--dark);
-
-    text-align: left;
-}
-
-.quick-access {
-    display: flex;
-
-    gap: 8px;
-
-    width: 100%;
-
-    margin-bottom: 18px;
-}
-
-.quick-access a {
-    flex: 1;
-
-    min-width: 0;
-
-    height: 34px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 0 8px;
-
-    border: 1px solid #dbe2ea;
-    border-radius: 7px;
-
-    background: white;
-
-    color: #1f2937;
-
-    text-decoration: none;
-
-    font-size: 12px;
-    font-weight: 600;
-
-    white-space: nowrap;
-
-    transition: 0.2s;
-}
-
-.quick-access a:hover {
-    background: var(--primary);
-    color: white;
-    border-color: var(--primary);
-}
-
-
-/* =========================================================
-   INDIA BIX
-========================================================= */
-
-.quick-embed {
-    width: 100%;
-    height: 38vh;
-
-    min-height: 250px;
-
-    margin-bottom: 16px;
-
-    background: white;
-
-    border: 1px solid var(--border);
-    border-radius: 10px;
-
-    overflow: hidden;
-}
-
-.quick-embed iframe {
-    width: 100%;
-    height: 100%;
-
-    border: 0;
-}
-
-
-/* =========================================================
-   LOGIN MEDIA
-========================================================= */
-
-.login-media-grid {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 16px;
-
-    width: 100%;
-}
-
-.media-card {
-    background: white;
-
-    border: 1px solid var(--border);
-
-    border-radius: 10px;
-
-    overflow: hidden;
-}
-
-.media-title {
-    height: 42px;
-
-    display: flex;
-    align-items: center;
-
-    padding: 0 14px;
-
-    font-size: 14px;
-    font-weight: 700;
-
-    color: var(--dark);
-
-    border-bottom: 1px solid var(--border);
-
-    background: #f8fafc;
-}
-
-.epaper-frame {
-    width: 100%;
-    height: 210px;
-
-    border: 0;
-}
-
-
-/* =========================================================
-   UJYAALO RADIO
-========================================================= */
-
-.ujyaalo-player {
-    min-height: 168px;
-
-    padding: 20px;
-
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: center;
-}
-
-.ujyaalo-logo-text {
-    font-size: 23px;
-    font-weight: 900;
-
-    color: #dc2626;
-
-    margin-bottom: 4px;
-}
-
-.ujyaalo-frequency {
-    font-size: 12px;
-
-    color: var(--muted);
-
-    margin-bottom: 15px;
-}
-
-.ujyaalo-player audio {
-    width: 100%;
-}
-
-
-/* =========================================================
-   APPLICATION
-========================================================= */
-
-#appView {
-    display: none;
-
-    min-height: 100vh;
-
-    width: 100%;
-}
-
-
-/* =========================================================
-   SIDEBAR
-========================================================= */
-
-.sidebar {
-    width: 250px;
-
-    position: fixed;
-
-    top: 0;
-    bottom: 0;
-    left: 0;
-
-    z-index: 1000;
-
-    background: var(--sidebar);
-
-    color: white;
-
-    transition: 0.25s;
-
-    overflow-y: auto;
-}
-
-.sidebar.collapsed {
-    width: 72px;
-}
-
-.sidebar.hidden {
-    transform: translateX(-100%);
-}
-
-.sidebar-header {
-    height: 72px;
-
-    display: flex;
-    align-items: center;
-
-    padding: 12px 16px;
-
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-
-.sidebar-logo {
-    width: 42px;
-    height: 42px;
-
-    object-fit: contain;
-
-    border-radius: 8px;
-
-    background: white;
-}
-
-.sidebar-brand {
-    margin-left: 10px;
-
-    font-size: 15px;
-    font-weight: 800;
-
-    white-space: nowrap;
-}
-
-.sidebar.collapsed .sidebar-brand {
-    display: none;
-}
-
-.nav {
-    padding: 12px;
-}
-
-.nav-section {
-    margin: 18px 8px 8px;
-
-    color: #9ca3af;
-
-    font-size: 10px;
-    font-weight: 700;
-
-    text-transform: uppercase;
-
-    letter-spacing: 0.08em;
-}
-
-.sidebar.collapsed .nav-section {
-    display: none;
-}
-
-.nav-item {
-    width: 100%;
-
-    display: flex;
-    align-items: center;
-
-    gap: 12px;
-
-    padding: 11px 12px;
-
-    margin-bottom: 4px;
-
-    border: 0;
-    border-radius: 8px;
-
-    background: transparent;
-
-    color: #d1d5db;
-
-    text-align: left;
-
-    font-size: 13px;
-
-    transition: 0.2s;
-}
-
-.nav-item:hover,
-.nav-item.active {
-    background: rgba(255,255,255,0.1);
-
-    color: white;
-}
-
-.nav-icon {
-    width: 22px;
-
-    text-align: center;
-
-    flex-shrink: 0;
-}
-
-.sidebar.collapsed .nav-item {
-    justify-content: center;
-}
-
-.sidebar.collapsed .nav-text {
-    display: none;
-}
-
-
-/* =========================================================
-   MAIN
-========================================================= */
-
-.main {
-    width: calc(100% - 250px);
-
-    margin-left: 250px;
-
-    min-height: 100vh;
-
-    transition: 0.25s;
-}
-
-.sidebar.collapsed ~ .main {
-    width: calc(100% - 72px);
-
-    margin-left: 72px;
-}
-
-.topbar {
-    height: 64px;
-
-    position: sticky;
-
-    top: 0;
-
-    z-index: 100;
-
-    background: rgba(255,255,255,0.96);
-
-    backdrop-filter: blur(10px);
-
-    border-bottom: 1px solid var(--border);
-
-    display: flex;
-    align-items: center;
-
-    padding: 0 20px;
-
-    gap: 12px;
-}
-
-.menu-btn,
-.hide-sidebar-btn {
-    width: 38px;
-    height: 38px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 8px;
-
-    background: white;
-
-    color: var(--dark);
-
-    font-size: 17px;
-}
-
-.page-title {
-    flex: 1;
-
-    font-size: 17px;
-
-    font-weight: 800;
-
-    color: var(--dark);
-}
-
-.date-display {
-    color: var(--muted);
-
-    font-size: 12px;
-}
-
-.content {
-    padding: 24px;
-}
-
-
-/* =========================================================
-   SIDEBAR UNHIDE
-========================================================= */
-
-.show-sidebar-btn {
-    position: fixed;
-
-    left: 15px;
-    bottom: 15px;
-
-    z-index: 1100;
-
-    width: 44px;
-    height: 44px;
-
-    display: none;
-
-    border: 0;
-    border-radius: 50%;
-
-    background: var(--primary);
-
-    color: white;
-
-    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-}
-
-.show-sidebar-btn.visible {
-    display: block;
-}
-
-
-/* =========================================================
-   CARDS
-========================================================= */
-
-.card {
-    background: var(--card);
-
-    border: 1px solid var(--border);
-
-    border-radius: 12px;
-
-    padding: 18px;
-
-    box-shadow:
-        0 2px 8px rgba(15,23,42,0.03);
-}
-
-.card-title {
-    margin: 0 0 5px;
-
-    color: var(--dark);
-
-    font-size: 15px;
-    font-weight: 800;
-}
-
-.card-subtitle {
-    color: var(--muted);
-
-    font-size: 12px;
-}
-
-
-/* =========================================================
-   DASHBOARD
-========================================================= */
-
-.welcome {
-    margin-bottom: 20px;
-}
-
-.welcome h1 {
-    margin: 0;
-
-    color: var(--dark);
-
-    font-size: 25px;
-}
-
-.welcome p {
-    margin: 5px 0 0;
-
-    color: var(--muted);
-
-    font-size: 13px;
-}
-
-.stats-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 15px;
-
-    margin-bottom: 20px;
-}
-
-.stat-card {
-    background: white;
-
-    border: 1px solid var(--border);
-
-    border-radius: 12px;
-
-    padding: 17px;
-}
-
-.stat-label {
-    font-size: 12px;
-
-    color: var(--muted);
-}
-
-.stat-value {
-    margin-top: 7px;
-
-    font-size: 25px;
-    font-weight: 800;
-
-    color: var(--dark);
-}
-
-.stat-progress {
-    margin-top: 10px;
-
-    height: 5px;
-
-    background: #e5e7eb;
-
-    border-radius: 10px;
-
-    overflow: hidden;
-}
-
-.stat-progress span {
-    display: block;
-
-    height: 100%;
-
-    background: var(--primary);
-}
-
-.dashboard-grid {
-    display: grid;
-
-    grid-template-columns: 1.5fr 1fr;
-
-    gap: 18px;
-}
-
-.progress-ring {
-    width: 145px;
-    height: 145px;
-
-    margin: 15px auto;
-
-    border-radius: 50%;
-
-    background:
-        conic-gradient(
-            var(--primary) var(--progress, 0%),
-            #e5e7eb 0
-        );
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.progress-ring-inner {
-    width: 108px;
-    height: 108px;
-
-    border-radius: 50%;
-
-    background: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 24px;
-    font-weight: 800;
-
-    color: var(--dark);
-}
-
-
-/* =========================================================
-   PAGE HEAD
-========================================================= */
-
-.page-head {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    gap: 12px;
-
-    margin-bottom: 18px;
-}
-
-.page-head h2 {
-    margin: 0;
-
-    font-size: 22px;
-
-    color: var(--dark);
-}
-
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-
-.btn {
-    border: 0;
-
-    border-radius: 7px;
-
-    padding: 9px 13px;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-}
-
-.btn-primary {
-    background: var(--primary);
-
-    color: white;
-}
-
-.btn-secondary {
-    background: #e5e7eb;
-
-    color: #374151;
-}
-
-.btn-success {
-    background: var(--success);
-
-    color: white;
-}
-
-.btn-danger {
-    background: var(--danger);
-
-    color: white;
-}
-
-
-/* =========================================================
-   GOALS
-========================================================= */
-
-.goal-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 15px;
-}
-
-.goal-card {
-    background: white;
-
-    border: 1px solid var(--border);
-
-    border-radius: 11px;
-
-    padding: 17px;
-}
-
-.goal-card h3 {
-    margin: 0 0 7px;
-
-    font-size: 15px;
-
-    color: var(--dark);
-}
-
-.goal-card p {
-    margin: 0 0 12px;
-
-    font-size: 12px;
-
-    color: var(--muted);
-}
-
-.goal-progress {
-    height: 7px;
-
-    background: #e5e7eb;
-
-    border-radius: 10px;
-
-    overflow: hidden;
-}
-
-.goal-progress span {
-    display: block;
-
-    height: 100%;
-
-    background: var(--secondary);
-}
-
-.goal-percent {
-    margin-top: 7px;
-
-    font-size: 11px;
-
-    font-weight: 700;
-}
-
-
-/* =========================================================
-   TABLE
-========================================================= */
-
-.table-wrap {
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-
-    border-collapse: collapse;
-
-    font-size: 12px;
-}
-
-th,
-td {
-    padding: 11px;
-
-    border-bottom: 1px solid var(--border);
-
-    text-align: left;
-
-    vertical-align: middle;
-}
-
-th {
-    background: #f8fafc;
-
-    color: var(--dark);
-
-    font-size: 11px;
-}
-
-.topic-name {
-    font-weight: 700;
-
-    color: var(--dark);
-}
-
-.topic-meta {
-    margin-top: 3px;
-
-    color: var(--muted);
-
-    font-size: 10px;
-}
-
-
-/* =========================================================
-   FORM
-========================================================= */
-
-.form-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 14px;
-}
-
-.form-group {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 5px;
-}
-
-.form-group.full {
-    grid-column: 1 / -1;
-}
-
-.form-group label {
-    font-size: 11px;
-
-    font-weight: 700;
-
-    color: var(--dark);
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-    width: 100%;
-
-    padding: 9px 10px;
-
-    border: 1px solid #d1d5db;
-
-    border-radius: 7px;
-
-    outline: none;
-
-    background: white;
-
-    font-size: 12px;
-}
-
-.form-group textarea {
-    min-height: 90px;
-
-    resize: vertical;
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-    border-color: var(--primary);
-}
-
-
-/* =========================================================
-   RESOURCES
-========================================================= */
-
-.resource-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 15px;
-}
-
-.resource-card {
-    background: white;
-
-    border: 1px solid var(--border);
-
-    border-radius: 11px;
-
-    padding: 16px;
-}
-
-.resource-icon {
-    font-size: 25px;
-
-    margin-bottom: 9px;
-}
-
-.resource-card h3 {
-    margin: 0 0 5px;
-
-    color: var(--dark);
-
-    font-size: 14px;
-}
-
-.resource-card p {
-    margin: 0 0 12px;
-
-    color: var(--muted);
-
-    font-size: 11px;
-
-    line-height: 1.5;
-}
-
-
-/* =========================================================
-   ASSESSMENT
-========================================================= */
-
-.quiz-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 15px;
-}
-
-.quiz-card {
-    background: white;
-
-    border: 1px solid var(--border);
-
-    border-radius: 11px;
-
-    padding: 18px;
-}
-
-.quiz-card h3 {
-    margin: 0 0 7px;
-
-    color: var(--dark);
-}
-
-.quiz-card p {
-    font-size: 12px;
-
-    color: var(--muted);
-}
-
-.question-box {
-    background: white;
-
-    border: 1px solid var(--border);
-
-    border-radius: 12px;
-
-    padding: 20px;
-
-    margin-bottom: 15px;
-}
-
-.question-number {
-    font-size: 11px;
-
-    color: var(--primary);
-
-    font-weight: 800;
-
-    margin-bottom: 8px;
-}
-
-.question-text {
-    font-size: 15px;
-
-    font-weight: 700;
-
-    color: var(--dark);
-
-    margin-bottom: 14px;
-}
-
-.option {
-    display: block;
-
-    width: 100%;
-
-    padding: 11px;
-
-    margin: 7px 0;
-
-    border: 1px solid var(--border);
-
-    border-radius: 7px;
-
-    background: #fafafa;
-
-    text-align: left;
-
-    font-size: 12px;
-}
-
-.option:hover {
-    border-color: var(--primary);
-}
-
-.option.correct {
-    border-color: var(--success);
-
-    background: #f0fdf4;
-}
-
-.option.wrong {
-    border-color: var(--danger);
-
-    background: #fef2f2;
-}
-
-
-/* =========================================================
-   PROGRESS
-========================================================= */
-
-.progress-list {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 13px;
-}
-
-.progress-row {
-    display: grid;
-
-    grid-template-columns: 180px 1fr 60px;
-
-    align-items: center;
-
-    gap: 12px;
-}
-
-.progress-bar {
-    height: 9px;
-
-    border-radius: 10px;
-
-    background: #e5e7eb;
-
-    overflow: hidden;
-}
-
-.progress-bar span {
-    display: block;
-
-    height: 100%;
-
-    background: var(--primary);
-}
-
-
-/* =========================================================
-   SETTINGS
-========================================================= */
-
-.settings-grid {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 18px;
-}
-
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-.toast {
-    position: fixed;
-
-    right: 20px;
-    bottom: 20px;
-
-    z-index: 5000;
-
-    padding: 11px 15px;
-
-    border-radius: 8px;
-
-    background: var(--dark);
-
-    color: white;
-
-    font-size: 12px;
-
-    opacity: 0;
-
-    transform: translateY(10px);
-
-    pointer-events: none;
-
-    transition: 0.25s;
-}
-
-.toast.show {
-    opacity: 1;
-
-    transform: translateY(0);
-}
-
-
-/* =========================================================
-   MOBILE OVERLAY
-========================================================= */
-
-.sidebar-overlay {
-    display: none;
-
-    position: fixed;
-
-    inset: 0;
-
-    background: rgba(0,0,0,0.45);
-
-    z-index: 900;
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 1000px) {
-
-    #loginView {
-        grid-template-columns: 1fr;
-    }
-
-    .login-left {
-        min-height: auto;
-
-        border-right: 0;
-
-        border-bottom: 1px solid var(--border);
-
-        padding: 30px 20px;
-    }
-
-    .login-right {
-        min-height: auto;
-
-        padding: 20px;
-    }
-
-    .quick-access {
-        overflow-x: auto;
-    }
-
-    .quick-access a {
-        flex: 0 0 auto;
-
-        min-width: 105px;
-    }
-
-    .stats-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-    .goal-grid,
-    .resource-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-@media (max-width: 700px) {
-
-    .login-media-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .quick-embed {
-        height: 300px;
-    }
-
-    .sidebar {
-        transform: translateX(-100%);
-
-        width: 250px;
-    }
-
-    .sidebar.mobile-open {
-        transform: translateX(0);
-    }
-
-    .main,
-    .sidebar.collapsed ~ .main {
-        width: 100%;
-
-        margin-left: 0;
-    }
-
-    .sidebar-overlay.active {
-        display: block;
-    }
-
-    .hide-sidebar-btn {
-        display: none;
-    }
-
-    .stats-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .goal-grid,
-    .resource-grid,
-    .quiz-grid,
-    .settings-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .content {
-        padding: 15px;
-    }
-
-    .date-display {
-        display: none;
-    }
-
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .form-group.full {
-        grid-column: auto;
-    }
-
-    .progress-row {
-        grid-template-columns:
-            110px 1fr 45px;
-    }
-}
-
-
-@media (max-width: 450px) {
-
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .login-site-name {
-        font-size: 18px;
-    }
-
-    .page-head {
-        align-items: flex-start;
-
-        flex-direction: column;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f766e">
+    <title>Personal Learning Management System</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
-
-<!-- =======================================================
-     LOGIN VIEW
-======================================================== -->
-
-<section id="loginView">
+<!-- =========================================================
+     LOGIN PAGE
+========================================================= -->
+<div id="loginPage" class="login-page">
 
     <!-- LEFT LOGIN PANEL -->
+    <section class="login-left">
 
-    <div class="login-left">
+        <div class="login-content">
 
-        <div class="logo-wrap">
+            <div class="logo-wrapper">
+                <img src="plmslogo.jpg"
+                     alt="PLMS Logo"
+                     id="plmsLogo"
+                     class="login-logo">
 
-            <img
-                src="./plmslogo.jpg"
-                alt="PLMS Logo"
-                class="login-logo"
-                id="plmsLogo"
-            >
-
-            <div
-                class="logo-fallback"
-                id="logoFallback"
-            >
-                PLMS
+                <div id="logoFallback" class="logo-fallback">
+                    PLMS
+                </div>
             </div>
 
-            <div class="login-site-name">
-                Personal Learning Management System
-            </div>
+            <h1>Personal Learning<br>Management System</h1>
 
-            <div class="login-slogan">
+            <p class="login-slogan">
                 Learn • Track • Assess • Improve
+            </p>
+
+            <div class="login-divider"></div>
+
+            <div class="security-box">
+
+                <div class="security-title">
+                    Security Check-in
+                </div>
+
+                <input
+                    type="password"
+                    id="securityCode"
+                    placeholder="Enter security code"
+                    autocomplete="off"
+                >
+
+                <button id="unlockBtn" class="unlock-btn">
+                    Unlock
+                </button>
+
+                <div id="loginMessage" class="login-message"></div>
+
             </div>
 
-        </div>
-
-
-        <hr class="login-divider">
-
-
-        <!-- SECURITY CHECK-IN -->
-
-        <div class="security-box">
-
-            <label
-                class="security-label"
-                for="securityCode"
-            >
-                Security Check-in
-            </label>
-
-            <input
-                id="securityCode"
-                class="security-input"
-                type="password"
-                inputmode="numeric"
-                autocomplete="off"
-                maxlength="20"
-                placeholder="Enter security code"
-            >
-
-            <button
-                id="unlockBtn"
-                class="unlock-btn"
-                type="button"
-            >
-                Unlock
-            </button>
-
-            <div
-                id="loginMessage"
-                class="login-message"
-            ></div>
+            <!-- DOTTED LINE AFTER UNLOCK -->
+            <div class="login-bottom-divider"></div>
 
         </div>
 
-    </div>
+    </section>
 
 
     <!-- RIGHT LOGIN PANEL -->
+    <section class="login-right">
 
-    <div class="login-right">
+        <!-- QUICK ACCESS IS NOW BELOW THE DOTTED LINE -->
+        <div class="quick-access-section">
 
-        <h2 class="quick-heading">
-            Quick Access
-        </h2>
+            <h2>Quick Access</h2>
 
+            <div class="quick-access-buttons">
 
-        <div class="quick-access">
+                <a href="https://epaper.gorkhapatraonline.com/single/gorkhapatra"
+                   target="_blank">
+                    Gorkhapatra
+                </a>
 
-            <a
-                href="https://epaper.gorkhapatraonline.com/single/gorkhapatra"
-                target="_blank"
-                rel="noopener"
-            >
-                Gorkhapatra
-            </a>
+                <a href="https://psc.gov.np/"
+                   target="_blank">
+                    PSC
+                </a>
 
-            <a
-                href="https://psc.gov.np/"
-                target="_blank"
-                rel="noopener"
-            >
-                PSC
-            </a>
+                <a href="https://ppsc.lumbini.gov.np/"
+                   target="_blank">
+                    PSC Lumbini
+                </a>
 
-            <a
-                href="https://ppsc.lumbini.gov.np/"
-                target="_blank"
-                rel="noopener"
-            >
-                PSC Lumbini
-            </a>
+                <a href="https://www.opmcm.gov.np/"
+                   target="_blank">
+                    PMO
+                </a>
 
-            <a
-                href="https://www.opmcm.gov.np/"
-                target="_blank"
-                rel="noopener"
-            >
-                PMO
-            </a>
+                <a href="https://moald.gov.np/"
+                   target="_blank">
+                    MoALD
+                </a>
 
-            <a
-                href="https://moald.gov.np/"
-                target="_blank"
-                rel="noopener"
-            >
-                MoALD
-            </a>
+                <a href="https://molmac.lumbini.gov.np/"
+                   target="_blank">
+                    MoLMAC Lumbini
+                </a>
 
-            <a
-                href="https://molmac.lumbini.gov.np/"
-                target="_blank"
-                rel="noopener"
-            >
-                MoLMAC Lumbini
-            </a>
+            </div>
 
         </div>
 
 
-        <!-- INDIA BIX -->
+        <!-- INDIABIX -->
+        <div class="indiabix-container">
 
-        <div class="quick-embed">
+            <div class="panel-title">
+                IndiaBIX
+            </div>
 
             <iframe
                 src="https://www.indiabix.com/"
                 title="IndiaBIX"
-                loading="lazy"
-            ></iframe>
+                loading="lazy">
+            </iframe>
 
         </div>
 
 
-        <!-- EPAPER + RADIO -->
-
+        <!-- MEDIA AREA -->
         <div class="login-media-grid">
 
-
             <!-- GORKHAPATRA -->
-
             <div class="media-card">
 
-                <div class="media-title">
+                <div class="panel-title">
                     Gorkhapatra e-Paper
                 </div>
 
                 <iframe
-                    class="epaper-frame"
                     src="https://epaper.gorkhapatraonline.com/single/gorkhapatra"
                     title="Gorkhapatra ePaper"
-                    loading="lazy"
-                ></iframe>
+                    loading="lazy">
+                </iframe>
 
             </div>
 
 
-            <!-- UJYAALO -->
+            <!-- UJYAAALO RADIO -->
+            <div class="media-card radio-card">
 
-            <div class="media-card">
-
-                <div class="media-title">
+                <div class="panel-title">
                     Ujyaalo Live Radio
                 </div>
 
-                <div class="ujyaalo-player">
+                <div class="radio-player">
 
-                    <div class="ujyaalo-logo-text">
-                        उज्यालो
+                    <div class="radio-icon">
+                        🎙️
                     </div>
 
-                    <div class="ujyaalo-frequency">
-                        Ujyaalo 90 Network • FM 90.0
-                    </div>
+                    <h3>Ujyaalo 90 Network</h3>
+
+                    <p>
+                        Live Radio
+                    </p>
 
                     <audio
                         id="ujyaaloRadio"
                         controls
-                        preload="none"
-                    >
+                        preload="none">
 
                         <source
                             src="https://stream.zeno.fm/h527zwd11uquv"
-                            type="audio/mpeg"
-                        >
+                            type="audio/mpeg">
 
-                        Your browser does not support
-                        the audio player.
+                        Your browser does not support the audio player.
 
                     </audio>
 
@@ -1720,2754 +187,603 @@ th {
 
         </div>
 
-    </div>
+    </section>
 
-</section>
+</div>
 
 
+<!-- =========================================================
+     MAIN APPLICATION
+========================================================= -->
+<div id="appPage" class="app-page hidden">
 
-<!-- =======================================================
-     APPLICATION
-======================================================== -->
-
-<div id="appView">
+    <!-- MOBILE OVERLAY -->
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
 
     <!-- SIDEBAR -->
-
-    <aside
-        id="sidebar"
-        class="sidebar"
-    >
+    <aside id="sidebar" class="sidebar">
 
         <div class="sidebar-header">
 
-            <img
-                src="./plmslogo.jpg"
-                alt="PLMS"
-                class="sidebar-logo"
-            >
-
             <div class="sidebar-brand">
-                PLMS
+                <div class="brand-icon">P</div>
+
+                <div class="brand-text">
+                    <strong>PLMS</strong>
+                    <span>Learning System</span>
+                </div>
             </div>
+
+            <button
+                id="sidebarCollapseBtn"
+                class="sidebar-collapse-btn"
+                title="Collapse sidebar">
+                ☰
+            </button>
 
         </div>
 
 
-        <nav class="nav">
+        <nav class="sidebar-nav">
 
-            <div class="nav-section">
-                Main
-            </div>
-
-
-            <button
-                class="nav-item active"
-                data-page="dashboard"
-            >
-                <span class="nav-icon">⌂</span>
-                <span class="nav-text">Dashboard</span>
+            <button class="nav-item active" data-page="dashboard">
+                <span>🏠</span>
+                <span>Dashboard</span>
             </button>
 
-
-            <button
-                class="nav-item"
-                data-page="curriculum"
-            >
-                <span class="nav-icon">▤</span>
-                <span class="nav-text">Curriculum</span>
+            <button class="nav-item" data-page="curriculum">
+                <span>📚</span>
+                <span>Curriculum</span>
             </button>
 
-
-            <button
-                class="nav-item"
-                data-page="goals"
-            >
-                <span class="nav-icon">◎</span>
-                <span class="nav-text">Goals</span>
+            <button class="nav-item" data-page="goals">
+                <span>🎯</span>
+                <span>Goals</span>
             </button>
 
-
-            <button
-                class="nav-item"
-                data-page="resources"
-            >
-                <span class="nav-icon">▣</span>
-                <span class="nav-text">Resource Library</span>
+            <button class="nav-item" data-page="resources">
+                <span>📖</span>
+                <span>Resource Library</span>
             </button>
 
-
-            <button
-                class="nav-item"
-                data-page="assessment"
-            >
-                <span class="nav-icon">✓</span>
-                <span class="nav-text">Quiz & Assessment</span>
+            <button class="nav-item" data-page="assessment">
+                <span>📝</span>
+                <span>Quiz & Assessment</span>
             </button>
 
-
-            <button
-                class="nav-item"
-                data-page="progress"
-            >
-                <span class="nav-icon">◔</span>
-                <span class="nav-text">Progress</span>
+            <button class="nav-item" data-page="progress">
+                <span>📊</span>
+                <span>Progress</span>
             </button>
 
-
-            <div class="nav-section">
-                System
-            </div>
-
-
-            <button
-                class="nav-item"
-                data-page="settings"
-            >
-                <span class="nav-icon">⚙</span>
-                <span class="nav-text">Settings</span>
-            </button>
-
-
-            <button
-                class="nav-item"
-                id="logoutBtn"
-            >
-                <span class="nav-icon">↪</span>
-                <span class="nav-text">Logout</span>
+            <button class="nav-item" data-page="settings">
+                <span>⚙️</span>
+                <span>Settings</span>
             </button>
 
         </nav>
 
+
+        <div class="sidebar-bottom">
+
+            <button id="logoutBtn" class="logout-btn">
+                <span>🚪</span>
+                <span>Logout</span>
+            </button>
+
+        </div>
+
     </aside>
 
 
-    <div
-        id="sidebarOverlay"
-        class="sidebar-overlay"
-    ></div>
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
 
-
-    <!-- MAIN -->
-
-    <main class="main">
-
+        <!-- TOPBAR -->
         <header class="topbar">
 
-            <button
-                class="menu-btn"
-                id="menuBtn"
-                title="Toggle sidebar"
-            >
-                ☰
-            </button>
+            <div class="topbar-left">
 
-            <div
-                class="page-title"
-                id="pageTitle"
-            >
-                Dashboard
+                <button
+                    id="mobileMenuBtn"
+                    class="mobile-menu-btn">
+                    ☰
+                </button>
+
+                <button
+                    id="showSidebarBtn"
+                    class="show-sidebar-btn hidden">
+                    ☰
+                </button>
+
+                <div>
+                    <h2 id="pageTitle">Dashboard</h2>
+                    <p id="pageSubtitle">
+                        Your personal learning command center
+                    </p>
+                </div>
+
             </div>
 
-            <div
-                class="date-display"
-                id="dateDisplay"
-            ></div>
 
-            <button
-                class="hide-sidebar-btn"
-                id="hideSidebarBtn"
-                title="Hide sidebar"
-            >
-                ‹
-            </button>
+            <div class="topbar-right">
+
+                <div class="date-display" id="currentDate"></div>
+
+            </div>
 
         </header>
 
 
-        <button
-            id="showSidebarBtn"
-            class="show-sidebar-btn"
-            title="Show sidebar"
-        >
-            ☰
-        </button>
+        <!-- PAGE CONTENT -->
+        <div class="page-container">
+
+            <!-- DASHBOARD -->
+            <section id="dashboardPage" class="page active-page">
+
+                <div class="welcome-card">
+
+                    <div>
+                        <span class="eyebrow">
+                            PERSONAL LEARNING
+                        </span>
+
+                        <h1>
+                            Welcome back!
+                        </h1>
+
+                        <p>
+                            Track your learning, manage your goals,
+                            assess yourself and keep improving.
+                        </p>
+                    </div>
+
+                    <div class="welcome-icon">
+                        🎓
+                    </div>
+
+                </div>
 
 
-        <div
-            id="content"
-            class="content"
-        ></div>
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <div class="stat-icon">📚</div>
+                        <div>
+                            <span>Topics</span>
+                            <strong id="dashboardTopics">0</strong>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div>
+                            <span>Completed</span>
+                            <strong id="dashboardCompleted">0</strong>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div>
+                            <span>Active Goals</span>
+                            <strong id="dashboardGoals">0</strong>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">⏱️</div>
+                        <div>
+                            <span>Study Hours</span>
+                            <strong id="dashboardHours">0</strong>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-grid">
+
+                    <div class="content-card">
+
+                        <div class="card-header">
+                            <div>
+                                <h3>Learning Progress</h3>
+                                <p>Overall curriculum completion</p>
+                            </div>
+
+                            <strong id="overallPercentage">
+                                0%
+                            </strong>
+                        </div>
+
+                        <div class="progress-large">
+                            <div
+                                id="overallProgressBar"
+                                class="progress-fill">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="content-card">
+
+                        <div class="card-header">
+                            <div>
+                                <h3>Study Target</h3>
+                                <p>Daily study target</p>
+                            </div>
+                        </div>
+
+                        <div class="target-display">
+
+                            <strong id="dailyTargetDisplay">
+                                2
+                            </strong>
+
+                            <span>
+                                hours/day
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="content-card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h3>Recent Goals</h3>
+                            <p>Your current learning priorities</p>
+                        </div>
+
+                        <button
+                            class="small-btn"
+                            data-page="goals">
+                            View all
+                        </button>
+
+                    </div>
+
+                    <div id="dashboardGoalsList"
+                         class="goal-list">
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CURRICULUM -->
+            <section id="curriculumPage" class="page">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">
+                            CURRICULUM
+                        </span>
+
+                        <h2>Learning Curriculum</h2>
+
+                        <p>
+                            Track your syllabus topic by topic.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div id="curriculumContainer"></div>
+
+            </section>
+
+
+            <!-- GOALS -->
+            <section id="goalsPage" class="page">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">TARGETS</span>
+                        <h2>My Learning Goals</h2>
+                        <p>
+                            Define what you want to accomplish.
+                        </p>
+                    </div>
+
+                    <button id="addGoalBtn"
+                            class="primary-btn">
+                        + Add Goal
+                    </button>
+
+                </div>
+
+
+                <div id="goalsContainer"
+                     class="goals-grid">
+                </div>
+
+            </section>
+
+
+            <!-- RESOURCES -->
+            <section id="resourcesPage" class="page">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">
+                            KNOWLEDGE BASE
+                        </span>
+
+                        <h2>Resource Library</h2>
+
+                        <p>
+                            Keep your important learning resources
+                            organized.
+                        </p>
+                    </div>
+
+                    <button id="addResourceBtn"
+                            class="primary-btn">
+                        + Add Resource
+                    </button>
+
+                </div>
+
+
+                <div id="resourcesContainer"
+                     class="resources-grid">
+                </div>
+
+            </section>
+
+
+            <!-- ASSESSMENT -->
+            <section id="assessmentPage" class="page">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">
+                            SELF ASSESSMENT
+                        </span>
+
+                        <h2>Quiz & Assessment</h2>
+
+                        <p>
+                            Test your knowledge and record your scores.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="assessment-card">
+
+                    <div id="quizContainer"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PROGRESS -->
+            <section id="progressPage" class="page">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">
+                            ANALYTICS
+                        </span>
+
+                        <h2>Learning Progress</h2>
+
+                        <p>
+                            Review your learning performance.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="progress-summary">
+
+                    <div class="summary-card">
+                        <span>Overall Progress</span>
+                        <strong id="progressOverall">
+                            0%
+                        </strong>
+                    </div>
+
+                    <div class="summary-card">
+                        <span>Completed Topics</span>
+                        <strong id="progressCompleted">
+                            0
+                        </strong>
+                    </div>
+
+                    <div class="summary-card">
+                        <span>Study Hours</span>
+                        <strong id="progressHours">
+                            0
+                        </strong>
+                    </div>
+
+                    <div class="summary-card">
+                        <span>Quiz Average</span>
+                        <strong id="progressQuiz">
+                            0%
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="content-card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h3>Subject Progress</h3>
+                            <p>
+                                Completion by curriculum area
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div id="subjectProgressContainer"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SETTINGS -->
+            <section id="settingsPage" class="page">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">
+                            SYSTEM
+                        </span>
+
+                        <h2>Settings</h2>
+
+                        <p>
+                            Customize and manage your PLMS data.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="settings-grid">
+
+                    <div class="content-card">
+
+                        <h3>Study Settings</h3>
+
+                        <label>
+                            Daily Study Target
+                        </label>
+
+                        <div class="setting-row">
+
+                            <input
+                                type="number"
+                                id="studyHoursSetting"
+                                min="0"
+                                max="24"
+                                step="0.5"
+                            >
+
+                            <span>hours/day</span>
+
+                        </div>
+
+                        <button
+                            id="saveStudySettings"
+                            class="primary-btn">
+                            Save Settings
+                        </button>
+
+                    </div>
+
+
+                    <div class="content-card">
+
+                        <h3>Data Management</h3>
+
+                        <p class="setting-description">
+                            Export your PLMS data as a JSON file
+                            or import previously saved data.
+                        </p>
+
+                        <div class="button-group">
+
+                            <button
+                                id="exportDataBtn"
+                                class="secondary-btn">
+                                Export Data
+                            </button>
+
+                            <label class="secondary-btn file-label">
+                                Import Data
+                                <input
+                                    type="file"
+                                    id="importDataInput"
+                                    accept=".json"
+                                    hidden>
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="content-card danger-card">
+
+                        <h3>Reset PLMS Data</h3>
+
+                        <p class="setting-description">
+                            This will permanently delete your
+                            saved curriculum progress, goals,
+                            resources and quiz scores.
+                        </p>
+
+                        <button
+                            id="resetDataBtn"
+                            class="danger-btn">
+                            Reset All Data
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
 
     </main>
 
 </div>
 
 
-<div
-    id="toast"
-    class="toast"
-></div>
+<!-- =========================================================
+     MODAL
+========================================================= -->
 
+<div id="modalOverlay"
+     class="modal-overlay hidden">
 
-<!-- =======================================================
-     JAVASCRIPT
-======================================================== -->
+    <div class="modal">
 
-<script>
+        <button
+            id="closeModalBtn"
+            class="modal-close">
+            ×
+        </button>
 
-/* =========================================================
-   CONFIGURATION
-========================================================= */
+        <div id="modalContent"></div>
 
-/*
-   NOTE:
-   This is a client-side static site.
+    </div>
 
-   The security code is therefore NOT true server-side
-   security. Anyone who can inspect the JavaScript can find it.
+</div>
 
-   Change this code if desired.
-*/
 
-const SECURITY_CODE = "5831049276";
-
-
-/* =========================================================
-   STORAGE
-========================================================= */
-
-const STORAGE_KEY = "plmsData_v1";
-
-const DEFAULT_DATA = {
-
-    topics: {},
-
-    goals: [
-        {
-            id: 1,
-            title: "Complete Paper I",
-            description: "General Awareness & General Ability",
-            progress: 35
-        },
-        {
-            id: 2,
-            title: "Complete Paper II",
-            description: "Agriculture Technical Subjects",
-            progress: 25
-        },
-        {
-            id: 3,
-            title: "Daily Practice",
-            description: "Reasoning and competitive questions",
-            progress: 45
-        }
-    ],
-
-    resources: [
-
-        {
-            title: "Gorkhapatra e-Paper",
-            description: "Daily newspaper and current affairs.",
-            icon: "📰",
-            url: "https://epaper.gorkhapatraonline.com/single/gorkhapatra"
-        },
-
-        {
-            title: "Federal PSC",
-            description: "Public Service Commission resources.",
-            icon: "🏛️",
-            url: "https://psc.gov.np/"
-        },
-
-        {
-            title: "IndiaBIX",
-            description: "Reasoning, aptitude and competitive practice.",
-            icon: "🧠",
-            url: "https://www.indiabix.com/"
-        },
-
-        {
-            title: "MoALD",
-            description: "Ministry of Agriculture and Livestock Development.",
-            icon: "🌱",
-            url: "https://moald.gov.np/"
-        },
-
-        {
-            title: "NARC",
-            description: "Nepal Agricultural Research Council.",
-            icon: "🔬",
-            url: "https://narc.gov.np/"
-        },
-
-        {
-            title: "Lumbini MoLMAC",
-            description: "Ministry of Agriculture, Lumbini Province.",
-            icon: "🌾",
-            url: "https://molmac.lumbini.gov.np/"
-        }
-
-    ],
-
-    quizScores: [],
-
-    studyHours: 0
-
-};
-
-
-function loadData() {
-
-    try {
-
-        const saved =
-            localStorage.getItem(STORAGE_KEY);
-
-        if (!saved) {
-
-            return structuredClone(DEFAULT_DATA);
-
-        }
-
-        return {
-            ...structuredClone(DEFAULT_DATA),
-            ...JSON.parse(saved)
-        };
-
-    } catch (error) {
-
-        return structuredClone(DEFAULT_DATA);
-
-    }
-
-}
-
-
-let data = loadData();
-
-
-function saveData() {
-
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(data)
-    );
-
-}
-
-
-/* =========================================================
-   CURRICULUM
-========================================================= */
-
-const CURRICULUM = [
-
-    {
-        paper: "Paper I",
-        subject: "General Awareness",
-        topics: [
-            "Geography of Nepal",
-            "History of Nepal",
-            "Constitution of Nepal",
-            "Governance and Public Administration",
-            "Management Fundamentals",
-            "Current Affairs"
-        ]
-    },
-
-    {
-        paper: "Paper I",
-        subject: "General Reasoning",
-        topics: [
-            "Verbal Reasoning",
-            "Numerical Reasoning",
-            "Logical Reasoning",
-            "Spatial / Non-verbal Reasoning",
-            "Data Interpretation"
-        ]
-    },
-
-    {
-        paper: "Paper II",
-        subject: "Agricultural History",
-        topics: [
-            "History of Agriculture in Nepal",
-            "Agricultural Development",
-            "Agricultural Institutions"
-        ]
-    },
-
-    {
-        paper: "Paper II",
-        subject: "Research, Extension & Education",
-        topics: [
-            "Agricultural Research",
-            "Agricultural Extension",
-            "Farmer Field School",
-            "Training and Education",
-            "PRA and RRA"
-        ]
-    },
-
-    {
-        paper: "Paper II",
-        subject: "Natural Resources & Climate",
-        topics: [
-            "Natural Resource Management",
-            "Climate Change",
-            "Agro-biodiversity",
-            "Watershed Management"
-        ]
-    },
-
-    {
-        paper: "Paper II",
-        subject: "Policies & Legislation",
-        topics: [
-            "Agricultural Policies",
-            "Agricultural Acts",
-            "Seed Act and Regulation",
-            "Pesticide Management",
-            "Local Government"
-        ]
-    },
-
-    {
-        paper: "Paper II",
-        subject: "Agricultural Technology",
-        topics: [
-            "Seed Quality",
-            "Integrated Pest Management",
-            "Pollinators",
-            "Precision Agriculture",
-            "Farm Mechanization"
-        ]
-    },
-
-    {
-        paper: "Paper II",
-        subject: "Soil Science",
-        topics: [
-            "Soil Properties",
-            "Soil Fertility",
-            "Soil Conservation",
-            "Fertilizer Management"
-        ]
-    },
-
-    {
-        paper: "Paper II",
-        subject: "Agronomy",
-        topics: [
-            "Crop Production",
-            "Irrigation",
-            "Weed Management",
-            "Cropping Systems"
-        ]
-    },
-
-    {
-        paper: "Paper II",
-        subject: "Horticulture",
-        topics: [
-            "Fruit Production",
-            "Vegetable Production",
-            "Nursery Management",
-            "Orchard Management",
-            "Postharvest Management"
-        ]
-    },
-
-    {
-        paper: "Paper II",
-        subject: "Plant Protection",
-        topics: [
-            "Plant Pathology",
-            "Entomology",
-            "Pest Management",
-            "Disease Management"
-        ]
-    }
-
-];
-
-
-/* =========================================================
-   FLATTEN TOPICS
-========================================================= */
-
-function getTopics() {
-
-    const result = [];
-
-    CURRICULUM.forEach(group => {
-
-        group.topics.forEach(topic => {
-
-            const id =
-                `${group.paper}-${group.subject}-${topic}`
-                .replace(/[^a-zA-Z0-9]+/g, "_");
-
-            result.push({
-
-                id,
-
-                paper: group.paper,
-
-                subject: group.subject,
-
-                topic
-
-            });
-
-        });
-
-    });
-
-    return result;
-
-}
-
-
-const ALL_TOPICS = getTopics();
-
-
-/* =========================================================
-   LOGIN
-========================================================= */
-
-const loginView =
-    document.getElementById("loginView");
-
-const appView =
-    document.getElementById("appView");
-
-const securityInput =
-    document.getElementById("securityCode");
-
-const loginMessage =
-    document.getElementById("loginMessage");
-
-const unlockBtn =
-    document.getElementById("unlockBtn");
-
-
-function showApplication() {
-
-    loginView.style.display = "none";
-
-    appView.style.display = "flex";
-
-    initializePLMS();
-
-}
-
-
-function showLogin() {
-
-    loginView.style.display = "grid";
-
-    appView.style.display = "none";
-
-}
-
-
-function unlockPLMS() {
-
-    const value =
-        securityInput.value.trim();
-
-    if (value === SECURITY_CODE) {
-
-        sessionStorage.setItem(
-            "plmsLoggedIn",
-            "1"
-        );
-
-        loginMessage.textContent = "";
-
-        showApplication();
-
-    } else {
-
-        loginMessage.textContent =
-            "Invalid security code.";
-
-        loginMessage.style.color =
-            "#dc2626";
-
-        securityInput.value = "";
-
-        securityInput.focus();
-
-    }
-
-}
-
-
-unlockBtn.addEventListener(
-    "click",
-    unlockPLMS
-);
-
-
-securityInput.addEventListener(
-    "keydown",
-    event => {
-
-        if (event.key === "Enter") {
-
-            unlockPLMS();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   LOGO ERROR HANDLING
-========================================================= */
-
-const plmsLogo =
-    document.getElementById("plmsLogo");
-
-const logoFallback =
-    document.getElementById("logoFallback");
-
-
-plmsLogo.addEventListener(
-    "error",
-    function() {
-
-        this.style.display = "none";
-
-        logoFallback.style.display = "flex";
-
-    }
-);
-
-
-/* =========================================================
-   SIDEBAR
-========================================================= */
-
-const sidebar =
-    document.getElementById("sidebar");
-
-const menuBtn =
-    document.getElementById("menuBtn");
-
-const hideSidebarBtn =
-    document.getElementById("hideSidebarBtn");
-
-const showSidebarBtn =
-    document.getElementById("showSidebarBtn");
-
-const sidebarOverlay =
-    document.getElementById("sidebarOverlay");
-
-
-function isMobile() {
-
-    return window.innerWidth <= 700;
-
-}
-
-
-function toggleSidebar() {
-
-    if (isMobile()) {
-
-        sidebar.classList.toggle(
-            "mobile-open"
-        );
-
-        sidebarOverlay.classList.toggle(
-            "active"
-        );
-
-        return;
-
-    }
-
-    sidebar.classList.toggle(
-        "collapsed"
-    );
-
-    localStorage.setItem(
-        "plmsSidebarCollapsed",
-        sidebar.classList.contains("collapsed")
-            ? "1"
-            : "0"
-    );
-
-}
-
-
-menuBtn.addEventListener(
-    "click",
-    toggleSidebar
-);
-
-
-sidebarOverlay.addEventListener(
-    "click",
-    () => {
-
-        sidebar.classList.remove(
-            "mobile-open"
-        );
-
-        sidebarOverlay.classList.remove(
-            "active"
-        );
-
-    }
-);
-
-
-hideSidebarBtn.addEventListener(
-    "click",
-    () => {
-
-        sidebar.classList.add("hidden");
-
-        showSidebarBtn.classList.add(
-            "visible"
-        );
-
-    }
-);
-
-
-showSidebarBtn.addEventListener(
-    "click",
-    () => {
-
-        sidebar.classList.remove("hidden");
-
-        showSidebarBtn.classList.remove(
-            "visible"
-        );
-
-    }
-);
-
-
-/* Restore sidebar state */
-
-if (
-    localStorage.getItem(
-        "plmsSidebarCollapsed"
-    ) === "1"
-) {
-
-    sidebar.classList.add("collapsed");
-
-}
-
-
-/* =========================================================
-   PAGE SYSTEM
-========================================================= */
-
-const content =
-    document.getElementById("content");
-
-const pageTitle =
-    document.getElementById("pageTitle");
-
-
-const PAGE_TITLES = {
-
-    dashboard: "Dashboard",
-
-    curriculum: "Curriculum",
-
-    goals: "Learning Goals",
-
-    resources: "Resource Library",
-
-    assessment: "Quiz & Assessment",
-
-    progress: "Progress",
-
-    settings: "Settings"
-
-};
-
-
-document
-    .querySelectorAll(".nav-item[data-page]")
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                const page =
-                    button.dataset.page;
-
-                openPage(page);
-
-                if (isMobile()) {
-
-                    sidebar.classList.remove(
-                        "mobile-open"
-                    );
-
-                    sidebarOverlay.classList.remove(
-                        "active"
-                    );
-
-                }
-
-            }
-        );
-
-    });
-
-
-function openPage(page) {
-
-    pageTitle.textContent =
-        PAGE_TITLES[page] || "PLMS";
-
-    document
-        .querySelectorAll(
-            ".nav-item[data-page]"
-        )
-        .forEach(item => {
-
-            item.classList.toggle(
-                "active",
-                item.dataset.page === page
-            );
-
-        });
-
-
-    if (page === "dashboard")
-        renderDashboard();
-
-    if (page === "curriculum")
-        renderCurriculum();
-
-    if (page === "goals")
-        renderGoals();
-
-    if (page === "resources")
-        renderResources();
-
-    if (page === "assessment")
-        renderAssessment();
-
-    if (page === "progress")
-        renderProgress();
-
-    if (page === "settings")
-        renderSettings();
-
-}
-
-
-/* =========================================================
-   DASHBOARD
-========================================================= */
-
-function calculateProgress() {
-
-    if (!ALL_TOPICS.length)
-        return 0;
-
-    let completed = 0;
-
-    ALL_TOPICS.forEach(topic => {
-
-        if (
-            data.topics[topic.id] &&
-            data.topics[topic.id].completed
-        ) {
-
-            completed++;
-
-        }
-
-    });
-
-    return Math.round(
-        completed / ALL_TOPICS.length * 100
-    );
-
-}
-
-
-function getCompletedTopics() {
-
-    return ALL_TOPICS.filter(topic => {
-
-        return (
-            data.topics[topic.id] &&
-            data.topics[topic.id].completed
-        );
-
-    }).length;
-
-}
-
-
-function getRevisionTopics() {
-
-    return ALL_TOPICS.filter(topic => {
-
-        return (
-            data.topics[topic.id] &&
-            data.topics[topic.id].revision
-        );
-
-    }).length;
-
-}
-
-
-function getQuizAverage() {
-
-    if (!data.quizScores.length)
-        return 0;
-
-    const total =
-        data.quizScores.reduce(
-            (sum, score) =>
-                sum + score,
-            0
-        );
-
-    return Math.round(
-        total / data.quizScores.length
-    );
-
-}
-
-
-function renderDashboard() {
-
-    const progress =
-        calculateProgress();
-
-    const completed =
-        getCompletedTopics();
-
-    const revision =
-        getRevisionTopics();
-
-    const quizAverage =
-        getQuizAverage();
-
-
-    content.innerHTML = `
-
-        <div class="welcome">
-
-            <h1>
-                Welcome to your PLMS
-            </h1>
-
-            <p>
-                Organize your learning, track your targets,
-                practice questions and measure your progress.
-            </p>
-
-        </div>
-
-
-        <div class="stats-grid">
-
-            <div class="stat-card">
-
-                <div class="stat-label">
-                    Overall Progress
-                </div>
-
-                <div class="stat-value">
-                    ${progress}%
-                </div>
-
-                <div class="stat-progress">
-                    <span style="width:${progress}%"></span>
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-label">
-                    Study Hours
-                </div>
-
-                <div class="stat-value">
-                    ${data.studyHours}
-                </div>
-
-                <div class="card-subtitle">
-                    Total logged hours
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-label">
-                    Completed Topics
-                </div>
-
-                <div class="stat-value">
-                    ${completed}
-                </div>
-
-                <div class="card-subtitle">
-                    of ${ALL_TOPICS.length} topics
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-label">
-                    Quiz Average
-                </div>
-
-                <div class="stat-value">
-                    ${quizAverage}%
-                </div>
-
-                <div class="card-subtitle">
-                    ${revision} topics for revision
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="dashboard-grid">
-
-
-            <div class="card">
-
-                <div class="card-title">
-                    Overall Learning Progress
-                </div>
-
-                <div class="card-subtitle">
-                    Your curriculum completion
-                </div>
-
-                <div
-                    class="progress-ring"
-                    style="--progress:${progress}%"
-                >
-
-                    <div class="progress-ring-inner">
-                        ${progress}%
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-title">
-                    Quick Actions
-                </div>
-
-                <div class="card-subtitle">
-                    Continue your learning
-                </div>
-
-                <br>
-
-                <button
-                    class="btn btn-primary"
-                    onclick="openPage('curriculum')"
-                >
-                    Continue Curriculum
-                </button>
-
-                <br><br>
-
-                <button
-                    class="btn btn-secondary"
-                    onclick="openPage('assessment')"
-                >
-                    Take Assessment
-                </button>
-
-                <br><br>
-
-                <button
-                    class="btn btn-secondary"
-                    onclick="openPage('resources')"
-                >
-                    Open Resource Library
-                </button>
-
-            </div>
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   CURRICULUM
-========================================================= */
-
-function getTopicData(id) {
-
-    if (!data.topics[id]) {
-
-        data.topics[id] = {
-
-            completed: false,
-
-            revision: false,
-
-            notes: "",
-
-            resource: "",
-
-            questions: 0,
-
-            confidence: 1,
-
-            hours: 0
-
-        };
-
-    }
-
-    return data.topics[id];
-
-}
-
-
-function renderCurriculum() {
-
-    let rows = "";
-
-    ALL_TOPICS.forEach(topic => {
-
-        const item =
-            getTopicData(topic.id);
-
-
-        rows += `
-
-            <tr>
-
-                <td>
-
-                    <div class="topic-name">
-                        ${topic.topic}
-                    </div>
-
-                    <div class="topic-meta">
-                        ${topic.paper} • ${topic.subject}
-                    </div>
-
-                </td>
-
-
-                <td>
-
-                    <input
-                        type="checkbox"
-                        ${item.completed ? "checked" : ""}
-                        onchange="
-                            updateTopic(
-                                '${topic.id}',
-                                'completed',
-                                this.checked
-                            )
-                        "
-                    >
-
-                </td>
-
-
-                <td>
-
-                    <input
-                        type="checkbox"
-                        ${item.revision ? "checked" : ""}
-                        onchange="
-                            updateTopic(
-                                '${topic.id}',
-                                'revision',
-                                this.checked
-                            )
-                        "
-                    >
-
-                </td>
-
-
-                <td>
-
-                    <input
-                        type="number"
-                        min="0"
-                        value="${item.questions}"
-                        style="width:70px"
-                        onchange="
-                            updateTopic(
-                                '${topic.id}',
-                                'questions',
-                                Number(this.value)
-                            )
-                        "
-                    >
-
-                </td>
-
-
-                <td>
-
-                    <select
-                        onchange="
-                            updateTopic(
-                                '${topic.id}',
-                                'confidence',
-                                Number(this.value)
-                            )
-                        "
-                    >
-
-                        <option value="1"
-                            ${item.confidence === 1 ? "selected" : ""}>
-                            Low
-                        </option>
-
-                        <option value="2"
-                            ${item.confidence === 2 ? "selected" : ""}>
-                            Basic
-                        </option>
-
-                        <option value="3"
-                            ${item.confidence === 3 ? "selected" : ""}>
-                            Good
-                        </option>
-
-                        <option value="4"
-                            ${item.confidence === 4 ? "selected" : ""}>
-                            Strong
-                        </option>
-
-                        <option value="5"
-                            ${item.confidence === 5 ? "selected" : ""}>
-                            Excellent
-                        </option>
-
-                    </select>
-
-                </td>
-
-
-                <td>
-
-                    <input
-                        type="number"
-                        min="0"
-                        step="0.5"
-                        value="${item.hours}"
-                        style="width:70px"
-                        onchange="
-                            updateTopic(
-                                '${topic.id}',
-                                'hours',
-                                Number(this.value)
-                            )
-                        "
-                    >
-
-                </td>
-
-
-                <td>
-
-                    <button
-                        class="btn btn-secondary"
-                        onclick="
-                            editTopicNotes(
-                                '${topic.id}'
-                            )
-                        "
-                    >
-                        Notes
-                    </button>
-
-                </td>
-
-            </tr>
-
-        `;
-
-    });
-
-
-    content.innerHTML = `
-
-        <div class="page-head">
-
-            <div>
-
-                <h2>
-                    Curriculum
-                </h2>
-
-                <div class="card-subtitle">
-                    Track each topic, revision,
-                    practice and confidence.
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="table-wrap">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>
-                                Topic
-                            </th>
-
-                            <th>
-                                Done
-                            </th>
-
-                            <th>
-                                Revision
-                            </th>
-
-                            <th>
-                                Questions
-                            </th>
-
-                            <th>
-                                Confidence
-                            </th>
-
-                            <th>
-                                Hours
-                            </th>
-
-                            <th>
-                                Notes
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-                        ${rows}
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </div>
-
-    `;
-
-}
-
-
-function updateTopic(
-    id,
-    field,
-    value
-) {
-
-    const item =
-        getTopicData(id);
-
-    item[field] = value;
-
-    saveData();
-
-    showToast("Progress saved");
-
-}
-
-
-function editTopicNotes(id) {
-
-    const item =
-        getTopicData(id);
-
-    const topic =
-        ALL_TOPICS.find(
-            x => x.id === id
-        );
-
-
-    const notes =
-        prompt(
-            `Notes for: ${topic.topic}`,
-            item.notes || ""
-        );
-
-
-    if (notes !== null) {
-
-        item.notes = notes;
-
-        saveData();
-
-        showToast("Notes saved");
-
-    }
-
-}
-
-
-/* =========================================================
-   GOALS
-========================================================= */
-
-function renderGoals() {
-
-    const cards =
-        data.goals.map(goal => `
-
-            <div class="goal-card">
-
-                <h3>
-                    ${escapeHTML(goal.title)}
-                </h3>
-
-                <p>
-                    ${escapeHTML(goal.description)}
-                </p>
-
-                <div class="goal-progress">
-
-                    <span
-                        style="width:${goal.progress}%"
-                    ></span>
-
-                </div>
-
-                <div class="goal-percent">
-                    ${goal.progress}% complete
-                </div>
-
-                <br>
-
-                <button
-                    class="btn btn-secondary"
-                    onclick="
-                        updateGoal(${goal.id})
-                    "
-                >
-                    Update
-                </button>
-
-            </div>
-
-        `).join("");
-
-
-    content.innerHTML = `
-
-        <div class="page-head">
-
-            <div>
-
-                <h2>
-                    Learning Goals
-                </h2>
-
-                <div class="card-subtitle">
-                    Define targets and update your progress.
-                </div>
-
-            </div>
-
-            <button
-                class="btn btn-primary"
-                onclick="addGoal()"
-            >
-                + Add Goal
-            </button>
-
-        </div>
-
-
-        <div class="goal-grid">
-            ${cards}
-        </div>
-
-    `;
-
-}
-
-
-function addGoal() {
-
-    const title =
-        prompt("Goal title:");
-
-    if (!title)
-        return;
-
-
-    const description =
-        prompt("Goal description:") || "";
-
-
-    data.goals.push({
-
-        id: Date.now(),
-
-        title,
-
-        description,
-
-        progress: 0
-
-    });
-
-
-    saveData();
-
-    renderGoals();
-
-}
-
-
-function updateGoal(id) {
-
-    const goal =
-        data.goals.find(
-            x => x.id === id
-        );
-
-    if (!goal)
-        return;
-
-
-    const value =
-        prompt(
-            "Enter progress percentage (0-100):",
-            goal.progress
-        );
-
-
-    if (value === null)
-        return;
-
-
-    const progress =
-        Math.max(
-            0,
-            Math.min(
-                100,
-                Number(value) || 0
-            )
-        );
-
-
-    goal.progress = progress;
-
-    saveData();
-
-    renderGoals();
-
-}
-
-
-/* =========================================================
-   RESOURCE LIBRARY
-========================================================= */
-
-function renderResources() {
-
-    const cards =
-        data.resources.map(resource => `
-
-            <div class="resource-card">
-
-                <div class="resource-icon">
-                    ${resource.icon}
-                </div>
-
-                <h3>
-                    ${escapeHTML(resource.title)}
-                </h3>
-
-                <p>
-                    ${escapeHTML(resource.description)}
-                </p>
-
-                <a
-                    href="${resource.url}"
-                    target="_blank"
-                    rel="noopener"
-                    class="btn btn-primary"
-                    style="text-decoration:none;display:inline-block"
-                >
-                    Open Resource
-                </a>
-
-            </div>
-
-        `).join("");
-
-
-    content.innerHTML = `
-
-        <div class="page-head">
-
-            <div>
-
-                <h2>
-                    Resource Library
-                </h2>
-
-                <div class="card-subtitle">
-                    Keep your important learning resources
-                    in one place.
-                </div>
-
-            </div>
-
-            <button
-                class="btn btn-primary"
-                onclick="addResource()"
-            >
-                + Add Resource
-            </button>
-
-        </div>
-
-
-        <div class="resource-grid">
-
-            ${cards}
-
-        </div>
-
-    `;
-
-}
-
-
-function addResource() {
-
-    const title =
-        prompt("Resource name:");
-
-    if (!title)
-        return;
-
-
-    const url =
-        prompt("Resource URL:");
-
-    if (!url)
-        return;
-
-
-    const description =
-        prompt("Description:") || "";
-
-
-    data.resources.push({
-
-        title,
-
-        description,
-
-        icon: "🔗",
-
-        url
-
-    });
-
-
-    saveData();
-
-    renderResources();
-
-}
-
-
-/* =========================================================
-   ASSESSMENT
-========================================================= */
-
-const QUESTIONS = [
-
-    {
-        question:
-            "Which type of reasoning mainly deals with numerical relationships?",
-
-        options: [
-            "Verbal reasoning",
-            "Numerical reasoning",
-            "Spatial reasoning",
-            "Emotional reasoning"
-        ],
-
-        answer: 1,
-
-        explanation:
-            "Numerical reasoning uses numbers, quantities and mathematical relationships."
-    },
-
-
-    {
-        question:
-            "IPM stands for:",
-
-        options: [
-            "Integrated Pest Management",
-            "International Plant Method",
-            "Improved Production Management",
-            "Integrated Plant Mechanization"
-        ],
-
-        answer: 0,
-
-        explanation:
-            "IPM means Integrated Pest Management."
-    },
-
-
-    {
-        question:
-            "Which organization is Nepal's national agricultural research organization?",
-
-        options: [
-            "NARC",
-            "NEA",
-            "NRB",
-            "NTC"
-        ],
-
-        answer: 0,
-
-        explanation:
-            "NARC is the Nepal Agricultural Research Council."
-    },
-
-
-    {
-        question:
-            "Which practice helps conserve soil on sloping agricultural land?",
-
-        options: [
-            "Contour farming",
-            "Continuous bare soil",
-            "Overgrazing",
-            "Removing vegetation"
-        ],
-
-        answer: 0,
-
-        explanation:
-            "Contour farming reduces runoff and soil erosion on slopes."
-    },
-
-
-    {
-        question:
-            "A sample that accurately represents the population is important because it:",
-
-        options: [
-            "Increases sampling bias",
-            "Improves representativeness",
-            "Eliminates all errors",
-            "Reduces population size"
-        ],
-
-        answer: 1,
-
-        explanation:
-            "A representative sample improves the ability to generalize findings to the population."
-    }
-
-];
-
-
-let quizState = null;
-
-
-function renderAssessment() {
-
-    content.innerHTML = `
-
-        <div class="page-head">
-
-            <div>
-
-                <h2>
-                    Quiz & Assessment
-                </h2>
-
-                <div class="card-subtitle">
-                    Test your knowledge and record your score.
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="quiz-grid">
-
-
-            <div class="quiz-card">
-
-                <h3>
-                    Mock Test
-                </h3>
-
-                <p>
-                    Practice a mixed set of questions covering
-                    reasoning and agriculture.
-                </p>
-
-                <button
-                    class="btn btn-primary"
-                    onclick="startQuiz()"
-                >
-                    Start Test
-                </button>
-
-            </div>
-
-
-            <div class="quiz-card">
-
-                <h3>
-                    Chapter Practice
-                </h3>
-
-                <p>
-                    Use the curriculum tracker to identify
-                    weak topics and revise them.
-                </p>
-
-                <button
-                    class="btn btn-secondary"
-                    onclick="openPage('curriculum')"
-                >
-                    View Curriculum
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <br>
-
-
-        <div class="card">
-
-            <div class="card-title">
-                Previous Scores
-            </div>
-
-            <br>
-
-            ${
-                data.quizScores.length
-                    ? data.quizScores
-                        .slice()
-                        .reverse()
-                        .map(
-                            score =>
-                                `<div>
-                                    ${score}%
-                                </div>`
-                        )
-                        .join("<hr>")
-                    : `
-                        <div class="card-subtitle">
-                            No assessments completed yet.
-                        </div>
-                    `
-            }
-
-        </div>
-
-    `;
-
-}
-
-
-function startQuiz() {
-
-    quizState = {
-
-        questions:
-            QUESTIONS.map(q => ({
-                ...q
-            })),
-
-        index: 0,
-
-        score: 0
-
-    };
-
-
-    renderQuestion();
-
-}
-
-
-function renderQuestion() {
-
-    const q =
-        quizState.questions[
-            quizState.index
-        ];
-
-
-    content.innerHTML = `
-
-        <div class="page-head">
-
-            <div>
-
-                <h2>
-                    Mock Assessment
-                </h2>
-
-                <div class="card-subtitle">
-                    Question
-                    ${quizState.index + 1}
-                    of
-                    ${quizState.questions.length}
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="question-box">
-
-            <div class="question-number">
-                QUESTION ${quizState.index + 1}
-            </div>
-
-            <div class="question-text">
-                ${escapeHTML(q.question)}
-            </div>
-
-
-            ${q.options.map(
-                (option, i) => `
-
-                    <button
-                        class="option"
-                        onclick="
-                            answerQuestion(${i})
-                        "
-                    >
-                        ${escapeHTML(option)}
-                    </button>
-
-                `
-            ).join("")}
-
-        </div>
-
-    `;
-
-}
-
-
-function answerQuestion(answer) {
-
-    const q =
-        quizState.questions[
-            quizState.index
-        ];
-
-
-    if (answer === q.answer) {
-
-        quizState.score++;
-
-    }
-
-
-    quizState.index++;
-
-
-    if (
-        quizState.index >=
-        quizState.questions.length
-    ) {
-
-        finishQuiz();
-
-    } else {
-
-        renderQuestion();
-
-    }
-
-}
-
-
-function finishQuiz() {
-
-    const percentage =
-        Math.round(
-            quizState.score /
-            quizState.questions.length *
-            100
-        );
-
-
-    data.quizScores.push(
-        percentage
-    );
-
-    saveData();
-
-
-    content.innerHTML = `
-
-        <div class="card"
-             style="text-align:center">
-
-            <h2>
-                Assessment Complete
-            </h2>
-
-            <div
-                style="
-                    font-size:45px;
-                    font-weight:900;
-                    color:var(--primary);
-                    margin:20px;
-                "
-            >
-                ${percentage}%
-            </div>
-
-            <p>
-                You scored
-                <strong>
-                    ${quizState.score}
-                </strong>
-                out of
-                <strong>
-                    ${quizState.questions.length}
-                </strong>.
-            </p>
-
-            <button
-                class="btn btn-primary"
-                onclick="openPage('assessment')"
-            >
-                Back to Assessment
-            </button>
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   PROGRESS
-========================================================= */
-
-function renderProgress() {
-
-    const subjects = {};
-
-
-    ALL_TOPICS.forEach(topic => {
-
-        if (!subjects[topic.subject]) {
-
-            subjects[topic.subject] = {
-
-                total: 0,
-
-                completed: 0
-
-            };
-
-        }
-
-
-        subjects[topic.subject].total++;
-
-
-        const item =
-            data.topics[topic.id];
-
-
-        if (
-            item &&
-            item.completed
-        ) {
-
-            subjects[topic.subject].completed++;
-
-        }
-
-    });
-
-
-    const rows =
-        Object.entries(subjects)
-        .map(
-            ([subject, value]) => {
-
-                const percentage =
-                    Math.round(
-                        value.completed /
-                        value.total *
-                        100
-                    );
-
-
-                return `
-
-                    <div class="progress-row">
-
-                        <div>
-                            <strong>
-                                ${escapeHTML(subject)}
-                            </strong>
-                        </div>
-
-                        <div class="progress-bar">
-
-                            <span
-                                style="
-                                    width:${percentage}%
-                                "
-                            ></span>
-
-                        </div>
-
-                        <div>
-                            ${percentage}%
-                        </div>
-
-                    </div>
-
-                `;
-
-            }
-        )
-        .join("");
-
-
-    content.innerHTML = `
-
-        <div class="page-head">
-
-            <div>
-
-                <h2>
-                    Progress
-                </h2>
-
-                <div class="card-subtitle">
-                    Monitor your learning performance
-                    by subject.
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="progress-list">
-
-                ${rows}
-
-            </div>
-
-        </div>
-
-        <br>
-
-
-        <div class="stats-grid">
-
-            <div class="stat-card">
-
-                <div class="stat-label">
-                    Overall
-                </div>
-
-                <div class="stat-value">
-                    ${calculateProgress()}%
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-label">
-                    Topics Completed
-                </div>
-
-                <div class="stat-value">
-                    ${getCompletedTopics()}
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-label">
-                    Revision Topics
-                </div>
-
-                <div class="stat-value">
-                    ${getRevisionTopics()}
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-label">
-                    Quiz Average
-                </div>
-
-                <div class="stat-value">
-                    ${getQuizAverage()}%
-                </div>
-
-            </div>
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   SETTINGS
-========================================================= */
-
-function renderSettings() {
-
-    content.innerHTML = `
-
-        <div class="page-head">
-
-            <div>
-
-                <h2>
-                    Settings
-                </h2>
-
-                <div class="card-subtitle">
-                    Manage your PLMS data.
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="settings-grid">
-
-
-            <div class="card">
-
-                <div class="card-title">
-                    Study Hours
-                </div>
-
-                <p class="card-subtitle">
-                    Add your total study hours.
-                </p>
-
-                <br>
-
-                <input
-                    id="studyHoursInput"
-                    type="number"
-                    min="0"
-                    step="0.5"
-                    value="${data.studyHours}"
-                    style="
-                        width:100%;
-                        padding:10px;
-                        border:1px solid var(--border);
-                        border-radius:7px;
-                    "
-                >
-
-                <br><br>
-
-                <button
-                    class="btn btn-primary"
-                    onclick="saveStudyHours()"
-                >
-                    Save Hours
-                </button>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-title">
-                    Data Management
-                </div>
-
-                <p class="card-subtitle">
-                    Export or restore your PLMS data.
-                </p>
-
-                <br>
-
-                <button
-                    class="btn btn-primary"
-                    onclick="exportData()"
-                >
-                    Export Data
-                </button>
-
-                <br><br>
-
-                <input
-                    type="file"
-                    id="importFile"
-                    accept=".json"
-                >
-
-                <br><br>
-
-                <button
-                    class="btn btn-secondary"
-                    onclick="importData()"
-                >
-                    Import Data
-                </button>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-title">
-                    Reset
-                </div>
-
-                <p class="card-subtitle">
-                    Permanently reset your local PLMS data.
-                </p>
-
-                <br>
-
-                <button
-                    class="btn btn-danger"
-                    onclick="resetData()"
-                >
-                    Reset All Data
-                </button>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-title">
-                    Sidebar
-                </div>
-
-                <p class="card-subtitle">
-                    You can collapse or completely hide
-                    the sidebar using the controls.
-                </p>
-
-                <br>
-
-                <button
-                    class="btn btn-secondary"
-                    onclick="sidebar.classList.toggle('collapsed')"
-                >
-                    Collapse / Expand
-                </button>
-
-            </div>
-
-        </div>
-
-    `;
-
-}
-
-
-function saveStudyHours() {
-
-    const input =
-        document.getElementById(
-            "studyHoursInput"
-        );
-
-
-    data.studyHours =
-        Number(input.value) || 0;
-
-
-    saveData();
-
-    showToast(
-        "Study hours saved"
-    );
-
-}
-
-
-function exportData() {
-
-    const blob =
-        new Blob(
-            [
-                JSON.stringify(
-                    data,
-                    null,
-                    2
-                )
-            ],
-            {
-                type:
-                    "application/json"
-            }
-        );
-
-
-    const url =
-        URL.createObjectURL(blob);
-
-
-    const link =
-        document.createElement("a");
-
-
-    link.href = url;
-
-    link.download =
-        "plms-backup.json";
-
-
-    link.click();
-
-
-    URL.revokeObjectURL(url);
-
-}
-
-
-function importData() {
-
-    const file =
-        document.getElementById(
-            "importFile"
-        ).files[0];
-
-
-    if (!file) {
-
-        alert(
-            "Please select a JSON backup file."
-        );
-
-        return;
-
-    }
-
-
-    const reader =
-        new FileReader();
-
-
-    reader.onload = function(event) {
-
-        try {
-
-            data =
-                JSON.parse(
-                    event.target.result
-                );
-
-
-            saveData();
-
-            showToast(
-                "Data imported successfully"
-            );
-
-            openPage("dashboard");
-
-        } catch {
-
-            alert(
-                "Invalid PLMS backup file."
-            );
-
-        }
-
-    };
-
-
-    reader.readAsText(file);
-
-}
-
-
-function resetData() {
-
-    const confirmed =
-        confirm(
-            "Reset all PLMS data?"
-        );
-
-
-    if (!confirmed)
-        return;
-
-
-    data =
-        structuredClone(
-            DEFAULT_DATA
-        );
-
-
-    saveData();
-
-    openPage("dashboard");
-
-    showToast(
-        "PLMS data reset"
-    );
-
-}
-
-
-/* =========================================================
-   UTILITIES
-========================================================= */
-
-function escapeHTML(value) {
-
-    return String(value)
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
-
-function showToast(message) {
-
-    const toast =
-        document.getElementById(
-            "toast"
-        );
-
-
-    toast.textContent =
-        message;
-
-
-    toast.classList.add(
-        "show"
-    );
-
-
-    clearTimeout(
-        window.plmsToastTimer
-    );
-
-
-    window.plmsToastTimer =
-        setTimeout(
-            () => {
-
-                toast.classList.remove(
-                    "show"
-                );
-
-            },
-            1800
-        );
-
-}
-
-
-/* =========================================================
-   LOGOUT
-========================================================= */
-
-document
-    .getElementById("logoutBtn")
-    .addEventListener(
-        "click",
-        () => {
-
-            sessionStorage.removeItem(
-                "plmsLoggedIn"
-            );
-
-            showLogin();
-
-            securityInput.value = "";
-
-        }
-    );
-
-
-/* =========================================================
-   DATE
-========================================================= */
-
-function updateDate() {
-
-    const element =
-        document.getElementById(
-            "dateDisplay"
-        );
-
-
-    element.textContent =
-        new Date().toLocaleDateString(
-            undefined,
-            {
-                weekday: "short",
-                year: "numeric",
-                month: "short",
-                day: "numeric"
-            }
-        );
-
-}
-
-
-/* =========================================================
-   INITIALIZATION
-========================================================= */
-
-function initializePLMS() {
-
-    data = loadData();
-
-    updateDate();
-
-    openPage("dashboard");
-
-}
-
-
-/* =========================================================
-   SESSION RESTORE
-========================================================= */
-
-if (
-    sessionStorage.getItem(
-        "plmsLoggedIn"
-    ) === "1"
-) {
-
-    showApplication();
-
-} else {
-
-    showLogin();
-
-}
-
-
-/* =========================================================
-   RESPONSIVE SIDEBAR
-========================================================= */
-
-window.addEventListener(
-    "resize",
-    () => {
-
-        if (!isMobile()) {
-
-            sidebar.classList.remove(
-                "mobile-open"
-            );
-
-            sidebarOverlay.classList.remove(
-                "active"
-            );
-
-        }
-
-    }
-);
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
