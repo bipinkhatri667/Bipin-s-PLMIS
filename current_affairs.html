@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gorkhapatra Loksewa | वस्तुगत प्रश्नोत्तर</title>
+
+    <meta name="description"
+          content="Gorkhapatra Online Loksewa तयारी विशेष : वस्तुगत प्रश्नोत्तर - date-wise question archive">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family:
+                "Noto Sans Devanagari",
+                "Nirmala UI",
+                "Mangal",
+                Arial,
+                sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            background: linear-gradient(135deg, #123b65, #176b87);
+            color: white;
+            padding: 30px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,.12);
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 14px;
+            background: rgba(255,255,255,.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        .brand h1 {
+            font-size: 27px;
+            font-weight: 700;
+        }
+
+        .brand p {
+            margin-top: 3px;
+            opacity: .88;
+            font-size: 14px;
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        main {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 18px;
+        }
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 3px 14px rgba(20,40,70,.07);
+            border: 1px solid #e5eaf1;
+        }
+
+        .stat-label {
+            color: #667085;
+            font-size: 13px;
+        }
+
+        .stat-number {
+            font-size: 27px;
+            font-weight: 750;
+            margin-top: 5px;
+            color: #123b65;
+        }
+
+        /* =========================
+           CONTROL PANEL
+        ========================= */
+
+        .control-panel {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 22px;
+            box-shadow: 0 3px 14px rgba(20,40,70,.06);
+        }
+
+        .control-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .search-box {
+            flex: 1 1 360px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 13px 16px 13px 43px;
+            border: 1px solid #d5dce5;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+            transition: .2s;
+        }
+
+        .search-box input:focus {
+            border-color: #176b87;
+            box-shadow: 0 0 0 3px rgba(23,107,135,.10);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 10px;
+            font-size: 20px;
+            color: #667085;
+        }
+
+        select {
+            padding: 12px 15px;
+            border: 1px solid #d5dce5;
+            border-radius: 10px;
+            background: white;
+            font-size: 14px;
+            min-width: 180px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .reset-btn {
+            border: none;
+            background: #eef3f7;
+            color: #123b65;
+            border-radius: 10px;
+            padding: 12px 18px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .reset-btn:hover {
+            background: #dfeaf2;
+        }
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .table-card {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(20,40,70,.06);
+        }
+
+        .table-header {
+            padding: 18px 20px;
+            border-bottom: 1px solid #e8edf3;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .table-header h2 {
+            font-size: 18px;
+            color: #123b65;
+        }
+
+        .result-count {
+            font-size: 13px;
+            color: #667085;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1100px;
+        }
+
+        thead th {
+            background: #123b65;
+            color: white;
+            padding: 14px 12px;
+            text-align: left;
+            font-size: 13px;
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+
+        tbody td {
+            padding: 13px 12px;
+            border-bottom: 1px solid #edf0f4;
+            font-size: 13px;
+            vertical-align: top;
+        }
+
+        tbody tr:hover {
+            background: #f7fafc;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #fbfcfe;
+        }
+
+        tbody tr:nth-child(even):hover {
+            background: #f5f9fc;
+        }
+
+        .serial {
+            font-weight: 700;
+            color: #667085;
+        }
+
+        .bs-date {
+            font-weight: 650;
+            white-space: nowrap;
+        }
+
+        .ad-date {
+            color: #667085;
+            white-space: nowrap;
+        }
+
+        .article-id {
+            font-family: monospace;
+            color: #123b65;
+            font-weight: 600;
+        }
+
+        .article-link {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 7px;
+            background: #eaf4f7;
+            color: #075a76;
+            text-decoration: none;
+            font-weight: 650;
+            white-space: nowrap;
+        }
+
+        .article-link:hover {
+            background: #d7ebf0;
+        }
+
+        .missing {
+            color: #98a2b3;
+            font-style: italic;
+        }
+
+        .question-count {
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .topic {
+            color: #344054;
+            max-width: 330px;
+        }
+
+        .tag {
+            display: inline-block;
+            margin: 2px 3px 2px 0;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 11px;
+            background: #edf4ff;
+            color: #245b9c;
+        }
+
+        .tag.agri {
+            background: #edf8ef;
+            color: #26733d;
+        }
+
+        .tag.env {
+            background: #eef8f7;
+            color: #19756c;
+        }
+
+        .tag.economy {
+            background: #fff6e8;
+            color: #9a6410;
+        }
+
+        .tag.gov {
+            background: #f5effc;
+            color: #7043a4;
+        }
+
+        .relevance {
+            font-size: 12px;
+            font-weight: 700;
+            color: #26733d;
+        }
+
+        /* =========================
+           PAGINATION
+        ========================= */
+
+        .pagination-area {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 17px 20px;
+            border-top: 1px solid #e8edf3;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .pagination {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            min-width: 36px;
+            height: 36px;
+            border: 1px solid #d9e0e7;
+            background: white;
+            border-radius: 7px;
+            cursor: pointer;
+            color: #344054;
+        }
+
+        .page-btn:hover {
+            background: #edf4f7;
+        }
+
+        .page-btn.active {
+            background: #123b65;
+            color: white;
+            border-color: #123b65;
+        }
+
+        .page-size {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #667085;
+            font-size: 13px;
+        }
+
+        .page-size select {
+            min-width: 80px;
+            padding: 7px 9px;
+        }
+
+        /* =========================
+           INFO
+        ========================= */
+
+        .info-box {
+            margin-top: 24px;
+            background: white;
+            border: 1px solid #dce7ef;
+            border-left: 5px solid #176b87;
+            padding: 18px 20px;
+            border-radius: 12px;
+        }
+
+        .info-box h3 {
+            margin-bottom: 7px;
+            color: #123b65;
+            font-size: 16px;
+        }
+
+        .info-box p {
+            color: #667085;
+            font-size: 13px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            margin-top: 35px;
+            padding: 25px 18px;
+            text-align: center;
+            background: #102f4e;
+            color: rgba(255,255,255,.8);
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .brand h1 {
+                font-size: 21px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 22px 15px;
+            }
+
+            main {
+                margin-top: 20px;
+                padding: 0 10px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 15px;
+            }
+
+            .stat-number {
+                font-size: 22px;
+            }
+
+            .control-panel {
+                padding: 14px;
+            }
+
+            .table-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .brand-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 23px;
+            }
+
+            .brand {
+                gap: 10px;
+            }
+
+            .brand p {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                📚
+            </div>
+
+            <div>
+                <h1>लोकसेवा तयारी विशेष : वस्तुगत प्रश्नोत्तर</h1>
+                <p>
+                    Gorkhapatra Online · Date-wise Question Archive · २०८२/८३
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</header>
+
+
+<main>
+
+    <!-- =========================
+         STATISTICS
+    ========================== -->
+
+    <section class="stats">
+
+        <div class="stat-card">
+            <div class="stat-label">कुल अभिलेख</div>
+            <div class="stat-number" id="totalArticles">0</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Verified Article Links</div>
+            <div class="stat-number" id="verifiedArticles">0</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Known Questions</div>
+            <div class="stat-number" id="totalQuestions">0</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Agriculture-Relevant</div>
+            <div class="stat-number" id="agriArticles">0</div>
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SEARCH / FILTER
+    ========================== -->
+
+    <section class="control-panel">
+
+        <div class="control-row">
+
+            <div class="search-box">
+
+                <span class="search-icon">🔎</span>
+
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Search date, article ID, topic, agriculture, economy..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <select id="monthFilter">
+
+                <option value="all">सबै महिना</option>
+                <option value="पुस">पुस</option>
+                <option value="माघ">माघ</option>
+                <option value="फागुन">फागुन</option>
+                <option value="चैत">चैत</option>
+                <option value="वैशाख">वैशाख</option>
+                <option value="जेठ">जेठ</option>
+                <option value="असार">असार</option>
+                <option value="साउन">साउन</option>
+                <option value="भदौ">भदौ</option>
+
+            </select>
+
+
+            <select id="topicFilter">
+
+                <option value="all">सबै विषय</option>
+                <option value="agriculture">Agriculture</option>
+                <option value="environment">Environment / Climate</option>
+                <option value="economy">Economy</option>
+                <option value="governance">Governance / Law</option>
+                <option value="international">International</option>
+                <option value="science">Science / Technology</option>
+                <option value="sports">Sports / Culture</option>
+
+            </select>
+
+
+            <button
+                class="reset-btn"
+                onclick="resetFilters()">
+                Reset
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         TABLE
+    ========================== -->
+
+    <section class="table-card">
+
+        <div class="table-header">
+
+            <h2>
+                📋 Date-wise Question Archive
+            </h2>
+
+            <div class="result-count" id="resultCount">
+                Showing 0 records
+            </div>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>#</th>
+                        <th>Posted Date (BS)</th>
+                        <th>AD</th>
+                        <th>Article ID</th>
+                        <th>Direct Link</th>
+                        <th>No. of Questions</th>
+                        <th>Main Topics</th>
+                        <th>Agriculture Officer</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="tableBody"></tbody>
+
+            </table>
+
+        </div>
+
+
+        <div class="pagination-area">
+
+            <div class="page-size">
+
+                <span>Rows:</span>
+
+                <select id="pageSize">
+
+                    <option value="10">10</option>
+                    <option value="20" selected>20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                class="pagination"
+                id="pagination">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         INFORMATION
+    ========================== -->
+
+    <section class="info-box">
+
+        <h3>📌 About this database</h3>
+
+        <p>
+            यो interface Gorkhapatra Online को
+            <strong>“लोकसेवा तयारी विशेष : वस्तुगत प्रश्नोत्तर”</strong>
+            शृङ्खलाका सामग्रीलाई मितिअनुसार व्यवस्थित गर्न तयार गरिएको हो।
+            Article ID वा direct link उपलब्ध नभएका entries लाई
+            <strong>—</strong> भनेर देखाइएको छ।
+            नयाँ verified articles थप्न JavaScript को
+            <strong>articles</strong> array मा data थप्न सकिन्छ।
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <strong>Gorkhapatra Loksewa Question Archive</strong>
+    <br>
+    Prepared as a study/revision interface · Agriculture Officer Preparation
+
+</footer>
+
+
+<script>
+
+    /* =====================================================
+       ARTICLE DATABASE
+       ===================================================== */
+
+    const articles = [
+
+        {
+            no: 1,
+            bs: "२ पुस २०८२",
+            ad: "17 Dec 2025",
+            id: "184109",
+            url: "https://gorkhapatraonline.com/news/184109",
+            questions: null,
+            topics: "NPL, sports, economy, current affairs",
+            categories: ["sports", "economy"],
+            agri: false
+        },
+
+        {
+            no: 2,
+            bs: "९ पुस २०८२",
+            ad: "24 Dec 2025",
+            id: "185018",
+            url: "https://gorkhapatraonline.com/news/185018",
+            questions: null,
+            topics: "FIFA, sports, international affairs, economy",
+            categories: ["sports", "international", "economy"],
+            agri: false
+        },
+
+        {
+            no: 3,
+            bs: "१६ पुस २०८๒",
+            ad: "31 Dec 2025",
+            id: "—",
+            url: "",
+            questions: null,
+            topics: "Current affairs",
+            categories: [],
+            agri: false
+        },
+
+        {
+            no: 4,
+            bs: "२३ पुस २०८२",
+            ad: "7 Jan 2026",
+            id: "186978",
+            url: "https://gorkhapatraonline.com/news/186978",
+            questions: 21,
+            topics: "International affairs, agriculture, economy, governance",
+            categories: ["international", "agriculture", "economy", "governance"],
+            agri: true
+        },
+
+        {
+            no: 5,
+            bs: "३० पुस २०८२",
+            ad: "14 Jan 2026",
+            id: "187896",
+            url: "https://gorkhapatraonline.com/news/187896",
+            questions: 21,
+            topics: "Poverty, statistics, economy, development",
+            categories: ["economy"],
+            agri: false
+        },
+
+        {
+            no: 6,
+            bs: "७ माघ २०८२",
+            ad: "21 Jan 2026",
+            id: "188816",
+            url: "https://gorkhapatraonline.com/news/188816",
+            questions: 20,
+            topics: "Health, disaster, poverty, culture",
+            categories: ["environment", "sports"],
+            agri: false
+        },
+
+        {
+            no: 7,
+            bs: "१४ माघ २०८२",
+            ad: "28 Jan 2026",
+            id: "189790",
+            url: "https://gorkhapatraonline.com/news/189790",
+            questions: 20,
+            topics: "Carbon trade, environment, climate",
+            categories: ["environment"],
+            agri: true
+        },
+
+        {
+            no: 8,
+            bs: "२१ माघ २०८२",
+            ad: "4 Feb 2026",
+            id: "190684",
+            url: "https://gorkhapatraonline.com/news/190684",
+            questions: 20,
+            topics: "Financial sector, economy, banking",
+            categories: ["economy"],
+            agri: false
+        },
+
+        {
+            no: 9,
+            bs: "२८ माघ २०८२",
+            ad: "11 Feb 2026",
+            id: "191618",
+            url: "https://gorkhapatraonline.com/news/191618",
+            questions: 20,
+            topics: "Sports, governance, natural resources",
+            categories: ["sports", "governance", "environment"],
+            agri: true
+        },
+
+        {
+            no: 10,
+            bs: "६ फागुन २०८२",
+            ad: "18 Feb 2026",
+            id: "192570",
+            url: "https://gorkhapatraonline.com/news/192570",
+            questions: 20,
+            topics: "Corruption index, governance, economy",
+            categories: ["governance", "economy"],
+            agri: false
+        },
+
+        {
+            no: 11,
+            bs: "१३ फागुन २०८२",
+            ad: "25 Feb 2026",
+            id: "193523",
+            url: "https://gorkhapatraonline.com/news/193523",
+            questions: 20,
+            topics: "Winter Olympics, international affairs",
+            categories: ["sports", "international"],
+            agri: false
+        },
+
+        {
+            no: 12,
+            bs: "२० फागुन २०८२",
+            ad: "4 Mar 2026",
+            id: "—",
+            url: "",
+            questions: null,
+            topics: "No exact-title article confirmed",
+            categories: [],
+            agri: false
+        },
+
+        {
+            no: 13,
+            bs: "२७ फागुन २०८२",
+            ad: "11 Mar 2026",
+            id: "195905",
+            url: "https://gorkhapatraonline.com/news/195905",
+            questions: 20,
+            topics: "Election, governance, national affairs",
+            categories: ["governance"],
+            agri: false
+        },
+
+        {
+            no: 14,
+            bs: "४ चैत २०८२",
+            ad: "18 Mar 2026",
+            id: "196921",
+            url: "https://gorkhapatraonline.com/news/196921",
+            questions: 20,
+            topics: "Election, governance, economy",
+            categories: ["governance", "economy"],
+            agri: false
+        },
+
+        {
+            no: 15,
+            bs: "११ चैत २०८२",
+            ad: "25 Mar 2026",
+            id: "197983",
+            url: "https://gorkhapatraonline.com/news/197983",
+            questions: 20,
+            topics: "Terrorism index, public debt, economy",
+            categories: ["international", "economy", "governance"],
+            agri: false
+        },
+
+        {
+            no: 16,
+            bs: "१८ चैत २०८२",
+            ad: "1 Apr 2026",
+            id: "199067",
+            url: "https://gorkhapatraonline.com/news/199067",
+            questions: 20,
+            topics: "Government, politics, governance",
+            categories: ["governance"],
+            agri: false
+        },
+
+        {
+            no: 17,
+            bs: "२५ चैत २०८२",
+            ad: "8 Apr 2026",
+            id: "200194",
+            url: "https://gorkhapatraonline.com/news/200194",
+            questions: 22,
+            topics: "Parliament, governance, current affairs",
+            categories: ["governance"],
+            agri: false
+        },
+
+        {
+            no: 18,
+            bs: "९ वैशाख २०८३",
+            ad: "22 Apr 2026",
+            id: "202335",
+            url: "https://gorkhapatraonline.com/news/202335",
+            questions: null,
+            topics: "Climate, biodiversity, environment",
+            categories: ["environment"],
+            agri: true
+        },
+
+        {
+            no: 19,
+            bs: "१६ वैशाख २०८३",
+            ad: "29 Apr 2026",
+            id: "203492",
+            url: "https://gorkhapatraonline.com/news/203492",
+            questions: null,
+            topics: "Sports, security, economy",
+            categories: ["sports", "economy", "governance"],
+            agri: false
+        },
+
+        {
+            no: 20,
+            bs: "२३ वैशाख २०८३",
+            ad: "6 May 2026",
+            id: "204512",
+            url: "https://gorkhapatraonline.com/news/204512",
+            questions: null,
+            topics: "Energy, hydropower, development",
+            categories: ["economy", "environment"],
+            agri: false
+        },
+
+        {
+            no: 21,
+            bs: "३० वैशाख २०८३",
+            ad: "13 May 2026",
+            id: "205576",
+            url: "https://gorkhapatraonline.com/news/205576",
+            questions: 21,
+            topics: "Policy/programme, education, health, tourism, agriculture",
+            categories: ["agriculture", "governance", "economy"],
+            agri: true
+        },
+
+        {
+            no: 22,
+            bs: "६ जेठ २०८३",
+            ad: "20 May 2026",
+            id: "206654",
+            url: "https://gorkhapatraonline.com/news/206654",
+            questions: null,
+            topics: "Mountaineering, economy, science, international affairs",
+            categories: ["economy", "science", "international"],
+            agri: false
+        },
+
+        {
+            no: 23,
+            bs: "१३ जेठ २०८३",
+            ad: "27 May 2026",
+            id: "207680",
+            url: "https://gorkhapatraonline.com/news/207680",
+            questions: null,
+            topics: "Cannes, culture, international affairs",
+            categories: ["sports", "international"],
+            agri: false
+        },
+
+        {
+            no: 24,
+            bs: "२० जेठ २०८३",
+            ad: "3 Jun 2026",
+            id: "208652",
+            url: "https://gorkhapatraonline.com/news/208652",
+            questions: 20,
+            topics: "IPL, agriculture, economy, mountaineering",
+            categories: ["agriculture", "economy", "sports"],
+            agri: true
+        },
+
+        {
+            no: 25,
+            bs: "२७ जेठ २०८३",
+            ad: "10 Jun 2026",
+            id: "209608",
+            url: "https://gorkhapatraonline.com/news/209608",
+            questions: null,
+            topics: "Passport, diplomacy, current affairs",
+            categories: ["international", "governance"],
+            agri: false
+        },
+
+        {
+            no: 26,
+            bs: "३ असार २०८३",
+            ad: "17 Jun 2026",
+            id: "210529",
+            url: "https://gorkhapatraonline.com/news/210529",
+            questions: null,
+            topics: "Provincial budgets, economy, governance",
+            categories: ["economy", "governance"],
+            agri: true
+        },
+
+        {
+            no: 27,
+            bs: "१० असार २०८३",
+            ad: "24 Jun 2026",
+            id: "211416",
+            url: "https://gorkhapatraonline.com/news/211416",
+            questions: null,
+            topics: "National film awards, culture",
+            categories: ["sports"],
+            agri: false
+        },
+
+        {
+            no: 28,
+            bs: "१७ असार २०८३",
+            ad: "1 Jul 2026",
+            id: "212373",
+            url: "https://gorkhapatraonline.com/news/212373",
+            questions: 20,
+            topics: "G7, media, disaster, agriculture",
+            categories: ["international", "environment", "agriculture"],
+            agri: true
+        },
+
+        {
+            no: 29,
+            bs: "२४ असार २०८३",
+            ad: "8 Jul 2026",
+            id: "213395",
+            url: "https://gorkhapatraonline.com/news/213395",
+            questions: null,
+            topics: "Global Peace Index, LDC, geography",
+            categories: ["international", "economy"],
+            agri: false
+        },
+
+        {
+            no: 30,
+            bs: "३१ असार २०८३",
+            ad: "15 Jul 2026",
+            id: "214397",
+            url: "https://gorkhapatraonline.com/news/214397",
+            questions: null,
+            topics: "Monetary policy, banking, economy",
+            categories: ["economy"],
+            agri: false
+        },
+
+        {
+            no: 31,
+            bs: "६ साउन २०८३",
+            ad: "22 Jul 2026",
+            id: "—",
+            url: "",
+            questions: null,
+            topics: "Madan Prize, literature, culture",
+            categories: ["sports"],
+            agri: false
+        },
+
+        {
+            no: 32,
+            bs: "१३ साउन २०८३",
+            ad: "29 Jul 2026",
+            id: "—",
+            url: "",
+            questions: null,
+            topics: "Nagdhunga–Sisnekhola tunnel, infrastructure",
+            categories: ["economy"],
+            agri: false
+        },
+
+        {
+            no: 33,
+            bs: "२० साउन २०८३",
+            ad: "5 Aug 2026",
+            id: "—",
+            url: "",
+            questions: null,
+            topics: "Mountaineering, governance, national affairs",
+            categories: ["governance", "international"],
+            agri: false
+        },
+
+        {
+            no: 34,
+            bs: "२७ साउन २०८३",
+            ad: "12 Aug 2026",
+            id: "—",
+            url: "",
+            questions: null,
+            topics: "Sports, national affairs",
+            categories: ["sports"],
+            agri: false
+        },
+
+        {
+            no: 35,
+            bs: "३ भदौ २०८३",
+            ad: "20 Aug 2026",
+            id: "219873",
+            url: "https://gorkhapatraonline.com/news/219873",
+            questions: 14,
+            topics: "Irrigation, agriculture, sports, banking",
+            categories: ["agriculture", "economy", "sports"],
+            agri: true
+        },
+
+        {
+            no: 36,
+            bs: "१० भदौ २०८३",
+            ad: "27 Aug 2026",
+            id: "—",
+            url: "",
+            questions: null,
+            topics: "Current affairs, economy, governance",
+            categories: ["economy", "governance"],
+            agri: false
+        },
+
+        {
+            no: 37,
+            bs: "१७ भदौ २०८३",
+            ad: "3 Sep 2026",
+            id: "220909",
+            url: "https://gorkhapatraonline.com/news/220909",
+            questions: null,
+            topics: "Flood/disaster, law, sports, international affairs",
+            categories: ["environment", "governance", "international", "sports"],
+            agri: true
+        },
+
+        {
+            no: 38,
+            bs: "२४ भदौ २०८३",
+            ad: "10 Sep 2026",
+            id: "221969",
+            url: "https://gorkhapatraonline.com/news/221969",
+            questions: null,
+            topics: "Madan Prize, governance, economy, current affairs",
+            categories: ["governance", "economy", "sports"],
+            agri: false
+        }
+
+    ];
+
+
+    /* =====================================================
+       APPLICATION
+    ===================================================== */
+
+    const tableBody = document.getElementById("tableBody");
+    const searchInput = document.getElementById("searchInput");
+    const monthFilter = document.getElementById("monthFilter");
+    const topicFilter = document.getElementById("topicFilter");
+    const pageSizeSelect = document.getElementById("pageSize");
+    const pagination = document.getElementById("pagination");
+    const resultCount = document.getElementById("resultCount");
+
+    let currentPage = 1;
+
+
+    /* =====================================================
+       MONTH DETECTOR
+    ===================================================== */
+
+    function getMonth(bsDate) {
+
+        const months = [
+            "पुस",
+            "माघ",
+            "फागुन",
+            "चैत",
+            "वैशाख",
+            "जेठ",
+            "असार",
+            "साउन",
+            "भदौ"
+        ];
+
+        return months.find(month => bsDate.includes(month)) || "";
+
+    }
+
+
+    /* =====================================================
+       FILTER
+    ===================================================== */
+
+    function getFilteredArticles() {
+
+        const search =
+            searchInput.value
+                .trim()
+                .toLowerCase();
+
+        const month =
+            monthFilter.value;
+
+        const topic =
+            topicFilter.value;
+
+        return articles.filter(article => {
+
+            const searchableText = [
+
+                article.bs,
+                article.ad,
+                article.id,
+                article.topics,
+                article.categories.join(" ")
+
+            ].join(" ").toLowerCase();
+
+
+            const matchesSearch =
+                !search ||
+                searchableText.includes(search);
+
+
+            const matchesMonth =
+                month === "all" ||
+                getMonth(article.bs) === month;
+
+
+            const matchesTopic =
+                topic === "all" ||
+                article.categories.includes(topic);
+
+
+            return (
+                matchesSearch &&
+                matchesMonth &&
+                matchesTopic
+            );
+
+        });
+
+    }
+
+
+    /* =====================================================
+       RENDER TABLE
+    ===================================================== */
+
+    function renderTable() {
+
+        const filtered =
+            getFilteredArticles();
+
+        const pageSize =
+            parseInt(pageSizeSelect.value);
+
+        const totalPages =
+            Math.max(
+                1,
+                Math.ceil(filtered.length / pageSize)
+            );
+
+
+        if (currentPage > totalPages) {
+            currentPage = totalPages;
+        }
+
+
+        const start =
+            (currentPage - 1) * pageSize;
+
+        const end =
+            start + pageSize;
+
+        const visible =
+            filtered.slice(start, end);
+
+
+        tableBody.innerHTML = "";
+
+
+        visible.forEach(article => {
+
+            const row =
+                document.createElement("tr");
+
+
+            const articleLink =
+                article.url
+
+                ? `
+                    <a
+                        class="article-link"
+                        href="${article.url}"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        Open ↗
+                    </a>
+                  `
+
+                : `
+                    <span class="missing">
+                        Not verified
+                    </span>
+                  `;
+
+
+            const questionCount =
+                article.questions !== null
+
+                ? article.questions
+
+                : "—";
+
+
+            let categoryTags = "";
+
+            article.categories.forEach(category => {
+
+                const labels = {
+
+                    agriculture: ["Agriculture", "agri"],
+                    environment: ["Environment", "env"],
+                    economy: ["Economy", "economy"],
+                    governance: ["Governance", "gov"],
+                    international: ["International", ""],
+                    science: ["Science", ""],
+                    sports: ["Sports/Culture", ""]
+
+                };
+
+
+                if (labels[category]) {
+
+                    categoryTags +=
+                        `<span class="tag ${labels[category][1]}">
+                            ${labels[category][0]}
+                         </span>`;
+
+                }
+
+            });
+
+
+            row.innerHTML = `
+
+                <td class="serial">
+                    ${article.no}
+                </td>
+
+                <td class="bs-date">
+                    ${article.bs}
+                </td>
+
+                <td class="ad-date">
+                    ${article.ad}
+                </td>
+
+                <td class="article-id">
+                    ${article.id}
+                </td>
+
+                <td>
+                    ${articleLink}
+                </td>
+
+                <td class="question-count">
+                    ${questionCount}
+                </td>
+
+                <td class="topic">
+
+                    ${categoryTags}
+
+                    <br>
+
+                    ${article.topics}
+
+                </td>
+
+                <td>
+
+                    ${
+                        article.agri
+
+                        ? `<span class="relevance">
+                              ⭐ High relevance
+                           </span>`
+
+                        : `<span class="missing">
+                              —
+                           </span>`
+                    }
+
+                </td>
+
+            `;
+
+
+            tableBody.appendChild(row);
+
+        });
+
+
+        resultCount.textContent =
+            `Showing ${visible.length} of ${filtered.length} records`;
+
+
+        renderPagination(totalPages);
+
+    }
+
+
+    /* =====================================================
+       PAGINATION
+    ===================================================== */
+
+    function renderPagination(totalPages) {
+
+        pagination.innerHTML = "";
+
+
+        function createButton(
+            text,
+            page,
+            active = false
+        ) {
+
+            const button =
+                document.createElement("button");
+
+            button.className =
+                "page-btn" +
+                (active ? " active" : "");
+
+            button.textContent = text;
+
+            button.onclick = () => {
+
+                currentPage = page;
+
+                renderTable();
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            };
+
+            pagination.appendChild(button);
+
+        }
+
+
+        if (totalPages <= 1) return;
+
+
+        if (currentPage > 1) {
+
+            createButton(
+                "‹",
+                currentPage - 1
+            );
+
+        }
+
+
+        for (
+            let i = 1;
+            i <= totalPages;
+            i++
+        ) {
+
+            if (
+                i === 1 ||
+                i === totalPages ||
+                Math.abs(i - currentPage) <= 2
+            ) {
+
+                createButton(
+                    i,
+                    i,
+                    i === currentPage
+                );
+
+            }
+
+        }
+
+
+        if (currentPage < totalPages) {
+
+            createButton(
+                "›",
+                currentPage + 1
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       STATISTICS
+    ===================================================== */
+
+    function updateStatistics() {
+
+        const total =
+            articles.length;
+
+
+        const verified =
+            articles.filter(
+                a => a.url
+            ).length;
+
+
+        const knownQuestions =
+            articles.reduce(
+                (sum, article) =>
+
+                    sum +
+                    (
+                        article.questions || 0
+                    ),
+
+                0
+            );
+
+
+        const agri =
+            articles.filter(
+                a => a.agri
+            ).length;
+
+
+        document.getElementById(
+            "totalArticles"
+        ).textContent = total;
+
+
+        document.getElementById(
+            "verifiedArticles"
+        ).textContent = verified;
+
+
+        document.getElementById(
+            "totalQuestions"
+        ).textContent = knownQuestions;
+
+
+        document.getElementById(
+            "agriArticles"
+        ).textContent = agri;
+
+    }
+
+
+    /* =====================================================
+       RESET
+    ===================================================== */
+
+    function resetFilters() {
+
+        searchInput.value = "";
+
+        monthFilter.value = "all";
+
+        topicFilter.value = "all";
+
+        currentPage = 1;
+
+        renderTable();
+
+    }
+
+
+    /* =====================================================
+       EVENTS
+    ===================================================== */
+
+    searchInput.addEventListener(
+        "input",
+        () => {
+
+            currentPage = 1;
+
+            renderTable();
+
+        }
+    );
+
+
+    monthFilter.addEventListener(
+        "change",
+        () => {
+
+            currentPage = 1;
+
+            renderTable();
+
+        }
+    );
+
+
+    topicFilter.addEventListener(
+        "change",
+        () => {
+
+            currentPage = 1;
+
+            renderTable();
+
+        }
+    );
+
+
+    pageSizeSelect.addEventListener(
+        "change",
+        () => {
+
+            currentPage = 1;
+
+            renderTable();
+
+        }
+    );
+
+
+    /* =====================================================
+       INITIALIZE
+    ===================================================== */
+
+    updateStatistics();
+
+    renderTable();
+
+</script>
+
+</body>
+</html>
