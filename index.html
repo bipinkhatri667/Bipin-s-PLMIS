@@ -1,793 +1,1342 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0f766e">
-    <title>Personal Learning Management System</title>
 
-    <link rel="stylesheet" href="style.css">
+    <title>Bipin Khatri | Personal Dashboard</title>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --green: #168f62;
+            --green-dark: #096344;
+            --teal: #168f8f;
+            --blue-green: #147d7d;
+            --dark: #17201d;
+            --light: #f4f7f6;
+            --white: #ffffff;
+            --gray: #707875;
+            --border: #dce5e1;
+            --shadow: 0 8px 25px rgba(0,0,0,.08);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =========================
+           TOP NAVIGATION
+        ========================== */
+
+        .topbar {
+            height: 64px;
+            background: rgba(255,255,255,.96);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 22px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 12px rgba(0,0,0,.05);
+        }
+
+        .menu-btn {
+            width: 42px;
+            height: 42px;
+            border: 0;
+            border-radius: 10px;
+            background: var(--green);
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-btn:hover {
+            background: var(--green-dark);
+        }
+
+        .site-title {
+            margin-left: 18px;
+            font-size: 19px;
+            font-weight: 700;
+            letter-spacing: .3px;
+        }
+
+        .topbar-right {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gray);
+            font-size: 13px;
+        }
+
+        /* =========================
+           SIDE NAVIGATION
+        ========================== */
+
+        .sidebar {
+            position: fixed;
+            top: 64px;
+            left: -280px;
+            width: 280px;
+            height: calc(100vh - 64px);
+            background: #13201c;
+            color: white;
+            z-index: 999;
+            overflow-y: auto;
+            transition: .3s ease;
+            padding: 24px 18px;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar h3 {
+            font-size: 14px;
+            color: #8ed7bc;
+            margin: 18px 10px 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 13px;
+            margin: 3px 0;
+            border-radius: 8px;
+            color: #e5efeb;
+            font-size: 14px;
+        }
+
+        .sidebar a:hover {
+            background: #21493b;
+            color: white;
+        }
+
+        .overlay {
+            position: fixed;
+            inset: 64px 0 0 0;
+            background: rgba(0,0,0,.35);
+            z-index: 998;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* =========================
+           MAIN LAYOUT
+        ========================== */
+
+        .main {
+            display: grid;
+            grid-template-columns: 25% 75%;
+            min-height: 100vh;
+            padding-top: 64px;
+        }
+
+        /* =========================
+           PORTFOLIO PANEL
+        ========================== */
+
+        .portfolio {
+            background: #e9edeb;
+            min-height: calc(100vh - 64px);
+            position: relative;
+            overflow: hidden;
+            border-right: 1px solid var(--border);
+        }
+
+        .portfolio-title {
+            text-align: center;
+            padding: 18px 10px 8px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--green-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 5;
+        }
+
+        /* Pentagon background */
+
+        .pentagon {
+            height: 270px;
+            width: 100%;
+            background-image:
+                linear-gradient(
+                    rgba(10, 80, 61, .15),
+                    rgba(10, 80, 61, .15)
+                ),
+                url("image/bg.jpg");
+            background-size: cover;
+            background-position: center;
+
+            clip-path: polygon(
+                0 0,
+                100% 0,
+                100% 68%,
+                50% 100%,
+                0 68%
+            );
+
+            position: relative;
+        }
+
+        .pentagon::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,.08);
+        }
+
+        /* Profile */
+
+        .profile-wrapper {
+            position: relative;
+            margin-top: -92px;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .profile-ring {
+            width: 160px;
+            height: 160px;
+            margin: auto;
+            padding: 7px;
+            border: 3px solid var(--green);
+            border-radius: 50%;
+            background: rgba(255,255,255,.9);
+            box-shadow: 0 7px 25px rgba(0,0,0,.18);
+        }
+
+        .profile-inner {
+            width: 100%;
+            height: 100%;
+            padding: 7px;
+            border-radius: 50%;
+            background: var(--blue-green);
+        }
+
+        .profile-inner img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .profile-name {
+            margin-top: 15px;
+            font-size: 23px;
+            font-weight: 800;
+        }
+
+        .occupation {
+            color: var(--gray);
+            font-size: 13px;
+            margin-top: 5px;
+            line-height: 1.5;
+        }
+
+        /* Social icons */
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 9px;
+            margin-top: 16px;
+        }
+
+        .social-links a {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            color: var(--green-dark);
+            border: 1px solid #cfdad5;
+            font-size: 17px;
+            transition: .2s;
+        }
+
+        .social-links a:hover {
+            background: var(--green);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* CV */
+
+        .portfolio-bottom {
+            margin: 24px 18px 0;
+            padding-top: 18px;
+            border-top: 1px solid #ccd7d2;
+        }
+
+        .cv-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 11px;
+            border-radius: 8px;
+            background: var(--green);
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .cv-button:hover {
+            background: var(--green-dark);
+        }
+
+        .workforce {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            margin-top: 13px;
+            color: var(--gray);
+            font-size: 12px;
+        }
+
+        .workforce img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+
+        /* =========================
+           DASHBOARD
+        ========================== */
+
+        .dashboard {
+            padding: 28px;
+            background: #f8faf9;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 22px;
+        }
+
+        .dashboard-header h1 {
+            font-size: 29px;
+            margin-bottom: 5px;
+        }
+
+        .dashboard-header p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .date-box {
+            background: white;
+            padding: 10px 15px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            color: var(--gray);
+            font-size: 12px;
+        }
+
+        /* Quick Access */
+
+        .section-title {
+            font-size: 17px;
+            margin-bottom: 12px;
+        }
+
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .quick-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            padding: 22px;
+            display: flex;
+            align-items: center;
+            gap: 17px;
+            box-shadow: var(--shadow);
+            transition: .25s;
+        }
+
+        .quick-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--green);
+        }
+
+        .quick-icon {
+            min-width: 53px;
+            height: 53px;
+            border-radius: 12px;
+            background: #e3f4ed;
+            color: var(--green-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+        }
+
+        .quick-card h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .quick-card p {
+            color: var(--gray);
+            font-size: 12px;
+        }
+
+        /* =========================
+           DASHBOARD GRID
+        ========================== */
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.25fr .75fr;
+            gap: 18px;
+            margin-top: 25px;
+        }
+
+        .panel {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.045);
+        }
+
+        .panel h2 {
+            font-size: 16px;
+            margin-bottom: 14px;
+        }
+
+        /* Articles */
+
+        .article {
+            padding: 13px 0;
+            border-bottom: 1px solid #e6ece9;
+            transition: .2s;
+        }
+
+        .article:last-child {
+            border-bottom: 0;
+        }
+
+        .article:hover {
+            padding-left: 8px;
+        }
+
+        .article h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .article p {
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        .article span {
+            font-size: 10px;
+            color: var(--green);
+        }
+
+        /* Epaper */
+
+        .epaper-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid var(--border);
+            padding: 12px;
+            border-radius: 9px;
+            margin-bottom: 10px;
+        }
+
+        .epaper-link:hover {
+            background: #f0f8f5;
+            border-color: var(--green);
+        }
+
+        .epaper-link i {
+            font-size: 22px;
+            color: var(--green);
+        }
+
+        .epaper-link strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .epaper-link small {
+            color: var(--gray);
+            font-size: 10px;
+        }
+
+        /* Useful links */
+
+        .useful-links {
+            margin-top: 18px;
+        }
+
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 9px;
+        }
+
+        .useful-link {
+            background: #f5f8f7;
+            border: 1px solid #e0e8e4;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            font-size: 11px;
+            color: #34534a;
+        }
+
+        .useful-link:hover {
+            background: #dff2ea;
+            color: var(--green-dark);
+        }
+
+        /* Weather */
+
+        .weather {
+            margin-top: 18px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .weather-box {
+            background: #eaf4f2;
+            border-radius: 11px;
+            padding: 17px;
+        }
+
+        .weather-box i {
+            font-size: 28px;
+            color: var(--teal);
+        }
+
+        .weather-temp {
+            font-size: 25px;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .weather-location {
+            color: var(--gray);
+            font-size: 11px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            text-align: center;
+            color: var(--gray);
+            font-size: 11px;
+            padding: 25px 10px 5px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 1100px) {
+
+            .main {
+                grid-template-columns: 30% 70%;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .link-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 800px) {
+
+            .main {
+                display: block;
+            }
+
+            .portfolio {
+                min-height: auto;
+                padding-bottom: 30px;
+            }
+
+            .dashboard {
+                padding: 20px;
+            }
+
+            .quick-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-header {
+                display: block;
+            }
+
+            .date-box {
+                display: inline-block;
+                margin-top: 12px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .topbar {
+                padding: 0 12px;
+            }
+
+            .site-title {
+                font-size: 15px;
+                margin-left: 10px;
+            }
+
+            .topbar-right {
+                display: none;
+            }
+
+            .dashboard-header h1 {
+                font-size: 23px;
+            }
+
+            .dashboard-grid {
+                gap: 12px;
+            }
+
+            .panel {
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
 <!-- =========================================================
-     LOGIN PAGE
-========================================================= -->
-<div id="loginPage" class="login-page">
+     TOP BAR
+========================================================== -->
 
-    <!-- LEFT LOGIN PANEL -->
-    <section class="login-left">
+<header class="topbar">
 
-        <div class="login-content">
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation">
+        <i class="bi bi-list"></i>
+    </button>
 
-            <div class="logo-wrapper">
-                <img src="plmslogo.jpg"
-                     alt="PLMS Logo"
-                     id="plmsLogo"
-                     class="login-logo">
-
-                <div id="logoFallback" class="logo-fallback">
-                    PLMS
-                </div>
-            </div>
-
-            <h1>Personal Learning<br>Management System</h1>
-
-            <p class="login-slogan">
-                Learn • Track • Assess • Improve
-            </p>
-
-            <div class="login-divider"></div>
-
-            <div class="security-box">
-
-                <div class="security-title">
-                    Security Check-in
-                </div>
-
-                <input
-                    type="password"
-                    id="securityCode"
-                    placeholder="Enter security code"
-                    autocomplete="off"
-                >
-
-                <button id="unlockBtn" class="unlock-btn">
-                    Unlock
-                </button>
-
-                <div id="loginMessage" class="login-message"></div>
-
-            </div>
-
-            <!-- DOTTED LINE AFTER UNLOCK -->
-            <div class="login-bottom-divider"></div>
-
-       
-        </div>
-
-    </section>
-    
-    <!-- RIGHT LOGIN PANEL -->
-    <section class="login-right">
-
-        <!-- QUICK ACCESS IS NOW BELOW THE DOTTED LINE -->
-        <div class="quick-access-section">
-
-            <h2>Quick Access</h2>
-
-                <a href="current_affairs.html" class="btn btn-primary" target="_blank" rel="noopener">
-            Gorkhapatra Current Affairs
-                </a>
-
-            <div class="quick-access-buttons">
-
-                <a href="https://epaper.gorkhapatraonline.com/single/gorkhapatra"
-                   target="_blank">
-                    Gorkhapatra
-                </a>
-
-                <a href="https://psc.gov.np/"
-                   target="_blank">
-                    PSC
-                </a>
-
-                <a href="https://ppsc.lumbini.gov.np/"
-                   target="_blank">
-                    PSC Lumbini
-                </a>
-
-                <a href="https://www.opmcm.gov.np/"
-                   target="_blank">
-                    PMO
-                </a>
-
-                <a href="https://moald.gov.np/"
-                   target="_blank">
-                    MoALD
-                </a>
-
-                <a href="https://molmac.lumbini.gov.np/"
-                   target="_blank">
-                    MoLMAC Lumbini
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- INDIABIX -->
-        <div class="indiabix-container">
-
-            <div class="panel-title">
-                IndiaBIX
-            </div>
-
-            <iframe
-                src="https://www.indiabix.com/"
-                title="IndiaBIX"
-                loading="lazy">
-            </iframe>
-
-        </div>
-
-
-        <!-- MEDIA AREA -->
-        <div class="login-media-grid">
-
-            <!-- GORKHAPATRA -->
-            <div class="media-card">
-
-                <div class="panel-title">
-                    Gorkhapatra e-Paper
-                </div>
-
-                <iframe
-                    src="https://epaper.gorkhapatraonline.com/single/gorkhapatra"
-                    title="Gorkhapatra ePaper"
-                    loading="lazy">
-                </iframe>
-
-            </div>
-
-
-            <!-- UJYAAALO RADIO -->
-            <div class="media-card radio-card">
-
-                <div class="panel-title">
-                    Ujyaalo Live Radio
-                </div>
-
-                <div class="radio-player">
-
-                    <div class="radio-icon">
-                        🎙️
-                    </div>
-
-                    <h3>Ujyaalo 90 Network</h3>
-
-                    <p>
-                        Live Radio
-                    </p>
-
-                    <audio
-                        id="ujyaaloRadio"
-                        controls
-                        preload="none">
-
-                        <source
-                            src="https://stream.zeno.fm/h527zwd11uquv"
-                            type="audio/mpeg">
-
-                        Your browser does not support the audio player.
-
-                    </audio>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-</div>
-
-
-<!-- =========================================================
-     MAIN APPLICATION
-========================================================= -->
-<div id="appPage" class="app-page hidden">
-
-    <!-- MOBILE OVERLAY -->
-    <div id="sidebarOverlay" class="sidebar-overlay"></div>
-
-
-    <!-- SIDEBAR -->
-    <aside id="sidebar" class="sidebar">
-
-        <div class="sidebar-header">
-
-            <div class="sidebar-brand">
-                <div class="brand-icon">P</div>
-
-                <div class="brand-text">
-                    <strong>PLMS</strong>
-                    <span>Learning System</span>
-                </div>
-            </div>
-
-            <button
-                id="sidebarCollapseBtn"
-                class="sidebar-collapse-btn"
-                title="Collapse sidebar">
-                ☰
-            </button>
-
-        </div>
-
-
-        <nav class="sidebar-nav">
-
-            <button class="nav-item active" data-page="dashboard">
-                <span>🏠</span>
-                <span>Dashboard</span>
-            </button>
-
-            <button class="nav-item" data-page="curriculum">
-                <span>📚</span>
-                <span>Curriculum</span>
-            </button>
-
-            <button class="nav-item" data-page="goals">
-                <span>🎯</span>
-                <span>Goals</span>
-            </button>
-
-            <button class="nav-item" data-page="resources">
-                <span>📖</span>
-                <span>Resource Library</span>
-            </button>
-
-            <button class="nav-item" data-page="assessment">
-                <span>📝</span>
-                <span>Quiz & Assessment</span>
-            </button>
-
-            <button class="nav-item" data-page="progress">
-                <span>📊</span>
-                <span>Progress</span>
-            </button>
-
-            <button class="nav-item" data-page="settings">
-                <span>⚙️</span>
-                <span>Settings</span>
-            </button>
-
-        </nav>
-
-
-        <div class="sidebar-bottom">
-
-            <button id="logoutBtn" class="logout-btn">
-                <span>🚪</span>
-                <span>Logout</span>
-            </button>
-
-        </div>
-
-    </aside>
-
-
-    <!-- MAIN CONTENT -->
-    <main class="main-content">
-
-        <!-- TOPBAR -->
-        <header class="topbar">
-
-            <div class="topbar-left">
-
-                <button
-                    id="mobileMenuBtn"
-                    class="mobile-menu-btn">
-                    ☰
-                </button>
-
-                <button
-                    id="showSidebarBtn"
-                    class="show-sidebar-btn hidden">
-                    ☰
-                </button>
-
-                <div>
-                    <h2 id="pageTitle">Dashboard</h2>
-                    <p id="pageSubtitle">
-                        Your personal learning command center
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="topbar-right">
-
-                <div class="date-display" id="currentDate"></div>
-
-            </div>
-
-        </header>
-
-
-        <!-- PAGE CONTENT -->
-        <div class="page-container">
-
-            <!-- DASHBOARD -->
-            <section id="dashboardPage" class="page active-page">
-
-                <div class="welcome-card">
-
-                    <div>
-                        <span class="eyebrow">
-                            PERSONAL LEARNING
-                        </span>
-
-                        <h1>
-                            Welcome back!
-                        </h1>
-
-                        <p>
-                            Track your learning, manage your goals,
-                            assess yourself and keep improving.
-                        </p>
-                    </div>
-
-                    <div class="welcome-icon">
-                        🎓
-                    </div>
-
-                </div>
-
-
-                <div class="stats-grid">
-
-                    <div class="stat-card">
-                        <div class="stat-icon">📚</div>
-                        <div>
-                            <span>Topics</span>
-                            <strong id="dashboardTopics">0</strong>
-                        </div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon">✅</div>
-                        <div>
-                            <span>Completed</span>
-                            <strong id="dashboardCompleted">0</strong>
-                        </div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon">🎯</div>
-                        <div>
-                            <span>Active Goals</span>
-                            <strong id="dashboardGoals">0</strong>
-                        </div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon">⏱️</div>
-                        <div>
-                            <span>Study Hours</span>
-                            <strong id="dashboardHours">0</strong>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="dashboard-grid">
-
-                    <div class="content-card">
-
-                        <div class="card-header">
-                            <div>
-                                <h3>Learning Progress</h3>
-                                <p>Overall curriculum completion</p>
-                            </div>
-
-                            <strong id="overallPercentage">
-                                0%
-                            </strong>
-                        </div>
-
-                        <div class="progress-large">
-                            <div
-                                id="overallProgressBar"
-                                class="progress-fill">
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="content-card">
-
-                        <div class="card-header">
-                            <div>
-                                <h3>Study Target</h3>
-                                <p>Daily study target</p>
-                            </div>
-                        </div>
-
-                        <div class="target-display">
-
-                            <strong id="dailyTargetDisplay">
-                                2
-                            </strong>
-
-                            <span>
-                                hours/day
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="content-card">
-
-                    <div class="card-header">
-
-                        <div>
-                            <h3>Recent Goals</h3>
-                            <p>Your current learning priorities</p>
-                        </div>
-
-                        <button
-                            class="small-btn"
-                            data-page="goals">
-                            View all
-                        </button>
-
-                    </div>
-
-                    <div id="dashboardGoalsList"
-                         class="goal-list">
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- CURRICULUM -->
-            <section id="curriculumPage" class="page">
-
-                <div class="section-heading">
-
-                    <div>
-                        <span class="eyebrow">
-                            CURRICULUM
-                        </span>
-
-                        <h2>Learning Curriculum</h2>
-
-                        <p>
-                            Track your syllabus topic by topic.
-                        </p>
-                    </div>
-
-                </div>
-
-
-                <div id="curriculumContainer"></div>
-
-            </section>
-
-
-            <!-- GOALS -->
-            <section id="goalsPage" class="page">
-
-                <div class="section-heading">
-
-                    <div>
-                        <span class="eyebrow">TARGETS</span>
-                        <h2>My Learning Goals</h2>
-                        <p>
-                            Define what you want to accomplish.
-                        </p>
-                    </div>
-
-                    <button id="addGoalBtn"
-                            class="primary-btn">
-                        + Add Goal
-                    </button>
-
-                </div>
-
-
-                <div id="goalsContainer"
-                     class="goals-grid">
-                </div>
-
-            </section>
-
-
-            <!-- RESOURCES -->
-            <section id="resourcesPage" class="page">
-
-                <div class="section-heading">
-
-                    <div>
-                        <span class="eyebrow">
-                            KNOWLEDGE BASE
-                        </span>
-
-                        <h2>Resource Library</h2>
-
-                        <p>
-                            Keep your important learning resources
-                            organized.
-                        </p>
-                    </div>
-
-                    <button id="addResourceBtn"
-                            class="primary-btn">
-                        + Add Resource
-                    </button>
-
-                </div>
-
-
-                <div id="resourcesContainer"
-                     class="resources-grid">
-                </div>
-
-            </section>
-
-
-            <!-- ASSESSMENT -->
-            <section id="assessmentPage" class="page">
-
-                <div class="section-heading">
-
-                    <div>
-                        <span class="eyebrow">
-                            SELF ASSESSMENT
-                        </span>
-
-                        <h2>Quiz & Assessment</h2>
-
-                        <p>
-                            Test your knowledge and record your scores.
-                        </p>
-                    </div>
-
-                </div>
-
-
-                <div class="assessment-card">
-
-                    <div id="quizContainer"></div>
-
-                </div>
-
-            </section>
-
-
-            <!-- PROGRESS -->
-            <section id="progressPage" class="page">
-
-                <div class="section-heading">
-
-                    <div>
-                        <span class="eyebrow">
-                            ANALYTICS
-                        </span>
-
-                        <h2>Learning Progress</h2>
-
-                        <p>
-                            Review your learning performance.
-                        </p>
-                    </div>
-
-                </div>
-
-
-                <div class="progress-summary">
-
-                    <div class="summary-card">
-                        <span>Overall Progress</span>
-                        <strong id="progressOverall">
-                            0%
-                        </strong>
-                    </div>
-
-                    <div class="summary-card">
-                        <span>Completed Topics</span>
-                        <strong id="progressCompleted">
-                            0
-                        </strong>
-                    </div>
-
-                    <div class="summary-card">
-                        <span>Study Hours</span>
-                        <strong id="progressHours">
-                            0
-                        </strong>
-                    </div>
-
-                    <div class="summary-card">
-                        <span>Quiz Average</span>
-                        <strong id="progressQuiz">
-                            0%
-                        </strong>
-                    </div>
-
-                </div>
-
-
-                <div class="content-card">
-
-                    <div class="card-header">
-
-                        <div>
-                            <h3>Subject Progress</h3>
-                            <p>
-                                Completion by curriculum area
-                            </p>
-                        </div>
-
-                    </div>
-
-                    <div id="subjectProgressContainer"></div>
-
-                </div>
-
-            </section>
-
-
-            <!-- SETTINGS -->
-            <section id="settingsPage" class="page">
-
-                <div class="section-heading">
-
-                    <div>
-                        <span class="eyebrow">
-                            SYSTEM
-                        </span>
-
-                        <h2>Settings</h2>
-
-                        <p>
-                            Customize and manage your PLMS data.
-                        </p>
-                    </div>
-
-                </div>
-
-
-                <div class="settings-grid">
-
-                    <div class="content-card">
-
-                        <h3>Study Settings</h3>
-
-                        <label>
-                            Daily Study Target
-                        </label>
-
-                        <div class="setting-row">
-
-                            <input
-                                type="number"
-                                id="studyHoursSetting"
-                                min="0"
-                                max="24"
-                                step="0.5"
-                            >
-
-                            <span>hours/day</span>
-
-                        </div>
-
-                        <button
-                            id="saveStudySettings"
-                            class="primary-btn">
-                            Save Settings
-                        </button>
-
-                    </div>
-
-
-                    <div class="content-card">
-
-                        <h3>Data Management</h3>
-
-                        <p class="setting-description">
-                            Export your PLMS data as a JSON file
-                            or import previously saved data.
-                        </p>
-
-                        <div class="button-group">
-
-                            <button
-                                id="exportDataBtn"
-                                class="secondary-btn">
-                                Export Data
-                            </button>
-
-                            <label class="secondary-btn file-label">
-                                Import Data
-                                <input
-                                    type="file"
-                                    id="importDataInput"
-                                    accept=".json"
-                                    hidden>
-                            </label>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="content-card danger-card">
-
-                        <h3>Reset PLMS Data</h3>
-
-                        <p class="setting-description">
-                            This will permanently delete your
-                            saved curriculum progress, goals,
-                            resources and quiz scores.
-                        </p>
-
-                        <button
-                            id="resetDataBtn"
-                            class="danger-btn">
-                            Reset All Data
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-        </div>
-
-    </main>
-
-</div>
-
-
-<!-- =========================================================
-     MODAL
-========================================================= -->
-
-<div id="modalOverlay"
-     class="modal-overlay hidden">
-
-    <div class="modal">
-
-        <button
-            id="closeModalBtn"
-            class="modal-close">
-            ×
-        </button>
-
-        <div id="modalContent"></div>
-
+    <div class="site-title">
+        Bipin Khatri
     </div>
 
-</div>
+    <div class="topbar-right">
+        <i class="bi bi-globe2"></i>
+        Public Dashboard
+    </div>
+
+</header>
 
 
-<script src="script.js"></script>
+<!-- =========================================================
+     SIDE NAVIGATION
+========================================================== -->
+
+<nav class="sidebar" id="sidebar">
+
+    <h3>Home</h3>
+
+    <a href="#">
+        <i class="bi bi-house"></i>
+        Home
+    </a>
+
+    <h3>Personal Portfolio</h3>
+
+    <a href="#">
+        <i class="bi bi-person"></i>
+        About
+    </a>
+
+    <a href="#">
+        <i class="bi bi-mortarboard"></i>
+        Education
+    </a>
+
+    <a href="#">
+        <i class="bi bi-briefcase"></i>
+        Experience
+    </a>
+
+    <a href="#">
+        <i class="bi bi-tools"></i>
+        Skills
+    </a>
+
+    <a href="#">
+        <i class="bi bi-grid"></i>
+        Projects
+    </a>
+
+    <a href="#">
+        <i class="bi bi-journal-text"></i>
+        Publications
+    </a>
+
+    <h3>Management Systems</h3>
+
+    <a href="plms/index.html">
+        <i class="bi bi-book"></i>
+        Learning Management System
+    </a>
+
+    <a href="wms/index.html">
+        <i class="bi bi-kanban"></i>
+        Work Management System
+    </a>
+
+    <h3>Public Resources</h3>
+
+    <a href="#">
+        <i class="bi bi-newspaper"></i>
+        Current Affairs
+    </a>
+
+    <a href="#">
+        <i class="bi bi-map"></i>
+        GIS & Remote Sensing
+    </a>
+
+    <a href="#">
+        <i class="bi bi-flower1"></i>
+        Agriculture Resources
+    </a>
+
+    <a href="#">
+        <i class="bi bi-file-earmark-pdf"></i>
+        E-Papers
+    </a>
+
+    <h3>Contact</h3>
+
+    <a href="#">
+        <i class="bi bi-envelope"></i>
+        Contact
+    </a>
+
+</nav>
+
+<div class="overlay" id="overlay"></div>
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================== -->
+
+<main class="main">
+
+
+    <!-- =====================================================
+         LEFT: PERSONAL PORTFOLIO
+    ====================================================== -->
+
+    <section class="portfolio">
+
+        <div class="portfolio-title">
+            Personal Portfolio
+        </div>
+
+
+        <!-- Pentagon -->
+
+        <div class="pentagon"></div>
+
+
+        <!-- Profile -->
+
+        <div class="profile-wrapper">
+
+            <div class="profile-ring">
+
+                <div class="profile-inner">
+
+                    <img
+                        src="image/profile.jpg"
+                        alt="Bipin Khatri Profile Picture">
+
+                </div>
+
+            </div>
+
+
+            <h1 class="profile-name">
+                Bipin Khatri
+            </h1>
+
+
+            <p class="occupation">
+                B.Sc. Agriculture Graduate<br>
+                Data Science & GIS Enthusiast
+            </p>
+
+
+            <!-- Social Links -->
+
+            <div class="social-links">
+
+                <a href="https://www.linkedin.com/in/agbipinkhatri/"
+                   target="_blank"
+                   title="LinkedIn">
+                    <i class="bi bi-linkedin"></i>
+                </a>
+
+                <a href="https://x.com/AgBipinKhatri"
+                   target="_blank"
+                   title="X / Twitter">
+                    <i class="bi bi-twitter-x"></i>
+                </a>
+
+                <a href="https://www.facebook.com/AgBipinKhatri"
+                   target="_blank"
+                   title="Facebook">
+                    <i class="bi bi-facebook"></i>
+                </a>
+
+                <a href="https://www.instagram.com/agbipinkhatri/"
+                   target="_blank"
+                   title="Instagram">
+                    <i class="bi bi-instagram"></i>
+                </a>
+
+                <a href="mailto:your-email@example.com"
+                   title="Email">
+                    <i class="bi bi-envelope"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Bottom Links -->
+
+        <div class="portfolio-bottom">
+
+            <!-- Google Drive CV -->
+            <a
+                class="cv-button"
+                href="https://drive.google.com/"
+                target="_blank">
+
+                <i class="bi bi-file-earmark-person"></i>
+
+                Request CV
+
+            </a>
+
+
+            <!-- Workforce -->
+
+            <a
+                class="workforce"
+                href="#"
+                target="_blank">
+
+                <img
+                    src="image/workforce.png"
+                    alt="Workforce">
+
+                <span>
+                    Workforce Profile
+                </span>
+
+                <i class="bi bi-box-arrow-up-right"></i>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         RIGHT: PUBLIC DASHBOARD
+    ====================================================== -->
+
+    <section class="dashboard">
+
+
+        <!-- Dashboard Header -->
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <h1>
+                    Public Dashboard
+                </h1>
+
+                <p>
+                    Personal portfolio, learning resources,
+                    work management and agricultural information.
+                </p>
+
+            </div>
+
+            <div class="date-box">
+                <i class="bi bi-calendar3"></i>
+                <span id="currentDate">
+                    Loading...
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             QUICK ACCESS
+        ================================================== -->
+
+        <h2 class="section-title">
+            Quick Access
+        </h2>
+
+
+        <div class="quick-grid">
+
+
+            <!-- PLMS -->
+
+            <a href="plms/index.html"
+               class="quick-card">
+
+                <div class="quick-icon">
+                    <i class="bi bi-book-half"></i>
+                </div>
+
+                <div>
+
+                    <h3>
+                        Learning Management System
+                    </h3>
+
+                    <p>
+                        Goals, resources, assessments and
+                        learning progress.
+                    </p>
+
+                </div>
+
+            </a>
+
+
+            <!-- WMS -->
+
+            <a href="wms/index.html"
+               class="quick-card">
+
+                <div class="quick-icon">
+                    <i class="bi bi-kanban"></i>
+                </div>
+
+                <div>
+
+                    <h3>
+                        Work Management System
+                    </h3>
+
+                    <p>
+                        Manage projects, tasks, documents
+                        and work progress.
+                    </p>
+
+                </div>
+
+            </a>
+
+        </div>
+
+
+        <!-- =================================================
+             DASHBOARD CONTENT
+        ================================================== -->
+
+        <div class="dashboard-grid">
+
+
+            <!-- Recent Articles -->
+
+            <div class="panel">
+
+                <h2>
+                    <i class="bi bi-newspaper"></i>
+                    Recent Articles
+                </h2>
+
+
+                <a href="#" class="article">
+
+                    <span>
+                        AGRICULTURE
+                    </span>
+
+                    <h3>
+                        Agricultural technology and
+                        climate-resilient farming
+                    </h3>
+
+                    <p>
+                        Recent agriculture-related article
+                        and learning material.
+                    </p>
+
+                </a>
+
+
+                <a href="#" class="article">
+
+                    <span>
+                        GIS & REMOTE SENSING
+                    </span>
+
+                    <h3>
+                        GIS applications in agriculture
+                    </h3>
+
+                    <p>
+                        Spatial information and remote sensing
+                        resources.
+                    </p>
+
+                </a>
+
+
+                <a href="#" class="article">
+
+                    <span>
+                        DATA SCIENCE
+                    </span>
+
+                    <h3>
+                        Data analysis for agricultural research
+                    </h3>
+
+                    <p>
+                        Statistical and data science resources
+                        for agriculture.
+                    </p>
+
+                </a>
+
+
+                <a href="#" class="article">
+
+                    <span>
+                        CURRENT AFFAIRS
+                    </span>
+
+                    <h3>
+                        Agriculture and development updates
+                    </h3>
+
+                    <p>
+                        Latest information and useful updates.
+                    </p>
+
+                </a>
+
+            </div>
+
+
+            <!-- E-Papers -->
+
+            <div class="panel">
+
+                <h2>
+                    <i class="bi bi-file-earmark-pdf"></i>
+                    E-Papers
+                </h2>
+
+
+                <a
+                    class="epaper-link"
+                    href="https://epaper.gorkhapatraonline.com/"
+                    target="_blank">
+
+                    <i class="bi bi-newspaper"></i>
+
+                    <div>
+
+                        <strong>
+                            Gorkhapatra
+                        </strong>
+
+                        <small>
+                            Online E-Paper
+                        </small>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    class="epaper-link"
+                    href="https://nayapatrikadaily.com/"
+                    target="_blank">
+
+                    <i class="bi bi-newspaper"></i>
+
+                    <div>
+
+                        <strong>
+                            Naya Yugbodh
+                        </strong>
+
+                        <small>
+                            E-Paper / News
+                        </small>
+
+                    </div>
+
+                </a>
+
+
+                <!-- Useful Links -->
+
+                <div class="useful-links">
+
+                    <h2>
+                        Useful Links
+                    </h2>
+
+
+                    <div class="link-grid">
+
+                        <a class="useful-link"
+                           href="https://www.doanepal.gov.np/"
+                           target="_blank">
+                            DOA
+                        </a>
+
+                        <a class="useful-link"
+                           href="https://narc.gov.np/"
+                           target="_blank">
+                            NARC
+                        </a>
+
+                        <a class="useful-link"
+                           href="https://afu.edu.np/"
+                           target="_blank">
+                            AFU
+                        </a>
+
+                        <a class="useful-link"
+                           href="#"
+                           target="_blank">
+                            PPMPO
+                        </a>
+
+                        <a class="useful-link"
+                           href="#"
+                           target="_blank">
+                            MOLMAC
+                        </a>
+
+                        <a class="useful-link"
+                           href="#"
+                           target="_blank">
+                            Agromet
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             WEATHER
+        ================================================== -->
+
+        <div class="panel" style="margin-top:18px;">
+
+            <h2>
+                <i class="bi bi-cloud-sun"></i>
+                Weather & Agricultural Weather Information
+            </h2>
+
+
+            <div class="weather">
+
+
+                <div class="weather-box">
+
+                    <i class="bi bi-cloud-sun"></i>
+
+                    <div class="weather-temp">
+                        Weather
+                    </div>
+
+                    <div class="weather-location">
+                        Weather information can be connected
+                        to a live weather API.
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="#"
+                    class="weather-box">
+
+                    <i class="bi bi-cloud-drizzle"></i>
+
+                    <div class="weather-temp">
+                        Agromet Advisory
+                    </div>
+
+                    <div class="weather-location">
+                        Agricultural meteorological advisory
+                        and forecast.
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- Footer -->
+
+        <footer>
+
+            © <span id="year"></span>
+            Bipin Khatri.
+            All rights reserved.
+
+        </footer>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================== -->
+
+<script>
+
+    /* -------------------------------
+       Navigation Toggle
+    -------------------------------- */
+
+    const menuBtn = document.getElementById("menuBtn");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    menuBtn.addEventListener("click", function () {
+
+        sidebar.classList.toggle("active");
+        overlay.classList.toggle("active");
+
+    });
+
+
+    overlay.addEventListener("click", function () {
+
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
+
+    });
+
+
+    /* -------------------------------
+       Current Date
+    -------------------------------- */
+
+    const dateElement =
+        document.getElementById("currentDate");
+
+    const today = new Date();
+
+    dateElement.textContent =
+        today.toLocaleDateString(
+            "en-US",
+            {
+                weekday: "short",
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+            }
+        );
+
+
+    /* -------------------------------
+       Current Year
+    -------------------------------- */
+
+    document.getElementById("year").textContent =
+        new Date().getFullYear();
+
+</script>
 
 </body>
 </html>
+```
