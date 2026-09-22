@@ -1,0 +1,774 @@
+/* =========================================================
+   BIPIN KHATRI PERSONAL LMS JAVASCRIPT
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* =====================================================
+       DATE
+       ===================================================== */
+
+    const currentDate = document.getElementById("currentDate");
+
+    if (currentDate) {
+
+        const today = new Date();
+
+        currentDate.textContent =
+            today.toLocaleDateString("en-US", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            });
+    }
+
+
+    /* =====================================================
+       SIDEBAR NAVIGATION
+       ===================================================== */
+
+    const navItems = document.querySelectorAll(".nav-item[data-page]");
+    const pages = document.querySelectorAll(".page");
+    const pageTitle = document.getElementById("pageTitle");
+
+    const titles = {
+        dashboard: "Learning Dashboard",
+        goals: "Goals & Targets",
+        resources: "Resource Library",
+        courses: "Courses & Subjects",
+        assessments: "Assessments",
+        progress: "Learning Progress",
+        notes: "My Notes"
+    };
+
+    function showPage(pageId) {
+
+        pages.forEach(page => {
+            page.classList.remove("active");
+        });
+
+        const selectedPage = document.getElementById(pageId);
+
+        if (selectedPage) {
+            selectedPage.classList.add("active");
+        }
+
+        navItems.forEach(item => {
+            item.classList.toggle(
+                "active",
+                item.dataset.page === pageId
+            );
+        });
+
+        if (pageTitle) {
+            pageTitle.textContent =
+                titles[pageId] || "Learning Dashboard";
+        }
+
+        document.getElementById("sidebar")?.classList.remove("open");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    navItems.forEach(item => {
+
+        item.addEventListener("click", () => {
+
+            showPage(item.dataset.page);
+
+        });
+
+    });
+
+
+    /* =====================================================
+       QUICK ACCESS / INTERNAL PAGE LINKS
+       ===================================================== */
+
+    document.querySelectorAll("[data-page-link]").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const page = button.dataset.pageLink;
+
+            showPage(page);
+
+        });
+
+    });
+
+
+    /* =====================================================
+       MOBILE SIDEBAR
+       ===================================================== */
+
+    const menuBtn = document.getElementById("menuBtn");
+    const sidebar = document.getElementById("sidebar");
+
+    if (menuBtn && sidebar) {
+
+        menuBtn.addEventListener("click", () => {
+
+            sidebar.classList.toggle("open");
+
+        });
+
+    }
+
+
+    /* =====================================================
+       DARK MODE
+       ===================================================== */
+
+    const themeToggle = document.getElementById("themeToggle");
+
+    const savedTheme =
+        localStorage.getItem("lmsTheme");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark");
+    }
+
+    if (themeToggle) {
+
+        themeToggle.addEventListener("click", () => {
+
+            document.body.classList.toggle("dark");
+
+            const theme =
+                document.body.classList.contains("dark")
+                    ? "dark"
+                    : "light";
+
+            localStorage.setItem(
+                "lmsTheme",
+                theme
+            );
+
+            themeToggle.innerHTML =
+                theme === "dark"
+                    ? "<span>☀️</span> Light Mode"
+                    : "<span>🌙</span> Dark Mode";
+
+        });
+
+    }
+
+
+    /* =====================================================
+       GOALS
+       ===================================================== */
+
+    let goals =
+        JSON.parse(
+            localStorage.getItem("lmsGoals")
+        ) || [
+            {
+                id: 1,
+                text: "Study Agricultural Extension",
+                completed: true,
+                type: "Today"
+            },
+            {
+                id: 2,
+                text: "Practice 20 reasoning questions",
+                completed: false,
+                type: "Today"
+            },
+            {
+                id: 3,
+                text: "Read GIS remote sensing notes",
+                completed: false,
+                type: "Today"
+            }
+        ];
+
+
+    function saveGoals() {
+
+        localStorage.setItem(
+            "lmsGoals",
+            JSON.stringify(goals)
+        );
+
+    }
+
+
+    function renderGoals() {
+
+        const allGoals =
+            document.getElementById("allGoals");
+
+        const dashboardGoals =
+            document.getElementById("dashboardGoals");
+
+        const containers = [
+            allGoals,
+            dashboardGoals
+        ];
+
+        containers.forEach(container => {
+
+            if (!container) return;
+
+            container.innerHTML = "";
+
+            goals.forEach(goal => {
+
+                const item =
+                    document.createElement("div");
+
+                item.className =
+                    "goal-item" +
+                    (goal.completed
+                        ? " completed"
+                        : "");
+
+                item.innerHTML = `
+
+                    <div
+                        class="goal-check"
+                        data-goal="${goal.id}"
+                    >
+                        ${goal.completed ? "✓" : ""}
+                    </div>
+
+                    <div class="goal-text">
+                        ${escapeHTML(goal.text)}
+                    </div>
+
+                    <button
+                        class="delete-btn"
+                        data-delete-goal="${goal.id}"
+                        title="Delete"
+                    >
+                        🗑
+                    </button>
+
+                `;
+
+                container.appendChild(item);
+
+            });
+
+        });
+
+
+        updateGoalStats();
+
+    }
+
+
+    function updateGoalStats() {
+
+        const total = goals.length;
+
+        const completed =
+            goals.filter(
+                goal => goal.completed
+            ).length;
+
+        const goalCount =
+            document.getElementById("goalCount");
+
+        const progressGoals =
+            document.getElementById("progressGoals");
+
+        if (goalCount) {
+            goalCount.textContent =
+                `${completed} / ${total}`;
+        }
+
+        if (progressGoals) {
+            progressGoals.textContent =
+                completed;
+        }
+
+    }
+
+
+    document.addEventListener("click", event => {
+
+        const goalCheck =
+            event.target.closest("[data-goal]");
+
+        if (goalCheck) {
+
+            const id =
+                Number(goalCheck.dataset.goal);
+
+            const goal =
+                goals.find(g => g.id === id);
+
+            if (goal) {
+
+                goal.completed =
+                    !goal.completed;
+
+                saveGoals();
+
+                renderGoals();
+
+            }
+
+        }
+
+
+        const deleteGoal =
+            event.target.closest("[data-delete-goal]");
+
+        if (deleteGoal) {
+
+            const id =
+                Number(deleteGoal.dataset.deleteGoal);
+
+            goals =
+                goals.filter(
+                    goal => goal.id !== id
+                );
+
+            saveGoals();
+
+            renderGoals();
+
+        }
+
+    });
+
+
+    /* =====================================================
+       GOAL MODAL
+       ===================================================== */
+
+    const goalModal =
+        document.getElementById("goalModal");
+
+    const addGoalBtn =
+        document.getElementById("addGoalBtn");
+
+    const goalForm =
+        document.getElementById("goalForm");
+
+    if (addGoalBtn) {
+
+        addGoalBtn.addEventListener("click", () => {
+
+            goalModal.classList.add("show");
+
+        });
+
+    }
+
+
+    if (goalForm) {
+
+        goalForm.addEventListener("submit", event => {
+
+            event.preventDefault();
+
+            const text =
+                document.getElementById("goalInput").value;
+
+            const type =
+                document.getElementById("goalType").value;
+
+            goals.push({
+                id: Date.now(),
+                text: text,
+                completed: false,
+                type: type
+            });
+
+            saveGoals();
+
+            renderGoals();
+
+            goalForm.reset();
+
+            goalModal.classList.remove("show");
+
+        });
+
+    }
+
+
+    /* =====================================================
+       RESOURCES
+       ===================================================== */
+
+    let resources =
+        JSON.parse(
+            localStorage.getItem("lmsResources")
+        ) || [
+            {
+                id: 1,
+                name: "Agricultural Extension Notes",
+                category: "Agriculture",
+                url: "#"
+            },
+            {
+                id: 2,
+                name: "GIS & Remote Sensing",
+                category: "GIS",
+                url: "#"
+            },
+            {
+                id: 3,
+                name: "Loksewa Reasoning Practice",
+                category: "Loksewa",
+                url: "#"
+            }
+        ];
+
+
+    function saveResources() {
+
+        localStorage.setItem(
+            "lmsResources",
+            JSON.stringify(resources)
+        );
+
+    }
+
+
+    function renderResources() {
+
+        const grid =
+            document.getElementById("resourceGrid");
+
+        if (!grid) return;
+
+        const search =
+            document
+                .getElementById("resourceSearch")
+                ?.value
+                .toLowerCase() || "";
+
+        const category =
+            document
+                .getElementById("resourceCategory")
+                ?.value || "all";
+
+        grid.innerHTML = "";
+
+        const filtered =
+            resources.filter(resource => {
+
+                const matchesSearch =
+                    resource.name
+                        .toLowerCase()
+                        .includes(search);
+
+                const matchesCategory =
+                    category === "all" ||
+                    resource.category === category;
+
+                return (
+                    matchesSearch &&
+                    matchesCategory
+                );
+
+            });
+
+
+        filtered.forEach(resource => {
+
+            const card =
+                document.createElement("div");
+
+            card.className = "resource-card";
+
+            let icon = "📚";
+
+            if (resource.category === "GIS")
+                icon = "🗺️";
+
+            if (resource.category === "Data Science")
+                icon = "📊";
+
+            if (resource.category === "Loksewa")
+                icon = "📝";
+
+            card.innerHTML = `
+
+                <div class="resource-icon">
+                    ${icon}
+                </div>
+
+                <h3>
+                    ${escapeHTML(resource.name)}
+                </h3>
+
+                <p>
+                    ${escapeHTML(resource.category)}
+                </p>
+
+                <a
+                    href="${escapeAttribute(resource.url)}"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Open Resource →
+                </a>
+
+            `;
+
+            grid.appendChild(card);
+
+        });
+
+
+        const resourceCount =
+            document.getElementById("resourceCount");
+
+        const progressResources =
+            document.getElementById("progressResources");
+
+        if (resourceCount)
+            resourceCount.textContent =
+                resources.length;
+
+        if (progressResources)
+            progressResources.textContent =
+                resources.length;
+
+    }
+
+
+    const addResourceBtn =
+        document.getElementById("addResourceBtn");
+
+    const resourceModal =
+        document.getElementById("resourceModal");
+
+    const resourceForm =
+        document.getElementById("resourceForm");
+
+
+    if (addResourceBtn) {
+
+        addResourceBtn.addEventListener("click", () => {
+
+            resourceModal.classList.add("show");
+
+        });
+
+    }
+
+
+    if (resourceForm) {
+
+        resourceForm.addEventListener("submit", event => {
+
+            event.preventDefault();
+
+            const name =
+                document.getElementById("resourceName").value;
+
+            const category =
+                document.getElementById("resourceType").value;
+
+            const url =
+                document.getElementById("resourceURL").value ||
+                "#";
+
+            resources.push({
+                id: Date.now(),
+                name,
+                category,
+                url
+            });
+
+            saveResources();
+
+            renderResources();
+
+            resourceForm.reset();
+
+            resourceModal.classList.remove("show");
+
+        });
+
+    }
+
+
+    document
+        .getElementById("resourceSearch")
+        ?.addEventListener(
+            "input",
+            renderResources
+        );
+
+    document
+        .getElementById("resourceCategory")
+        ?.addEventListener(
+            "change",
+            renderResources
+        );
+
+
+    /* =====================================================
+       MODAL CLOSE
+       ===================================================== */
+
+    document.querySelectorAll("[data-close]").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const id =
+                button.dataset.close;
+
+            document
+                .getElementById(id)
+                ?.classList.remove("show");
+
+        });
+
+    });
+
+
+    document.querySelectorAll(".modal").forEach(modal => {
+
+        modal.addEventListener("click", event => {
+
+            if (event.target === modal) {
+
+                modal.classList.remove("show");
+
+            }
+
+        });
+
+    });
+
+
+    /* =====================================================
+       NOTES
+       ===================================================== */
+
+    let notes =
+        JSON.parse(
+            localStorage.getItem("lmsNotes")
+        ) || [];
+
+
+    function saveNotes() {
+
+        localStorage.setItem(
+            "lmsNotes",
+            JSON.stringify(notes)
+        );
+
+    }
+
+
+    function renderNotes() {
+
+        const list =
+            document.getElementById("notesList");
+
+        if (!list) return;
+
+        list.innerHTML = "";
+
+        notes.forEach(note => {
+
+            const card =
+                document.createElement("div");
+
+            card.className = "note-card";
+
+            card.innerHTML = `
+
+                <h3>
+                    ${escapeHTML(note.title)}
+                </h3>
+
+                <p>
+                    ${escapeHTML(note.text)}
+                </p>
+
+            `;
+
+            list.appendChild(card);
+
+        });
+
+    }
+
+
+    document
+        .getElementById("saveNoteBtn")
+        ?.addEventListener("click", () => {
+
+            const title =
+                document.getElementById("noteTitle").value.trim();
+
+            const text =
+                document.getElementById("noteText").value.trim();
+
+            if (!title || !text) {
+
+                alert("Please enter both title and note.");
+
+                return;
+
+            }
+
+            notes.unshift({
+                id: Date.now(),
+                title,
+                text
+            });
+
+            saveNotes();
+
+            renderNotes();
+
+            document.getElementById("noteTitle").value = "";
+            document.getElementById("noteText").value = "";
+
+        });
+
+
+    /* =====================================================
+       SECURITY / HTML ESCAPING
+       ===================================================== */
+
+    function escapeHTML(value) {
+
+        return String(value)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+
+    }
+
+
+    function escapeAttribute(value) {
+
+        return String(value)
+            .replaceAll('"', "&quot;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;");
+
+    }
+
+
+    /* =====================================================
+       INITIALIZE
+       ===================================================== */
+
+    renderGoals();
+
+    renderResources();
+
+    renderNotes();
+
+});
