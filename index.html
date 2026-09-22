@@ -2,706 +2,1517 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Bipin Khatri | Personal Dashboard</title>
-
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --green: #168f62;
-            --green-dark: #096344;
-            --teal: #168f8f;
-            --blue-green: #147d7d;
-            --dark: #17201d;
-            --light: #f4f7f6;
-            --white: #ffffff;
-            --gray: #707875;
-            --border: #dce5e1;
-            --shadow: 0 8px 25px rgba(0,0,0,.08);
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: var(--light);
-            color: var(--dark);
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* =========================
-           TOP NAVIGATION
-        ========================== */
-
-        .topbar {
-            height: 64px;
-            background: rgba(255,255,255,.96);
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            padding: 0 22px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 12px rgba(0,0,0,.05);
-        }
-
-        .menu-btn {
-            width: 42px;
-            height: 42px;
-            border: 0;
-            border-radius: 10px;
-            background: var(--green);
-            color: white;
-            font-size: 22px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .menu-btn:hover {
-            background: var(--green-dark);
-        }
-
-        .site-title {
-            margin-left: 18px;
-            font-size: 19px;
-            font-weight: 700;
-            letter-spacing: .3px;
-        }
-
-        .topbar-right {
-            margin-left: auto;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--gray);
-            font-size: 13px;
-        }
-
-        /* =========================
-           SIDE NAVIGATION
-        ========================== */
-
-        .sidebar {
-            position: fixed;
-            top: 64px;
-            left: -280px;
-            width: 280px;
-            height: calc(100vh - 64px);
-            background: #13201c;
-            color: white;
-            z-index: 999;
-            overflow-y: auto;
-            transition: .3s ease;
-            padding: 24px 18px;
-        }
-
-        .sidebar.active {
-            left: 0;
-        }
-
-        .sidebar h3 {
-            font-size: 14px;
-            color: #8ed7bc;
-            margin: 18px 10px 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .sidebar a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 11px 13px;
-            margin: 3px 0;
-            border-radius: 8px;
-            color: #e5efeb;
-            font-size: 14px;
-        }
-
-        .sidebar a:hover {
-            background: #21493b;
-            color: white;
-        }
-
-        .overlay {
-            position: fixed;
-            inset: 64px 0 0 0;
-            background: rgba(0,0,0,.35);
-            z-index: 998;
-            display: none;
-        }
-
-        .overlay.active {
-            display: block;
-        }
-
-        /* =========================
-           MAIN LAYOUT
-        ========================== */
-
-        .main {
-            display: grid;
-            grid-template-columns: 25% 75%;
-            min-height: 100vh;
-            padding-top: 64px;
-        }
-
-        /* =========================
-           PORTFOLIO PANEL
-        ========================== */
-
-        .portfolio {
-            background: #e9edeb;
-            min-height: calc(100vh - 64px);
-            position: relative;
-            overflow: hidden;
-            border-right: 1px solid var(--border);
-        }
-
-        .portfolio-title {
-            text-align: center;
-            padding: 18px 10px 8px;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--green-dark);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 5;
-        }
-
-        /* Pentagon background */
-
-        .pentagon {
-            height: 270px;
-            width: 100%;
-            background-image:
-                linear-gradient(
-                    rgba(10, 80, 61, .15),
-                    rgba(10, 80, 61, .15)
-                ),
-                url("image/bg.jpg");
-            background-size: cover;
-            background-position: center;
-
-            clip-path: polygon(
-                0 0,
-                100% 0,
-                100% 68%,
-                50% 100%,
-                0 68%
-            );
-
-            position: relative;
-        }
-
-        .pentagon::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,.08);
-        }
-
-        /* Profile */
-
-        .profile-wrapper {
-            position: relative;
-            margin-top: -92px;
-            z-index: 10;
-            text-align: center;
-        }
-
-        .profile-ring {
-            width: 160px;
-            height: 160px;
-            margin: auto;
-            padding: 7px;
-            border: 3px solid var(--green);
-            border-radius: 50%;
-            background: rgba(255,255,255,.9);
-            box-shadow: 0 7px 25px rgba(0,0,0,.18);
-        }
-
-        .profile-inner {
-            width: 100%;
-            height: 100%;
-            padding: 7px;
-            border-radius: 50%;
-            background: var(--blue-green);
-        }
-
-        .profile-inner img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .profile-name {
-            margin-top: 15px;
-            font-size: 23px;
-            font-weight: 800;
-        }
-
-        .occupation {
-            color: var(--gray);
-            font-size: 13px;
-            margin-top: 5px;
-            line-height: 1.5;
-        }
-
-        /* Social icons */
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 9px;
-            margin-top: 16px;
-        }
-
-        .social-links a {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            color: var(--green-dark);
-            border: 1px solid #cfdad5;
-            font-size: 17px;
-            transition: .2s;
-        }
-
-        .social-links a:hover {
-            background: var(--green);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        /* CV */
-
-        .portfolio-bottom {
-            margin: 24px 18px 0;
-            padding-top: 18px;
-            border-top: 1px solid #ccd7d2;
-        }
-
-        .cv-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 9px;
-            padding: 11px;
-            border-radius: 8px;
-            background: var(--green);
-            color: white;
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .cv-button:hover {
-            background: var(--green-dark);
-        }
-
-        .workforce {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 9px;
-            margin-top: 13px;
-            color: var(--gray);
-            font-size: 12px;
-        }
-
-        .workforce img {
-            width: 30px;
-            height: 30px;
-            object-fit: contain;
-        }
-
-        /* =========================
-           DASHBOARD
-        ========================== */
-
-        .dashboard {
-            padding: 28px;
-            background: #f8faf9;
-        }
-
-        .dashboard-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 22px;
-        }
-
-        .dashboard-header h1 {
-            font-size: 29px;
-            margin-bottom: 5px;
-        }
-
-        .dashboard-header p {
-            color: var(--gray);
-            font-size: 14px;
-        }
-
-        .date-box {
-            background: white;
-            padding: 10px 15px;
-            border: 1px solid var(--border);
-            border-radius: 9px;
-            color: var(--gray);
-            font-size: 12px;
-        }
-
-        /* Quick Access */
-
-        .section-title {
-            font-size: 17px;
-            margin-bottom: 12px;
-        }
-
-        .quick-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .quick-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 13px;
-            padding: 22px;
-            display: flex;
-            align-items: center;
-            gap: 17px;
-            box-shadow: var(--shadow);
-            transition: .25s;
-        }
-
-        .quick-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--green);
-        }
-
-        .quick-icon {
-            min-width: 53px;
-            height: 53px;
-            border-radius: 12px;
-            background: #e3f4ed;
-            color: var(--green-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 25px;
-        }
-
-        .quick-card h3 {
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-
-        .quick-card p {
-            color: var(--gray);
-            font-size: 12px;
-        }
-
-        /* =========================
-           DASHBOARD GRID
-        ========================== */
-
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 1.25fr .75fr;
-            gap: 18px;
-            margin-top: 25px;
-        }
-
-        .panel {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 13px;
-            padding: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,.045);
-        }
-
-        .panel h2 {
-            font-size: 16px;
-            margin-bottom: 14px;
-        }
-
-        /* Articles */
-
-        .article {
-            padding: 13px 0;
-            border-bottom: 1px solid #e6ece9;
-            transition: .2s;
-        }
-
-        .article:last-child {
-            border-bottom: 0;
-        }
-
-        .article:hover {
-            padding-left: 8px;
-        }
-
-        .article h3 {
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-
-        .article p {
-            font-size: 12px;
-            color: var(--gray);
-        }
-
-        .article span {
-            font-size: 10px;
-            color: var(--green);
-        }
-
-        /* Epaper */
-
-        .epaper-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border: 1px solid var(--border);
-            padding: 12px;
-            border-radius: 9px;
-            margin-bottom: 10px;
-        }
-
-        .epaper-link:hover {
-            background: #f0f8f5;
-            border-color: var(--green);
-        }
-
-        .epaper-link i {
-            font-size: 22px;
-            color: var(--green);
-        }
-
-        .epaper-link strong {
-            display: block;
-            font-size: 13px;
-        }
-
-        .epaper-link small {
-            color: var(--gray);
-            font-size: 10px;
-        }
-
-        /* Useful links */
-
-        .useful-links {
-            margin-top: 18px;
-        }
-
-        .link-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 9px;
-        }
-
-        .useful-link {
-            background: #f5f8f7;
-            border: 1px solid #e0e8e4;
-            border-radius: 8px;
-            padding: 10px;
-            text-align: center;
-            font-size: 11px;
-            color: #34534a;
-        }
-
-        .useful-link:hover {
-            background: #dff2ea;
-            color: var(--green-dark);
-        }
-
-        /* Weather */
-
-        .weather {
-            margin-top: 18px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .weather-box {
-            background: #eaf4f2;
-            border-radius: 11px;
-            padding: 17px;
-        }
-
-        .weather-box i {
-            font-size: 28px;
-            color: var(--teal);
-        }
-
-        .weather-temp {
-            font-size: 25px;
-            font-weight: 700;
-            margin-top: 8px;
-        }
-
-        .weather-location {
-            color: var(--gray);
-            font-size: 11px;
-        }
-
-        /* =========================
-           FOOTER
-        ========================== */
-
-        footer {
-            text-align: center;
-            color: var(--gray);
-            font-size: 11px;
-            padding: 25px 10px 5px;
-        }
-
-        /* =========================
-           RESPONSIVE
-        ========================== */
-
-        @media (max-width: 1100px) {
-
-            .main {
-                grid-template-columns: 30% 70%;
-            }
-
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .link-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 800px) {
-
-            .main {
-                display: block;
-            }
-
-            .portfolio {
-                min-height: auto;
-                padding-bottom: 30px;
-            }
-
-            .dashboard {
-                padding: 20px;
-            }
-
-            .quick-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .dashboard-header {
-                display: block;
-            }
-
-            .date-box {
-                display: inline-block;
-                margin-top: 12px;
-            }
-        }
-
-        @media (max-width: 500px) {
-
-            .topbar {
-                padding: 0 12px;
-            }
-
-            .site-title {
-                font-size: 15px;
-                margin-left: 10px;
-            }
-
-            .topbar-right {
-                display: none;
-            }
-
-            .dashboard-header h1 {
-                font-size: 23px;
-            }
-
-            .dashboard-grid {
-                gap: 12px;
-            }
-
-            .panel {
-                padding: 15px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Bipin Khatri | Public Dashboard</title>
+
+<!-- =========================================================
+     BOOTSTRAP ICONS
+========================================================= -->
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:#eef3f1;
+    color:#172522;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button,
+input{
+    font-family:inherit;
+}
+
+
+/* =========================================================
+   COLOUR VARIABLES
+========================================================= */
+
+:root{
+
+    --dark-green:#073f38;
+    --bluish-green:#145e5b;
+    --green:#258a70;
+    --light-green:#76bda4;
+
+    --purple-green:#776b89;
+
+    --dark:#172522;
+    --white:#ffffff;
+
+    --light:#f3f7f5;
+    --border:#d7e1dd;
+
+    --shadow:
+        0 5px 18px rgba(0,0,0,.08);
+}
+
+
+/* =========================================================
+   TOP BAND
+   1/15 HEIGHT
+========================================================= */
+
+.top-band{
+
+    height:6.6667vh;
+    min-height:48px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #083d37,
+            #125d56
+        );
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 16px;
+
+    position:relative;
+    z-index:1000;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.20);
+}
+
+
+/* Menu button */
+
+.menu-button{
+
+    width:38px;
+    height:38px;
+
+    border:1px solid rgba(255,255,255,.35);
+
+    background:
+        rgba(255,255,255,.08);
+
+    color:white;
+
+    border-radius:7px;
+
+    font-size:21px;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:.2s;
+}
+
+.menu-button:hover{
+
+    background:white;
+    color:var(--dark-green);
+
+}
+
+
+/* Website title */
+
+.top-title{
+
+    margin-left:12px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    letter-spacing:.7px;
+}
+
+
+/* Date / time */
+
+.datetime{
+
+    display:flex;
+    align-items:center;
+
+    gap:18px;
+
+    text-align:right;
+
+    font-size:11px;
+
+    line-height:1.35;
+}
+
+.datetime strong{
+
+    font-size:12px;
+
+}
+
+.datetime .time{
+
+    font-weight:700;
+
+    color:#d9f4e9;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar{
+
+    position:fixed;
+
+    top:0;
+    left:-290px;
+
+    width:290px;
+
+    height:100vh;
+
+    background:#102b27;
+
+    color:white;
+
+    z-index:2000;
+
+    overflow-y:auto;
+
+    padding:70px 16px 20px;
+
+    transition:.3s ease;
+
+    box-shadow:
+        5px 0 25px rgba(0,0,0,.25);
+}
+
+.sidebar.active{
+
+    left:0;
+
+}
+
+
+.sidebar-title{
+
+    font-size:16px;
+
+    font-weight:700;
+
+    margin-bottom:20px;
+
+    padding-bottom:12px;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.15);
+}
+
+
+.sidebar-section{
+
+    color:#79c7aa;
+
+    font-size:10px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1.2px;
+
+    margin:
+        20px 8px 7px;
+}
+
+
+.sidebar a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:10px 12px;
+
+    border-radius:7px;
+
+    color:#e4eeeb;
+
+    font-size:13px;
+
+    margin-bottom:3px;
+
+    transition:.2s;
+}
+
+.sidebar a:hover{
+
+    background:#1d5148;
+
+    color:white;
+
+}
+
+
+.sidebar a i{
+
+    width:20px;
+
+    text-align:center;
+
+}
+
+
+/* Overlay */
+
+.overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+        rgba(0,0,0,.45);
+
+    z-index:1500;
+
+    display:none;
+}
+
+.overlay.active{
+
+    display:block;
+
+}
+
+
+/* =========================================================
+   MIDDLE BAND
+   13/15
+========================================================= */
+
+.middle-band{
+
+    min-height:86.6666vh;
+
+    display:grid;
+
+    grid-template-columns:
+        25% 75%;
+
+}
+
+
+/* =========================================================
+   LEFT PORTFOLIO
+========================================================= */
+
+.portfolio-panel{
+
+    position:relative;
+
+    overflow:hidden;
+
+    min-height:86.6666vh;
+
+    background:#e8eeeb;
+
+    border-right:
+        1px solid #cbd8d3;
+
+}
+
+
+/* Portfolio heading */
+
+.portfolio-heading{
+
+    height:45px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    color:var(--dark-green);
+
+    text-transform:uppercase;
+
+    position:relative;
+
+    z-index:20;
+
+}
+
+
+/* =========================================================
+   HONEYCOMB BACKGROUND
+========================================================= */
+
+.honeycomb-area{
+
+    position:absolute;
+
+    inset:45px 0 0 0;
+
+    overflow:hidden;
+
+    background:#e4ebe8;
+
+}
+
+
+/* Honeycomb pattern */
+
+.honeycomb-area::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:.9;
+
+    background-image:
+
+        linear-gradient(
+            30deg,
+            rgba(80,160,130,.18) 12%,
+            transparent 12.5%,
+            transparent 87%,
+            rgba(80,160,130,.18) 87.5%,
+            rgba(80,160,130,.18)
+        ),
+
+        linear-gradient(
+            150deg,
+            rgba(80,160,130,.18) 12%,
+            transparent 12.5%,
+            transparent 87%,
+            rgba(80,160,130,.18) 87.5%,
+            rgba(80,160,130,.18)
+        ),
+
+        linear-gradient(
+            30deg,
+            rgba(80,160,130,.18) 12%,
+            transparent 12.5%,
+            transparent 87%,
+            rgba(80,160,130,.18) 87.5%,
+            rgba(80,160,130,.18)
+        );
+
+    background-size:
+        54px 94px,
+        54px 94px,
+        54px 94px;
+
+    background-position:
+        0 0,
+        0 0,
+        27px 47px;
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   INVERTED PENTAGON
+========================================================= */
+
+.pentagon{
+
+    position:absolute;
+
+    top:45px;
+
+    left:5%;
+
+    width:90%;
+
+    height:280px;
+
+    z-index:5;
+
+    overflow:hidden;
+
+    background:#153e3a;
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            100% 62%,
+            50% 100%,
+            0 62%
+        );
+
+    border:2px solid var(--bluish-green);
+}
+
+
+/*
+   Inner honeycomb image tiles
+*/
+
+.pentagon-honeycomb{
+
+    position:absolute;
+
+    inset:3px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    grid-auto-rows:75px;
+
+    gap:4px;
+
+    transform:rotate(0deg);
+
+}
+
+
+/* Individual hexagon */
+
+.hex{
+
+    position:relative;
+
+    overflow:hidden;
+
+    clip-path:
+        polygon(
+            25% 3%,
+            75% 3%,
+            100% 50%,
+            75% 97%,
+            25% 97%,
+            0 50%
+        );
+
+    border:
+        1px solid #050505;
+
+    background-position:center;
+
+    background-size:cover;
+
+    background-repeat:no-repeat;
+
+}
+
+
+/* Image assignments */
+
+.hex:nth-child(1){
+    background-image:url("image/bg1.jpg");
+}
+
+.hex:nth-child(2){
+    background-image:url("image/bg2.jpg");
+}
+
+.hex:nth-child(3){
+    background-image:url("image/bg3.jpg");
+}
+
+.hex:nth-child(4){
+    background-image:url("image/bg4.jpg");
+}
+
+.hex:nth-child(5){
+    background-image:url("image/bg5.jpg");
+}
+
+.hex:nth-child(6){
+    background-image:url("image/bg6.jpg");
+}
+
+.hex:nth-child(7){
+    background-image:url("image/bg7.jpg");
+}
+
+.hex:nth-child(8){
+    background-image:url("image/bg8.jpg");
+}
+
+.hex:nth-child(9){
+    background-image:url("image/bg9.jpg");
+}
+
+.hex:nth-child(10){
+    background-image:url("image/bg10.jpg");
+}
+
+.hex:nth-child(11){
+    background-image:url("image/bg11.jpg");
+}
+
+.hex:nth-child(12){
+    background-image:url("image/bg12.jpg");
+}
+
+
+/* =========================================================
+   PROFILE SECTION
+========================================================= */
+
+.profile-section{
+
+    position:relative;
+
+    z-index:30;
+
+    margin-top:250px;
+
+    text-align:center;
+
+    padding:
+        0 20px 25px;
+
+}
+
+
+/* Double circle */
+
+.profile-ring{
+
+    width:150px;
+
+    height:150px;
+
+    margin:auto;
+
+    border:
+        3px dotted
+        #398e82;
+
+    border-radius:50%;
+
+    padding:7px;
+
+    background:
+        rgba(255,255,255,.65);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+/* Inner circle */
+
+.profile-inner{
+
+    width:100%;
+
+    height:100%;
+
+    border:
+        3px solid
+        #132f32;
+
+    border-radius:50%;
+
+    overflow:hidden;
+
+    background:#132f32;
+
+}
+
+
+.profile-inner img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+
+/* Name */
+
+.profile-name{
+
+    margin-top:13px;
+
+    font-size:21px;
+
+    font-weight:800;
+
+    color:#142d2a;
+
+}
+
+
+/* Occupation */
+
+.profile-occupation{
+
+    margin-top:4px;
+
+    font-size:11px;
+
+    line-height:1.5;
+
+    color:#5a6864;
+
+}
+
+
+/* =========================================================
+   SOCIAL
+========================================================= */
+
+.social-links{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:8px;
+
+    margin-top:19px;
+
+}
+
+
+.social-links a{
+
+    width:32px;
+    height:32px;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.85);
+
+    border:
+        1px solid #b8c8c2;
+
+    color:#155c56;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:15px;
+
+    transition:.2s;
+
+}
+
+
+.social-links a:hover{
+
+    background:#155c56;
+
+    color:white;
+
+    transform:
+        translateY(-3px);
+
+}
+
+
+/* =========================================================
+   THREE DOTS
+========================================================= */
+
+.decorative-dots{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:7px;
+
+    margin:20px 0;
+
+}
+
+
+.decorative-dots span{
+
+    width:7px;
+    height:7px;
+
+    background:
+        #746d86;
+
+    border-radius:50%;
+
+}
+
+
+/* =========================================================
+   SECURITY CHECK
+========================================================= */
+
+.security-box{
+
+    width:85%;
+
+    max-width:270px;
+
+    margin:auto;
+
+}
+
+
+.security-title{
+
+    font-size:11px;
+
+    font-weight:700;
+
+    color:#465651;
+
+    margin-bottom:6px;
+
+}
+
+
+.security-input{
+
+    width:100%;
+
+    height:34px;
+
+    border:
+        1px solid #afc0ba;
+
+    border-radius:5px;
+
+    text-align:center;
+
+    letter-spacing:4px;
+
+    outline:none;
+
+    background:white;
+
+}
+
+
+.security-input:focus{
+
+    border-color:
+        var(--green);
+
+    box-shadow:
+        0 0 0 2px
+        rgba(37,138,112,.10);
+
+}
+
+
+.unlock-button{
+
+    width:100%;
+
+    height:34px;
+
+    margin-top:7px;
+
+    border:none;
+
+    border-radius:5px;
+
+    background:
+        #185f58;
+
+    color:white;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+.unlock-button:hover{
+
+    background:
+        #0c423d;
+
+}
+
+
+.security-message{
+
+    min-height:16px;
+
+    margin-top:5px;
+
+    font-size:10px;
+
+}
+
+
+/* =========================================================
+   CV
+========================================================= */
+
+.cv-button{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    margin-top:18px;
+
+    padding:
+        9px 18px;
+
+    border-radius:5px;
+
+    background:
+        #746d86;
+
+    color:white;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    transition:.2s;
+
+}
+
+
+.cv-button:hover{
+
+    background:#554f66;
+
+}
+
+
+/* =========================================================
+   RIGHT DASHBOARD
+========================================================= */
+
+.dashboard{
+
+    padding:
+        20px 25px 10px;
+
+    background:#f7faf9;
+
+    overflow:hidden;
+
+}
+
+
+.dashboard-title{
+
+    font-size:22px;
+
+    font-weight:800;
+
+    color:#173a35;
+
+    margin-bottom:3px;
+
+}
+
+
+.dashboard-subtitle{
+
+    font-size:11px;
+
+    color:#697671;
+
+    margin-bottom:17px;
+
+}
+
+
+/* =========================================================
+   DASHBOARD SECTION GRID
+========================================================= */
+
+.dashboard-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:15px;
+
+}
+
+
+/* Dashboard card */
+
+.dashboard-card{
+
+    background:white;
+
+    border:
+        1px solid #dbe5e1;
+
+    border-radius:9px;
+
+    box-shadow:
+        0 3px 12px
+        rgba(0,0,0,.05);
+
+    overflow:hidden;
+
+    transition:.2s;
+
+}
+
+
+.dashboard-card:hover{
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 6px 20px
+        rgba(0,0,0,.09);
+
+}
+
+
+/* Card heading */
+
+.card-heading{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:
+        11px 13px;
+
+    background:
+        #edf5f2;
+
+    border-bottom:
+        1px solid #dce7e3;
+
+}
+
+
+.card-heading-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+
+
+.card-heading i{
+
+    color:#176c61;
+
+    font-size:16px;
+
+}
+
+
+.card-heading h2{
+
+    font-size:13px;
+
+    color:#173c37;
+
+}
+
+
+.card-heading small{
+
+    color:#687771;
+
+    font-size:9px;
+
+}
+
+
+/* Card body */
+
+.card-body{
+
+    padding:12px;
+
+}
+
+
+.quick-link{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    padding:8px 7px;
+
+    border-bottom:
+        1px solid #edf1ef;
+
+    font-size:11px;
+
+    color:#334c46;
+
+}
+
+
+.quick-link:last-child{
+
+    border-bottom:none;
+
+}
+
+
+.quick-link:hover{
+
+    color:#096b5d;
+
+    background:#f3f8f6;
+
+}
+
+
+.quick-link i{
+
+    width:18px;
+
+    color:#638f85;
+
+}
+
+
+/* =========================================================
+   UJYAALO RADIO
+========================================================= */
+
+.radio-box{
+
+    margin-top:10px;
+
+    padding:10px;
+
+    border-radius:7px;
+
+    background:#f1f6f4;
+
+}
+
+
+.radio-title{
+
+    font-size:10px;
+
+    font-weight:700;
+
+    margin-bottom:6px;
+
+    color:#28524a;
+
+}
+
+
+.radio-box audio{
+
+    width:100%;
+
+    height:30px;
+
+}
+
+
+/* =========================================================
+   LOWER RESOURCE AREA
+========================================================= */
+
+.resource-grid{
+
+    margin-top:15px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:10px;
+
+}
+
+
+.resource-item{
+
+    background:white;
+
+    border:
+        1px solid #dce6e2;
+
+    border-radius:8px;
+
+    padding:11px;
+
+    text-align:center;
+
+    font-size:10px;
+
+    color:#31534b;
+
+    transition:.2s;
+
+}
+
+
+.resource-item:hover{
+
+    background:#e8f4ef;
+
+    border-color:#8bbbad;
+
+}
+
+
+.resource-item i{
+
+    display:block;
+
+    font-size:19px;
+
+    color:#287b6d;
+
+    margin-bottom:4px;
+
+}
+
+
+/* =========================================================
+   LAST BAND
+========================================================= */
+
+.footer-band{
+
+    height:6.6667vh;
+
+    min-height:38px;
+
+    background:#102f2b;
+
+    color:#c7d8d3;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    font-size:10px;
+
+    border-top:
+        1px solid #1d5149;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1000px){
+
+    .middle-band{
+
+        grid-template-columns:
+            35% 65%;
+    }
+
+    .dashboard-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .resource-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+}
+
+
+@media(max-width:750px){
+
+    .top-band{
+
+        padding:0 10px;
+
+    }
+
+    .top-title{
+
+        display:none;
+
+    }
+
+    .datetime{
+
+        gap:8px;
+
+        font-size:9px;
+
+    }
+
+    .datetime strong{
+
+        font-size:10px;
+
+    }
+
+
+    .middle-band{
+
+        display:block;
+
+    }
+
+
+    .portfolio-panel{
+
+        min-height:760px;
+
+        border-right:none;
+
+        border-bottom:
+            1px solid #cbd8d3;
+
+    }
+
+
+    .dashboard{
+
+        min-height:600px;
+
+        padding:18px 12px;
+
+    }
+
+
+    .dashboard-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .resource-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+}
+
+
+@media(max-width:450px){
+
+    .datetime{
+
+        flex-direction:
+            column;
+
+        align-items:flex-end;
+
+        gap:0;
+
+    }
+
+
+    .pentagon{
+
+        width:94%;
+
+        left:3%;
+
+    }
+
+
+    .profile-section{
+
+        margin-top:245px;
+
+    }
+
+
+    .profile-ring{
+
+        width:135px;
+        height:135px;
+
+    }
+
+
+    .resource-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
+
 <!-- =========================================================
-     TOP BAR
-========================================================== -->
+     TOP BAND
+========================================================= -->
 
-<header class="topbar">
+<header class="top-band">
 
-    <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation">
-        <i class="bi bi-list"></i>
-    </button>
+    <div style="display:flex;align-items:center;">
 
-    <div class="site-title">
-        Bipin Khatri
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-label="Toggle navigation">
+
+            <i class="bi bi-list"></i>
+
+        </button>
+
+        <div class="top-title">
+            BIPIN KHATRI
+        </div>
+
     </div>
 
-    <div class="topbar-right">
-        <i class="bi bi-globe2"></i>
-        Public Dashboard
+
+    <div class="datetime">
+
+        <div>
+            <strong id="bsDate">
+                Loading BS...
+            </strong>
+            <br>
+            <span id="adDate">
+                Loading AD...
+            </span>
+        </div>
+
+        <div class="time">
+
+            <i class="bi bi-clock"></i>
+
+            <span id="currentTime">
+                --:--:--
+            </span>
+
+            <br>
+
+            GMT +5:45
+
+        </div>
+
     </div>
 
 </header>
 
 
+
 <!-- =========================================================
-     SIDE NAVIGATION
-========================================================== -->
+     SIDEBAR
+========================================================= -->
 
 <nav class="sidebar" id="sidebar">
 
-    <h3>Home</h3>
+    <div class="sidebar-title">
+        <i class="bi bi-grid"></i>
+        Navigation
+    </div>
+
 
     <a href="#">
         <i class="bi bi-house"></i>
         Home
     </a>
 
-    <h3>Personal Portfolio</h3>
+
+    <div class="sidebar-section">
+        Personal Portfolio
+    </div>
 
     <a href="#">
         <i class="bi bi-person"></i>
@@ -719,54 +1530,61 @@
     </a>
 
     <a href="#">
-        <i class="bi bi-tools"></i>
+        <i class="bi bi-bar-chart"></i>
         Skills
     </a>
 
     <a href="#">
-        <i class="bi bi-grid"></i>
-        Projects
+        <i class="bi bi-folder"></i>
+        Portfolio
+    </a>
+
+
+    <div class="sidebar-section">
+        Management Systems
+    </div>
+
+
+    <a href="LMS/index.html">
+        <i class="bi bi-book"></i>
+        Learning Management System
     </a>
 
     <a href="#">
-        <i class="bi bi-journal-text"></i>
-        Publications
-    </a>
-
-    <h3>Management Systems</h3>
-
-    <a href="MCQ/mcq.html" class="lms-button">
-    📚 Learning Management System
-    </a>
-
-    <a href="wms/index.html">
         <i class="bi bi-kanban"></i>
         Work Management System
     </a>
 
-    <h3>Public Resources</h3>
 
-    <a href="#">
+    <div class="sidebar-section">
+        Public Dashboard
+    </div>
+
+
+    <a href="Public dashboard/News/index.html">
         <i class="bi bi-newspaper"></i>
-        Current Affairs
+        News
     </a>
 
-    <a href="#">
-        <i class="bi bi-map"></i>
-        GIS & Remote Sensing
+    <a href="Public dashboard/PSC/index.html">
+        <i class="bi bi-building"></i>
+        Public Service Commission
     </a>
 
-    <a href="#">
-        <i class="bi bi-flower1"></i>
-        Agriculture Resources
+    <a href="Public dashboard/Weather forecast/index.html">
+        <i class="bi bi-cloud-sun"></i>
+        Weather Forecast
     </a>
 
-    <a href="#">
-        <i class="bi bi-file-earmark-pdf"></i>
-        E-Papers
+    <a href="Public dashboard/Government/index.html">
+        <i class="bi bi-bank"></i>
+        Government
     </a>
 
-    <h3>Contact</h3>
+
+    <div class="sidebar-section">
+        Contact
+    </div>
 
     <a href="#">
         <i class="bi bi-envelope"></i>
@@ -775,565 +1593,1032 @@
 
 </nav>
 
-<div class="overlay" id="overlay"></div>
+
+<div
+    class="overlay"
+    id="overlay">
+</div>
+
 
 
 <!-- =========================================================
-     MAIN CONTENT
-========================================================== -->
+     MIDDLE BAND
+========================================================= -->
 
-<main class="main">
+<main class="middle-band">
+
+
+<!-- =========================================================
+     LEFT SIDE
+========================================================= -->
+
+<section class="portfolio-panel">
+
+
+    <div class="portfolio-heading">
+
+        Personal Portfolio
+
+    </div>
+
+
+    <!-- Honeycomb background -->
+
+    <div class="honeycomb-area"></div>
 
 
     <!-- =====================================================
-         LEFT: PERSONAL PORTFOLIO
+         INVERTED PENTAGON
     ====================================================== -->
 
-    <section class="portfolio">
+    <div class="pentagon">
 
-        <div class="portfolio-title">
-            Personal Portfolio
-        </div>
+        <div class="pentagon-honeycomb">
 
+            <div class="hex"></div>
+            <div class="hex"></div>
+            <div class="hex"></div>
+            <div class="hex"></div>
 
-        <!-- Pentagon -->
+            <div class="hex"></div>
+            <div class="hex"></div>
+            <div class="hex"></div>
+            <div class="hex"></div>
 
-        <div class="pentagon"></div>
-
-
-        <!-- Profile -->
-
-        <div class="profile-wrapper">
-
-            <div class="profile-ring">
-
-                <div class="profile-inner">
-
-                    <img
-                        src="image/profile.jpg"
-                        alt="Bipin Khatri Profile Picture">
-
-                </div>
-
-            </div>
-
-
-            <h1 class="profile-name">
-                Bipin Khatri
-            </h1>
-
-
-            <p class="occupation">
-                B.Sc. Agriculture Graduate<br>
-                Data Science & GIS Enthusiast
-            </p>
-
-
-            <!-- Social Links -->
-
-            <div class="social-links">
-
-                <a href="https://www.linkedin.com/in/agbipinkhatri/"
-                   target="_blank"
-                   title="LinkedIn">
-                    <i class="bi bi-linkedin"></i>
-                </a>
-
-                <a href="https://x.com/AgBipinKhatri"
-                   target="_blank"
-                   title="X / Twitter">
-                    <i class="bi bi-twitter-x"></i>
-                </a>
-
-                <a href="https://www.facebook.com/AgBipinKhatri"
-                   target="_blank"
-                   title="Facebook">
-                    <i class="bi bi-facebook"></i>
-                </a>
-
-                <a href="https://www.instagram.com/agbipinkhatri/"
-                   target="_blank"
-                   title="Instagram">
-                    <i class="bi bi-instagram"></i>
-                </a>
-
-                <a href="mailto:your-email@example.com"
-                   title="Email">
-                    <i class="bi bi-envelope"></i>
-                </a>
-
-            </div>
+            <div class="hex"></div>
+            <div class="hex"></div>
+            <div class="hex"></div>
+            <div class="hex"></div>
 
         </div>
 
-
-        <!-- Bottom Links -->
-
-        <div class="portfolio-bottom">
-
-            <!-- Google Drive CV -->
-            <a
-                class="cv-button"
-                href="https://drive.google.com/"
-                target="_blank">
-
-                <i class="bi bi-file-earmark-person"></i>
-
-                Request CV
-
-            </a>
+    </div>
 
 
-            <!-- Workforce -->
 
-            <a
-                class="workforce"
-                href="#"
-                target="_blank">
+    <!-- =====================================================
+         PROFILE
+    ====================================================== -->
+
+    <div class="profile-section">
+
+
+        <div class="profile-ring">
+
+            <div class="profile-inner">
 
                 <img
-                    src="image/workforce.png"
-                    alt="Workforce">
+                    src="./image/profile.jpg"
+                    alt="Bipin Khatri">
 
-                <span>
-                    Workforce Profile
-                </span>
-
-                <i class="bi bi-box-arrow-up-right"></i>
-
-            </a>
+            </div>
 
         </div>
 
-    </section>
+
+        <div class="profile-name">
+            Bipin Khatri
+        </div>
+
+
+        <div class="profile-occupation">
+
+            B.Sc. Agriculture Graduate<br>
+
+            Data Science & GIS Enthusiast
+
+        </div>
+
+
+
+        <!-- =================================================
+             SOCIAL LINKS
+        ================================================== -->
+
+        <div class="social-links">
+
+
+            <a
+                href="https://www.linkedin.com/in/agbipinkhatri/"
+                target="_blank"
+                title="LinkedIn">
+
+                <i class="bi bi-linkedin"></i>
+
+            </a>
+
+
+            <a
+                href="https://x.com/AgBipinKhatri"
+                target="_blank"
+                title="X">
+
+                <i class="bi bi-twitter-x"></i>
+
+            </a>
+
+
+            <a
+                href="https://www.facebook.com/AgBipinKhatri"
+                target="_blank"
+                title="Facebook">
+
+                <i class="bi bi-facebook"></i>
+
+            </a>
+
+
+            <a
+                href="https://www.instagram.com/agbipinkhatri/"
+                target="_blank"
+                title="Instagram">
+
+                <i class="bi bi-instagram"></i>
+
+            </a>
+
+
+            <a
+                href="mailto:your-email@example.com"
+                title="Email">
+
+                <i class="bi bi-envelope"></i>
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- Decorative dots -->
+
+        <div class="decorative-dots">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+
+
+        <!-- =================================================
+             SECURITY CHECK
+        ================================================== -->
+
+        <div class="security-box">
+
+            <div class="security-title">
+
+                <i class="bi bi-shield-lock"></i>
+
+                Security Check
+
+            </div>
+
+
+            <input
+                type="password"
+                id="securityCode"
+                class="security-input"
+                maxlength="6"
+                placeholder="Enter security code"
+                autocomplete="off">
+
+
+            <button
+                class="unlock-button"
+                id="unlockButton">
+
+                <i class="bi bi-unlock"></i>
+
+                Unlock Learning Management System
+
+            </button>
+
+
+            <div
+                class="security-message"
+                id="securityMessage">
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             CV
+        ================================================== -->
+
+        <a
+            class="cv-button"
+            href="https://drive.google.com/"
+            target="_blank">
+
+            <i class="bi bi-file-earmark-person"></i>
+
+            Request CV
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     RIGHT SIDE - PUBLIC DASHBOARD
+========================================================= -->
+
+<section class="dashboard">
+
+
+    <div class="dashboard-title">
+
+        Quick Access Public Dashboard
+
+    </div>
+
+
+    <div class="dashboard-subtitle">
+
+        News • Public Service • Weather • Government
+        & Agricultural Information
+
+    </div>
+
 
 
     <!-- =====================================================
-         RIGHT: PUBLIC DASHBOARD
+         MAIN DASHBOARD CARDS
     ====================================================== -->
 
-    <section class="dashboard">
+    <div class="dashboard-grid">
 
-
-        <!-- Dashboard Header -->
-
-        <div class="dashboard-header">
-
-            <div>
-
-                <h1>
-                    Public Dashboard
-                </h1>
-
-                <p>
-                    Personal portfolio, learning resources,
-                    work management and agricultural information.
-                </p>
-
-            </div>
-
-            <div class="date-box">
-                <i class="bi bi-calendar3"></i>
-                <span id="currentDate">
-                    Loading...
-                </span>
-            </div>
-
-        </div>
 
 
         <!-- =================================================
-             QUICK ACCESS
+             NEWS
         ================================================== -->
 
-        <h2 class="section-title">
-            Quick Access
-        </h2>
+        <div class="dashboard-card">
 
 
-        <div class="quick-grid">
+            <div class="card-heading">
 
+                <div class="card-heading-left">
 
-            <!-- PLMS -->
-
-
-            <a href="MCQ/mcq.html"
-               class="quick-card">
-
-                <div class="quick-icon">
-                    <i class="bi bi-book-half"></i>
-                </div>
-
-                <div>
-
-                    <h3>
-                        Learning Management System
-                    </h3>
-
-                    <p>
-                        Goals, resources, assessments and
-                        learning progress.
-                    </p>
-
-                </div>
-
-            </a>
-
-
-            <!-- WMS -->
-
-            <a href="wms/index.html"
-               class="quick-card">
-
-                <div class="quick-icon">
-                    <i class="bi bi-kanban"></i>
-                </div>
-
-                <div>
-
-                    <h3>
-                        Work Management System
-                    </h3>
-
-                    <p>
-                        Manage projects, tasks, documents
-                        and work progress.
-                    </p>
-
-                </div>
-
-            </a>
-
-        </div>
-
-
-        <!-- =================================================
-             DASHBOARD CONTENT
-        ================================================== -->
-
-        <div class="dashboard-grid">
-
-
-            <!-- Recent Articles -->
-
-            <div class="panel">
-
-                <h2>
                     <i class="bi bi-newspaper"></i>
-                    Recent Articles
-                </h2>
 
+                    <h2>News</h2>
 
-                <a href="#" class="article">
-
-                    <span>
-                        AGRICULTURE
-                    </span>
-
-                    <h3>
-                        Agricultural technology and
-                        climate-resilient farming
-                    </h3>
-
-                    <p>
-                        Recent agriculture-related article
-                        and learning material.
-                    </p>
-
-                </a>
-
-
-                <a href="#" class="article">
-
-                    <span>
-                        GIS & REMOTE SENSING
-                    </span>
-
-                    <h3>
-                        GIS applications in agriculture
-                    </h3>
-
-                    <p>
-                        Spatial information and remote sensing
-                        resources.
-                    </p>
-
-                </a>
-
-
-                <a href="#" class="article">
-
-                    <span>
-                        DATA SCIENCE
-                    </span>
-
-                    <h3>
-                        Data analysis for agricultural research
-                    </h3>
-
-                    <p>
-                        Statistical and data science resources
-                        for agriculture.
-                    </p>
-
-                </a>
-
-
-                <a href="#" class="article">
-
-                    <span>
-                        CURRENT AFFAIRS
-                    </span>
-
-                    <h3>
-                        Agriculture and development updates
-                    </h3>
-
-                    <p>
-                        Latest information and useful updates.
-                    </p>
-
-                </a>
-
-            </div>
-
-
-            <!-- E-Papers -->
-
-            <div class="panel">
-
-                <h2>
-                    <i class="bi bi-file-earmark-pdf"></i>
-                    E-Papers
-                </h2>
+                </div>
 
 
                 <a
-                    class="epaper-link"
+                    href="Public dashboard/News/index.html"
+                    title="Open News">
+
+                    <i class="bi bi-box-arrow-up-right"></i>
+
+                </a>
+
+            </div>
+
+
+            <div class="card-body">
+
+
+                <a
+                    class="quick-link"
                     href="https://epaper.gorkhapatraonline.com/"
                     target="_blank">
 
-                    <i class="bi bi-newspaper"></i>
+                    <i class="bi bi-file-earmark-text"></i>
 
-                    <div>
-
-                        <strong>
-                            Gorkhapatra
-                        </strong>
-
-                        <small>
-                            Online E-Paper
-                        </small>
-
-                    </div>
+                    Gorkhapatra Online / E-Paper
 
                 </a>
 
 
                 <a
-                    class="epaper-link"
-                    href="https://nayapatrikadaily.com/"
+                    class="quick-link"
+                    href="https://www.gorkhapatraonline.com/"
                     target="_blank">
 
-                    <i class="bi bi-newspaper"></i>
+                    <i class="bi bi-globe"></i>
 
-                    <div>
-
-                        <strong>
-                            Naya Yugbodh
-                        </strong>
-
-                        <small>
-                            E-Paper / News
-                        </small>
-
-                    </div>
+                    Gorkhapatra Online
 
                 </a>
 
 
-                <!-- Useful Links -->
+                <div class="radio-box">
 
-                <div class="useful-links">
+                    <div class="radio-title">
 
-                    <h2>
-                        Useful Links
-                    </h2>
+                        <i class="bi bi-broadcast"></i>
 
-
-                    <div class="link-grid">
-
-                        <a class="useful-link"
-                           href="https://www.doanepal.gov.np/"
-                           target="_blank">
-                            DOA
-                        </a>
-
-                        <a class="useful-link"
-                           href="https://narc.gov.np/"
-                           target="_blank">
-                            NARC
-                        </a>
-
-                        <a class="useful-link"
-                           href="https://afu.edu.np/"
-                           target="_blank">
-                            AFU
-                        </a>
-
-                        <a class="useful-link"
-                           href="#"
-                           target="_blank">
-                            PPMPO
-                        </a>
-
-                        <a class="useful-link"
-                           href="#"
-                           target="_blank">
-                            MOLMAC
-                        </a>
-
-                        <a class="useful-link"
-                           href="#"
-                           target="_blank">
-                            Agromet
-                        </a>
+                        Ujyaalo Live Radio
 
                     </div>
+
+
+                    <!-- Replace this source with your
+                         actual Xeno radio stream URL -->
+
+                    <audio
+                        controls
+                        preload="none">
+
+                        <source
+                            src=""
+                            type="audio/mpeg">
+
+                        Your browser does not support
+                        audio playback.
+
+                    </audio>
 
                 </div>
 
             </div>
 
         </div>
+
+
+
+        <!-- =================================================
+             PSC
+        ================================================== -->
+
+        <div class="dashboard-card">
+
+
+            <div class="card-heading">
+
+                <div class="card-heading-left">
+
+                    <i class="bi bi-building"></i>
+
+                    <h2>Public Service Commission</h2>
+
+                </div>
+
+
+                <a
+                    href="Public dashboard/PSC/index.html"
+                    title="Open PSC">
+
+                    <i class="bi bi-box-arrow-up-right"></i>
+
+                </a>
+
+            </div>
+
+
+            <div class="card-body">
+
+
+                <a
+                    class="quick-link"
+                    href="https://psc.gov.np/"
+                    target="_blank">
+
+                    <i class="bi bi-building"></i>
+
+                    Federal Public Service Commission
+
+                </a>
+
+
+                <a
+                    class="quick-link"
+                    href="https://ppsc.bagamati.gov.np/"
+                    target="_blank">
+
+                    <i class="bi bi-bank"></i>
+
+                    Provincial Public Service Commission
+
+                </a>
+
+
+                <a
+                    class="quick-link"
+                    href="#">
+
+                    <i class="bi bi-file-earmark-text"></i>
+
+                    PSC Resources
+
+                </a>
+
+            </div>
+
+        </div>
+
 
 
         <!-- =================================================
              WEATHER
         ================================================== -->
 
-        <div class="panel" style="margin-top:18px;">
-
-            <h2>
-                <i class="bi bi-cloud-sun"></i>
-                Weather & Agricultural Weather Information
-            </h2>
+        <div class="dashboard-card">
 
 
-            <div class="weather">
+            <div class="card-heading">
 
-
-                <div class="weather-box">
+                <div class="card-heading-left">
 
                     <i class="bi bi-cloud-sun"></i>
 
-                    <div class="weather-temp">
-                        Weather
-                    </div>
-
-                    <div class="weather-location">
-                        Weather information can be connected
-                        to a live weather API.
-                    </div>
+                    <h2>Weather Forecast</h2>
 
                 </div>
 
 
                 <a
-                    href="#"
-                    class="weather-box">
+                    href="Public dashboard/Weather forecast/index.html"
+                    title="Open Weather">
 
-                    <i class="bi bi-cloud-drizzle"></i>
-
-                    <div class="weather-temp">
-                        Agromet Advisory
-                    </div>
-
-                    <div class="weather-location">
-                        Agricultural meteorological advisory
-                        and forecast.
-                    </div>
+                    <i class="bi bi-box-arrow-up-right"></i>
 
                 </a>
 
+            </div>
+
+
+            <div class="card-body">
+
+
+                <a
+                    class="quick-link"
+                    href="https://env.narc.gov.np/"
+                    target="_blank">
+
+                    <i class="bi bi-cloud-sun"></i>
+
+                    Agromet Advisory Bulletin Dashboard
+
+                </a>
+
+
+                <a
+                    class="quick-link"
+                    href="#">
+
+                    <i class="bi bi-cloud-rain"></i>
+
+                    Agricultural Weather Information
+
+                </a>
+
+
+                <a
+                    class="quick-link"
+                    href="#">
+
+                    <i class="bi bi-thermometer-half"></i>
+
+                    Weather Forecast
+
+                </a>
 
             </div>
 
         </div>
 
 
-        <!-- Footer -->
 
-        <footer>
+        <!-- =================================================
+             GOVERNMENT
+        ================================================== -->
 
-            © <span id="year"></span>
-            Bipin Khatri.
-            All rights reserved.
+        <div class="dashboard-card">
 
-        </footer>
 
-    </section>
+            <div class="card-heading">
+
+                <div class="card-heading-left">
+
+                    <i class="bi bi-bank"></i>
+
+                    <h2>Government</h2>
+
+                </div>
+
+
+                <a
+                    href="Public dashboard/Government/index.html"
+                    title="Open Government">
+
+                    <i class="bi bi-box-arrow-up-right"></i>
+
+                </a>
+
+            </div>
+
+
+            <div class="card-body">
+
+
+                <a
+                    class="quick-link"
+                    href="https://www.nepal.gov.np/"
+                    target="_blank">
+
+                    <i class="bi bi-bank"></i>
+
+                    Government of Nepal
+
+                </a>
+
+
+                <a
+                    class="quick-link"
+                    href="#"
+                    target="_blank">
+
+                    <i class="bi bi-flower1"></i>
+
+                    PPMPO
+
+                </a>
+
+
+                <a
+                    class="quick-link"
+                    href="https://www.doanepal.gov.np/"
+                    target="_blank">
+
+                    <i class="bi bi-tree"></i>
+
+                    Department of Agriculture
+
+                </a>
+
+
+                <a
+                    class="quick-link"
+                    href="#">
+
+                    <i class="bi bi-building"></i>
+
+                    MOLMAC
+
+                </a>
+
+
+                <a
+                    class="quick-link"
+                    href="https://narc.gov.np/"
+                    target="_blank">
+
+                    <i class="bi bi-flower1"></i>
+
+                    NARC
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         ADDITIONAL RESOURCES
+    ====================================================== -->
+
+    <div class="resource-grid">
+
+
+        <a
+            href="Public dashboard/News/index.html"
+            class="resource-item">
+
+            <i class="bi bi-newspaper"></i>
+
+            News Dashboard
+
+        </a>
+
+
+        <a
+            href="Public dashboard/PSC/index.html"
+            class="resource-item">
+
+            <i class="bi bi-building"></i>
+
+            PSC Dashboard
+
+        </a>
+
+
+        <a
+            href="Public dashboard/Weather forecast/index.html"
+            class="resource-item">
+
+            <i class="bi bi-cloud-sun"></i>
+
+            Weather Dashboard
+
+        </a>
+
+
+        <a
+            href="Public dashboard/Government/index.html"
+            class="resource-item">
+
+            <i class="bi bi-bank"></i>
+
+            Government Dashboard
+
+        </a>
+
+
+        <a
+            href="LMS/index.html"
+            class="resource-item">
+
+            <i class="bi bi-book"></i>
+
+            Learning System
+
+        </a>
+
+
+        <a
+            href="#"
+            class="resource-item">
+
+            <i class="bi bi-kanban"></i>
+
+            Work Management
+
+        </a>
+
+
+    </div>
+
+
+</section>
 
 </main>
 
 
+
+<!-- =========================================================
+     LAST BAND
+========================================================= -->
+
+<footer class="footer-band">
+
+    © <span id="footerYear"></span>
+    Bipin Khatri. All rights reserved.
+
+</footer>
+
+
+
 <!-- =========================================================
      JAVASCRIPT
-========================================================== -->
+========================================================= -->
 
 <script>
 
-    /* -------------------------------
-       Navigation Toggle
-    -------------------------------- */
 
-    const menuBtn = document.getElementById("menuBtn");
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("overlay");
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
-    menuBtn.addEventListener("click", function () {
+const menuButton =
+    document.getElementById("menuButton");
+
+const sidebar =
+    document.getElementById("sidebar");
+
+const overlay =
+    document.getElementById("overlay");
+
+
+menuButton.addEventListener(
+    "click",
+    function(){
 
         sidebar.classList.toggle("active");
+
         overlay.classList.toggle("active");
 
-    });
+    }
+);
 
 
-    overlay.addEventListener("click", function () {
+overlay.addEventListener(
+    "click",
+    function(){
 
         sidebar.classList.remove("active");
+
         overlay.classList.remove("active");
 
-    });
+    }
+);
 
 
-    /* -------------------------------
-       Current Date
-    -------------------------------- */
+/* Close sidebar after clicking a link */
 
-    const dateElement =
-        document.getElementById("currentDate");
+document
+    .querySelectorAll(".sidebar a")
+    .forEach(function(link){
 
-    const today = new Date();
+        link.addEventListener(
+            "click",
+            function(){
 
-    dateElement.textContent =
-        today.toLocaleDateString(
-            "en-US",
-            {
-                weekday: "short",
-                year: "numeric",
-                month: "short",
-                day: "numeric"
+                sidebar.classList.remove("active");
+
+                overlay.classList.remove("active");
+
             }
         );
 
+    });
 
-    /* -------------------------------
-       Current Year
-    -------------------------------- */
 
-    document.getElementById("year").textContent =
+
+/* =========================================================
+   NEPAL TIME
+   GMT +5:45
+========================================================= */
+
+function updateNepalTime(){
+
+    const now =
+        new Date();
+
+
+    const options = {
+
+        timeZone:
+            "Asia/Kathmandu",
+
+        hour:
+            "2-digit",
+
+        minute:
+            "2-digit",
+
+        second:
+            "2-digit",
+
+        hour12:
+            false
+
+    };
+
+
+    const time =
+        new Intl.DateTimeFormat(
+            "en-GB",
+            options
+        ).format(now);
+
+
+    document
+        .getElementById("currentTime")
+        .textContent = time;
+
+}
+
+
+updateNepalTime();
+
+
+setInterval(
+    updateNepalTime,
+    1000
+);
+
+
+
+/* =========================================================
+   AD DATE
+========================================================= */
+
+function updateADDate(){
+
+    const now =
+        new Date();
+
+
+    const options = {
+
+        timeZone:
+            "Asia/Kathmandu",
+
+        weekday:
+            "short",
+
+        year:
+            "numeric",
+
+        month:
+            "short",
+
+        day:
+            "numeric"
+
+    };
+
+
+    const date =
+        new Intl.DateTimeFormat(
+            "en-US",
+            options
+        ).format(now);
+
+
+    document
+        .getElementById("adDate")
+        .textContent = date;
+
+}
+
+
+updateADDate();
+
+
+
+/* =========================================================
+   BS DATE
+   Simple client-side Nepali date display.
+
+   For a fully exact long-term BS calendar,
+   replace this section with your preferred BS
+   calendar library/API.
+========================================================= */
+
+function updateBSDate(){
+
+    const now =
+        new Date();
+
+
+    /*
+       Nepal calendar commonly uses Bikram Sambat.
+
+       This calculation provides a practical display
+       based on the current AD year and Nepal date.
+
+       The displayed BS date can later be replaced
+       with an exact BS calendar conversion library.
+    */
+
+    const adYear =
+        Number(
+            new Intl.DateTimeFormat(
+                "en-US",
+                {
+                    timeZone:
+                        "Asia/Kathmandu",
+
+                    year:
+                        "numeric"
+                }
+            ).format(now)
+        );
+
+
+    const bsYear =
+        adYear + 57;
+
+
+    document
+        .getElementById("bsDate")
+        .textContent =
+            "BS " + bsYear;
+
+}
+
+
+updateBSDate();
+
+
+
+/* =========================================================
+   FOOTER YEAR
+========================================================= */
+
+document
+    .getElementById("footerYear")
+    .textContent =
         new Date().getFullYear();
+
+
+
+/* =========================================================
+   SECURITY CHECK
+========================================================= */
+
+const securityCode =
+    document.getElementById(
+        "securityCode"
+    );
+
+const unlockButton =
+    document.getElementById(
+        "unlockButton"
+    );
+
+const securityMessage =
+    document.getElementById(
+        "securityMessage"
+    );
+
+
+function unlockLMS(){
+
+    const entered =
+        securityCode.value.trim();
+
+
+    if(
+        entered === "159357"
+    ){
+
+        securityMessage.textContent =
+            "Security verified. Opening LMS...";
+
+        securityMessage.style.color =
+            "#167653";
+
+
+        /*
+           LMS folder must contain:
+
+           LMS/index.html
+        */
+
+        setTimeout(
+            function(){
+
+                window.location.href =
+                    "LMS/index.html";
+
+            },
+            500
+        );
+
+    }
+
+    else{
+
+        securityMessage.textContent =
+            "Incorrect security code.";
+
+        securityMessage.style.color =
+            "#a52d3b";
+
+        securityCode.value = "";
+
+        securityCode.focus();
+
+    }
+
+}
+
+
+unlockButton.addEventListener(
+    "click",
+    unlockLMS
+);
+
+
+/* Allow Enter key */
+
+securityCode.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Enter"
+        ){
+
+            unlockLMS();
+
+        }
+
+    }
+);
+
 
 </script>
 
