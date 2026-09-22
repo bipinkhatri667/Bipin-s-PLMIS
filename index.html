@@ -1,7 +1,9 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 
 <meta name="viewport"
@@ -9,83 +11,92 @@
 
 <title>Bipin Khatri | Public Dashboard</title>
 
-<!-- =========================================================
+
+<!-- =====================================================
      BOOTSTRAP ICONS
-========================================================= -->
+===================================================== -->
+
 <link rel="stylesheet"
 href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 
 <style>
 
-/* =========================================================
+/* =====================================================
    GLOBAL
-========================================================= */
+===================================================== */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+html {
+    scroll-behavior: smooth;
 }
 
-body{
+body {
+
     font-family:
         Arial,
         Helvetica,
         sans-serif;
 
-    background:#eef3f1;
-    color:#172522;
+    background: #eef3f1;
+
+    color: #172522;
+
 }
 
-a{
-    text-decoration:none;
-    color:inherit;
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 button,
-input{
-    font-family:inherit;
+input {
+    font-family: inherit;
 }
 
 
-/* =========================================================
+/* =====================================================
    COLOUR VARIABLES
-========================================================= */
+===================================================== */
 
-:root{
+:root {
 
-    --dark-green:#073f38;
-    --bluish-green:#145e5b;
-    --green:#258a70;
-    --light-green:#76bda4;
+    --dark-green: #073f38;
 
-    --purple-green:#776b89;
+    --bluish-green: #145e5b;
 
-    --dark:#172522;
-    --white:#ffffff;
+    --green: #258a70;
 
-    --light:#f3f7f5;
-    --border:#d7e1dd;
+    --light-green: #76bda4;
 
-    --shadow:
-        0 5px 18px rgba(0,0,0,.08);
+    --purple-green: #776b89;
+
+    --dark: #172522;
+
+    --white: #ffffff;
+
+    --light: #f3f7f5;
+
+    --border: #d7e1dd;
+
 }
 
 
-/* =========================================================
+/* =====================================================
    TOP BAND
-   1/15 HEIGHT
-========================================================= */
+   1/15
+===================================================== */
 
-.top-band{
+.top-band {
 
-    height:6.6667vh;
-    min-height:48px;
+    height: 6.6667vh;
+
+    min-height: 50px;
 
     background:
         linear-gradient(
@@ -94,241 +105,271 @@ input{
             #125d56
         );
 
-    color:white;
+    color: white;
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+    display: flex;
 
-    padding:0 16px;
+    align-items: center;
 
-    position:relative;
-    z-index:1000;
+    justify-content: space-between;
+
+    padding: 0 16px;
+
+    position: relative;
+
+    z-index: 1000;
 
     box-shadow:
         0 2px 8px rgba(0,0,0,.20);
+
 }
 
 
-/* Menu button */
+/* =====================================================
+   MENU BUTTON
+===================================================== */
 
-.menu-button{
+.menu-button {
 
-    width:38px;
-    height:38px;
+    width: 38px;
 
-    border:1px solid rgba(255,255,255,.35);
+    height: 38px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.35);
 
     background:
         rgba(255,255,255,.08);
 
-    color:white;
+    color: white;
 
-    border-radius:7px;
+    border-radius: 7px;
 
-    font-size:21px;
+    font-size: 21px;
 
-    cursor:pointer;
+    cursor: pointer;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    display: flex;
 
-    transition:.2s;
-}
+    align-items: center;
 
-.menu-button:hover{
+    justify-content: center;
 
-    background:white;
-    color:var(--dark-green);
+    transition: .2s;
 
 }
 
+.menu-button:hover {
 
-/* Website title */
+    background: white;
 
-.top-title{
-
-    margin-left:12px;
-
-    font-size:14px;
-
-    font-weight:700;
-
-    letter-spacing:.7px;
-}
-
-
-/* Date / time */
-
-.datetime{
-
-    display:flex;
-    align-items:center;
-
-    gap:18px;
-
-    text-align:right;
-
-    font-size:11px;
-
-    line-height:1.35;
-}
-
-.datetime strong{
-
-    font-size:12px;
+    color:
+        var(--dark-green);
 
 }
 
-.datetime .time{
 
-    font-weight:700;
+/* =====================================================
+   TOP TITLE
+===================================================== */
 
-    color:#d9f4e9;
+.top-title {
+
+    margin-left: 12px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: .7px;
+
 }
 
 
-/* =========================================================
+/* =====================================================
+   DATE AND TIME
+===================================================== */
+
+.datetime {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    text-align: right;
+
+    font-size: 11px;
+
+    line-height: 1.35;
+
+}
+
+.datetime strong {
+
+    font-size: 12px;
+
+}
+
+.datetime .time {
+
+    font-weight: 700;
+
+    color: #d9f4e9;
+
+}
+
+
+/* =====================================================
    SIDEBAR
-========================================================= */
+===================================================== */
 
-.sidebar{
+.sidebar {
 
-    position:fixed;
+    position: fixed;
 
-    top:0;
-    left:-290px;
+    top: 0;
 
-    width:290px;
+    left: -290px;
 
-    height:100vh;
+    width: 290px;
 
-    background:#102b27;
+    height: 100vh;
 
-    color:white;
+    background: #102b27;
 
-    z-index:2000;
+    color: white;
 
-    overflow-y:auto;
+    z-index: 2000;
 
-    padding:70px 16px 20px;
+    overflow-y: auto;
 
-    transition:.3s ease;
+    padding: 70px 16px 20px;
+
+    transition: .3s ease;
 
     box-shadow:
         5px 0 25px rgba(0,0,0,.25);
-}
-
-.sidebar.active{
-
-    left:0;
 
 }
 
+.sidebar.active {
 
-.sidebar-title{
+    left: 0;
 
-    font-size:16px;
+}
 
-    font-weight:700;
 
-    margin-bottom:20px;
+.sidebar-title {
 
-    padding-bottom:12px;
+    font-size: 16px;
+
+    font-weight: 700;
+
+    margin-bottom: 20px;
+
+    padding-bottom: 12px;
 
     border-bottom:
-        1px solid rgba(255,255,255,.15);
+        1px solid
+        rgba(255,255,255,.15);
+
 }
 
 
-.sidebar-section{
+.sidebar-section {
 
-    color:#79c7aa;
+    color: #79c7aa;
 
-    font-size:10px;
+    font-size: 10px;
 
-    text-transform:uppercase;
+    text-transform: uppercase;
 
-    letter-spacing:1.2px;
+    letter-spacing: 1.2px;
 
     margin:
         20px 8px 7px;
-}
-
-
-.sidebar a{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    padding:10px 12px;
-
-    border-radius:7px;
-
-    color:#e4eeeb;
-
-    font-size:13px;
-
-    margin-bottom:3px;
-
-    transition:.2s;
-}
-
-.sidebar a:hover{
-
-    background:#1d5148;
-
-    color:white;
 
 }
 
 
-.sidebar a i{
+.sidebar a {
 
-    width:20px;
+    display: flex;
 
-    text-align:center;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 10px 12px;
+
+    border-radius: 7px;
+
+    color: #e4eeeb;
+
+    font-size: 13px;
+
+    margin-bottom: 3px;
+
+    transition: .2s;
+
+}
+
+.sidebar a:hover {
+
+    background: #1d5148;
+
+    color: white;
+
+}
+
+.sidebar a i {
+
+    width: 20px;
+
+    text-align: center;
 
 }
 
 
-/* Overlay */
+/* =====================================================
+   SIDEBAR OVERLAY
+===================================================== */
 
-.overlay{
+.overlay {
 
-    position:fixed;
+    position: fixed;
 
-    inset:0;
+    inset: 0;
 
     background:
         rgba(0,0,0,.45);
 
-    z-index:1500;
+    z-index: 1500;
 
-    display:none;
-}
-
-.overlay.active{
-
-    display:block;
+    display: none;
 
 }
 
+.overlay.active {
 
-/* =========================================================
+    display: block;
+
+}
+
+
+/* =====================================================
    MIDDLE BAND
    13/15
-========================================================= */
+===================================================== */
 
-.middle-band{
+.middle-band {
 
-    min-height:86.6666vh;
+    min-height: 86.6666vh;
 
-    display:grid;
+    display: grid;
 
     grid-template-columns:
         25% 75%;
@@ -336,148 +377,128 @@ input{
 }
 
 
-/* =========================================================
-   LEFT PORTFOLIO
-========================================================= */
+/* =====================================================
+   LEFT PORTFOLIO PANEL
+===================================================== */
 
-.portfolio-panel{
+.portfolio-panel {
 
-    position:relative;
+    position: relative;
 
-    overflow:hidden;
+    overflow: hidden;
 
-    min-height:86.6666vh;
+    min-height: 86.6666vh;
 
-    background:#e8eeeb;
+    background:
+        #e8eeeb;
 
     border-right:
-        1px solid #cbd8d3;
+        1px solid
+        #cbd8d3;
 
 }
 
 
-/* Portfolio heading */
+/* =====================================================
+   PORTFOLIO TITLE
+===================================================== */
 
-.portfolio-heading{
+.portfolio-heading {
 
-    height:45px;
+    height: 45px;
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    justify-content:center;
+    justify-content: center;
 
-    font-size:13px;
+    font-size: 13px;
 
-    font-weight:700;
+    font-weight: 700;
 
-    letter-spacing:1px;
+    letter-spacing: 1px;
 
-    color:var(--dark-green);
+    color:
+        var(--dark-green);
 
-    text-transform:uppercase;
+    text-transform: uppercase;
 
-    position:relative;
+    position: relative;
 
-    z-index:20;
-
-}
-
-
-/* =========================================================
-   HONEYCOMB BACKGROUND
-========================================================= */
-
-.honeycomb-area{
-
-    position:absolute;
-
-    inset:45px 0 0 0;
-
-    overflow:hidden;
-
-    background:#e4ebe8;
+    z-index: 20;
 
 }
 
 
-/* Honeycomb pattern */
+/* =====================================================
+   LOWER BACKGROUND
+===================================================== */
 
-.honeycomb-area::before{
+.portfolio-panel::after {
 
-    content:"";
+    content: "";
 
-    position:absolute;
+    position: absolute;
 
-    inset:0;
+    left: 0;
 
-    opacity:.9;
+    right: 0;
+
+    bottom: 0;
+
+    top: 45px;
+
+    background:
+        linear-gradient(
+            rgba(232,238,235,.88),
+            rgba(232,238,235,.94)
+        );
+
+    z-index: 1;
+
+    pointer-events: none;
+
+}
+
+
+/* =====================================================
+   INVERTED POINTED PENTAGON
+===================================================== */
+
+.pentagon {
+
+    position: absolute;
+
+    top: 45px;
+
+    left: 5%;
+
+    width: 90%;
+
+    height: 280px;
+
+    z-index: 5;
 
     background-image:
 
         linear-gradient(
-            30deg,
-            rgba(80,160,130,.18) 12%,
-            transparent 12.5%,
-            transparent 87%,
-            rgba(80,160,130,.18) 87.5%,
-            rgba(80,160,130,.18)
+            rgba(10,55,50,.10),
+            rgba(10,55,50,.10)
         ),
 
-        linear-gradient(
-            150deg,
-            rgba(80,160,130,.18) 12%,
-            transparent 12.5%,
-            transparent 87%,
-            rgba(80,160,130,.18) 87.5%,
-            rgba(80,160,130,.18)
-        ),
+        url("./image/bg1.jpg");
 
-        linear-gradient(
-            30deg,
-            rgba(80,160,130,.18) 12%,
-            transparent 12.5%,
-            transparent 87%,
-            rgba(80,160,130,.18) 87.5%,
-            rgba(80,160,130,.18)
-        );
+    background-size: cover;
 
-    background-size:
-        54px 94px,
-        54px 94px,
-        54px 94px;
+    background-position: center;
 
-    background-position:
-        0 0,
-        0 0,
-        27px 47px;
-
-    pointer-events:none;
-}
+    background-repeat: no-repeat;
 
 
-/* =========================================================
-   INVERTED PENTAGON
-========================================================= */
-
-.pentagon{
-
-    position:absolute;
-
-    top:45px;
-
-    left:5%;
-
-    width:90%;
-
-    height:280px;
-
-    z-index:5;
-
-    overflow:hidden;
-
-    background:#153e3a;
+    /*
+       Inverted pointed pentagon
+    */
 
     clip-path:
         polygon(
@@ -488,128 +509,35 @@ input{
             0 62%
         );
 
-    border:2px solid var(--bluish-green);
-}
 
-
-/*
-   Inner honeycomb image tiles
-*/
-
-.pentagon-honeycomb{
-
-    position:absolute;
-
-    inset:3px;
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    grid-auto-rows:75px;
-
-    gap:4px;
-
-    transform:rotate(0deg);
-
-}
-
-
-/* Individual hexagon */
-
-.hex{
-
-    position:relative;
-
-    overflow:hidden;
-
-    clip-path:
-        polygon(
-            25% 3%,
-            75% 3%,
-            100% 50%,
-            75% 97%,
-            25% 97%,
-            0 50%
-        );
+    /*
+       Dark bluish-green border
+    */
 
     border:
-        1px solid #050505;
+        2px solid
+        var(--bluish-green);
 
-    background-position:center;
-
-    background-size:cover;
-
-    background-repeat:no-repeat;
+    box-shadow:
+        0 5px 15px
+        rgba(0,0,0,.15);
 
 }
 
 
-/* Image assignments */
-
-.hex:nth-child(1){
-    background-image:url("image/bg1.jpg");
-}
-
-.hex:nth-child(2){
-    background-image:url("image/bg2.jpg");
-}
-
-.hex:nth-child(3){
-    background-image:url("image/bg3.jpg");
-}
-
-.hex:nth-child(4){
-    background-image:url("image/bg4.jpg");
-}
-
-.hex:nth-child(5){
-    background-image:url("image/bg5.jpg");
-}
-
-.hex:nth-child(6){
-    background-image:url("image/bg6.jpg");
-}
-
-.hex:nth-child(7){
-    background-image:url("image/bg7.jpg");
-}
-
-.hex:nth-child(8){
-    background-image:url("image/bg8.jpg");
-}
-
-.hex:nth-child(9){
-    background-image:url("image/bg9.jpg");
-}
-
-.hex:nth-child(10){
-    background-image:url("image/bg10.jpg");
-}
-
-.hex:nth-child(11){
-    background-image:url("image/bg11.jpg");
-}
-
-.hex:nth-child(12){
-    background-image:url("image/bg12.jpg");
-}
-
-
-/* =========================================================
+/* =====================================================
    PROFILE SECTION
-========================================================= */
+===================================================== */
 
-.profile-section{
+.profile-section {
 
-    position:relative;
+    position: relative;
 
-    z-index:30;
+    z-index: 30;
 
-    margin-top:250px;
+    margin-top: 250px;
 
-    text-align:center;
+    text-align: center;
 
     padding:
         0 20px 25px;
@@ -617,149 +545,165 @@ input{
 }
 
 
-/* Double circle */
+/* =====================================================
+   OUTER PROFILE CIRCLE
+===================================================== */
 
-.profile-ring{
+.profile-ring {
 
-    width:150px;
+    width: 150px;
 
-    height:150px;
+    height: 150px;
 
-    margin:auto;
+    margin: auto;
 
     border:
         3px dotted
         #398e82;
 
-    border-radius:50%;
+    border-radius: 50%;
 
-    padding:7px;
+    padding: 7px;
 
     background:
         rgba(255,255,255,.65);
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    justify-content:center;
+    justify-content: center;
 
 }
 
 
-/* Inner circle */
+/* =====================================================
+   INNER PROFILE CIRCLE
+===================================================== */
 
-.profile-inner{
+.profile-inner {
 
-    width:100%;
+    width: 100%;
 
-    height:100%;
+    height: 100%;
 
     border:
         3px solid
         #132f32;
 
-    border-radius:50%;
+    border-radius: 50%;
 
-    overflow:hidden;
-
-    background:#132f32;
-
-}
-
-
-.profile-inner img{
-
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    display:block;
-
-}
-
-
-/* Name */
-
-.profile-name{
-
-    margin-top:13px;
-
-    font-size:21px;
-
-    font-weight:800;
-
-    color:#142d2a;
-
-}
-
-
-/* Occupation */
-
-.profile-occupation{
-
-    margin-top:4px;
-
-    font-size:11px;
-
-    line-height:1.5;
-
-    color:#5a6864;
-
-}
-
-
-/* =========================================================
-   SOCIAL
-========================================================= */
-
-.social-links{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:8px;
-
-    margin-top:19px;
-
-}
-
-
-.social-links a{
-
-    width:32px;
-    height:32px;
-
-    border-radius:50%;
+    overflow: hidden;
 
     background:
-        rgba(255,255,255,.85);
-
-    border:
-        1px solid #b8c8c2;
-
-    color:#155c56;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:15px;
-
-    transition:.2s;
+        #132f32;
 
 }
 
 
-.social-links a:hover{
+.profile-inner img {
 
-    background:#155c56;
+    width: 100%;
 
-    color:white;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+}
+
+
+/* =====================================================
+   NAME
+===================================================== */
+
+.profile-name {
+
+    margin-top: 13px;
+
+    font-size: 21px;
+
+    font-weight: 800;
+
+    color:
+        #142d2a;
+
+}
+
+
+/* =====================================================
+   OCCUPATION
+===================================================== */
+
+.profile-occupation {
+
+    margin-top: 4px;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+    color:
+        #5a6864;
+
+}
+
+
+/* =====================================================
+   SOCIAL LINKS
+===================================================== */
+
+.social-links {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 19px;
+
+}
+
+
+.social-links a {
+
+    width: 32px;
+
+    height: 32px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.90);
+
+    border:
+        1px solid
+        #b8c8c2;
+
+    color:
+        #155c56;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 15px;
+
+    transition: .2s;
+
+}
+
+
+.social-links a:hover {
+
+    background:
+        #155c56;
+
+    color: white;
 
     transform:
         translateY(-3px);
@@ -767,87 +711,90 @@ input{
 }
 
 
-/* =========================================================
-   THREE DOTS
-========================================================= */
+/* =====================================================
+   DECORATIVE DOTS
+===================================================== */
 
-.decorative-dots{
+.decorative-dots {
 
-    display:flex;
+    display: flex;
 
-    justify-content:center;
+    justify-content: center;
 
-    gap:7px;
+    gap: 7px;
 
-    margin:20px 0;
+    margin: 20px 0;
 
 }
 
 
-.decorative-dots span{
+.decorative-dots span {
 
-    width:7px;
-    height:7px;
+    width: 7px;
+
+    height: 7px;
 
     background:
         #746d86;
 
-    border-radius:50%;
+    border-radius: 50%;
 
 }
 
 
-/* =========================================================
-   SECURITY CHECK
-========================================================= */
+/* =====================================================
+   SECURITY BOX
+===================================================== */
 
-.security-box{
+.security-box {
 
-    width:85%;
+    width: 85%;
 
-    max-width:270px;
+    max-width: 270px;
 
-    margin:auto;
-
-}
-
-
-.security-title{
-
-    font-size:11px;
-
-    font-weight:700;
-
-    color:#465651;
-
-    margin-bottom:6px;
+    margin: auto;
 
 }
 
 
-.security-input{
+.security-title {
 
-    width:100%;
+    font-size: 11px;
 
-    height:34px;
+    font-weight: 700;
+
+    color:
+        #465651;
+
+    margin-bottom: 6px;
+
+}
+
+
+.security-input {
+
+    width: 100%;
+
+    height: 34px;
 
     border:
-        1px solid #afc0ba;
+        1px solid
+        #afc0ba;
 
-    border-radius:5px;
+    border-radius: 5px;
 
-    text-align:center;
+    text-align: center;
 
-    letter-spacing:4px;
+    letter-spacing: 4px;
 
-    outline:none;
+    outline: none;
 
-    background:white;
+    background: white;
 
 }
 
 
-.security-input:focus{
+.security-input:focus {
 
     border-color:
         var(--green);
@@ -859,33 +806,33 @@ input{
 }
 
 
-.unlock-button{
+.unlock-button {
 
-    width:100%;
+    width: 100%;
 
-    height:34px;
+    height: 34px;
 
-    margin-top:7px;
+    margin-top: 7px;
 
-    border:none;
+    border: none;
 
-    border-radius:5px;
+    border-radius: 5px;
 
     background:
         #185f58;
 
-    color:white;
+    color: white;
 
-    font-size:11px;
+    font-size: 11px;
 
-    font-weight:700;
+    font-weight: 700;
 
-    cursor:pointer;
+    cursor: pointer;
 
 }
 
 
-.unlock-button:hover{
+.unlock-button:hover {
 
     background:
         #0c423d;
@@ -893,138 +840,146 @@ input{
 }
 
 
-.security-message{
+.security-message {
 
-    min-height:16px;
+    min-height: 16px;
 
-    margin-top:5px;
+    margin-top: 5px;
 
-    font-size:10px;
+    font-size: 10px;
 
 }
 
 
-/* =========================================================
-   CV
-========================================================= */
+/* =====================================================
+   REQUEST CV
+===================================================== */
 
-.cv-button{
+.cv-button {
 
-    display:inline-flex;
+    display: inline-flex;
 
-    align-items:center;
+    align-items: center;
 
-    justify-content:center;
+    justify-content: center;
 
-    gap:8px;
+    gap: 8px;
 
-    margin-top:18px;
+    margin-top: 18px;
 
     padding:
         9px 18px;
 
-    border-radius:5px;
+    border-radius: 5px;
 
     background:
         #746d86;
 
-    color:white;
+    color: white;
 
-    font-size:11px;
+    font-size: 11px;
 
-    font-weight:700;
+    font-weight: 700;
 
-    transition:.2s;
-
-}
-
-
-.cv-button:hover{
-
-    background:#554f66;
+    transition: .2s;
 
 }
 
 
-/* =========================================================
+.cv-button:hover {
+
+    background:
+        #554f66;
+
+}
+
+
+/* =====================================================
    RIGHT DASHBOARD
-========================================================= */
+===================================================== */
 
-.dashboard{
+.dashboard {
 
     padding:
         20px 25px 10px;
 
-    background:#f7faf9;
+    background:
+        #f7faf9;
 
-    overflow:hidden;
-
-}
-
-
-.dashboard-title{
-
-    font-size:22px;
-
-    font-weight:800;
-
-    color:#173a35;
-
-    margin-bottom:3px;
+    overflow: hidden;
 
 }
 
 
-.dashboard-subtitle{
+.dashboard-title {
 
-    font-size:11px;
+    font-size: 22px;
 
-    color:#697671;
+    font-weight: 800;
 
-    margin-bottom:17px;
+    color:
+        #173a35;
+
+    margin-bottom: 3px;
 
 }
 
 
-/* =========================================================
-   DASHBOARD SECTION GRID
-========================================================= */
+.dashboard-subtitle {
 
-.dashboard-grid{
+    font-size: 11px;
 
-    display:grid;
+    color:
+        #697671;
+
+    margin-bottom: 17px;
+
+}
+
+
+/* =====================================================
+   DASHBOARD GRID
+===================================================== */
+
+.dashboard-grid {
+
+    display: grid;
 
     grid-template-columns:
         repeat(2,1fr);
 
-    gap:15px;
+    gap: 15px;
 
 }
 
 
-/* Dashboard card */
+/* =====================================================
+   DASHBOARD CARD
+===================================================== */
 
-.dashboard-card{
+.dashboard-card {
 
-    background:white;
+    background:
+        white;
 
     border:
-        1px solid #dbe5e1;
+        1px solid
+        #dbe5e1;
 
-    border-radius:9px;
+    border-radius: 9px;
 
     box-shadow:
         0 3px 12px
         rgba(0,0,0,.05);
 
-    overflow:hidden;
+    overflow: hidden;
 
-    transition:.2s;
+    transition: .2s;
 
 }
 
 
-.dashboard-card:hover{
+.dashboard-card:hover {
 
     transform:
         translateY(-2px);
@@ -1036,15 +991,17 @@ input{
 }
 
 
-/* Card heading */
+/* =====================================================
+   CARD HEADING
+===================================================== */
 
-.card-heading{
+.card-heading {
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    justify-content:space-between;
+    justify-content: space-between;
 
     padding:
         11px 13px;
@@ -1053,253 +1010,279 @@ input{
         #edf5f2;
 
     border-bottom:
-        1px solid #dce7e3;
+        1px solid
+        #dce7e3;
 
 }
 
 
-.card-heading-left{
+.card-heading-left {
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    gap:8px;
-
-}
-
-
-.card-heading i{
-
-    color:#176c61;
-
-    font-size:16px;
+    gap: 8px;
 
 }
 
 
-.card-heading h2{
+.card-heading i {
 
-    font-size:13px;
+    color:
+        #176c61;
 
-    color:#173c37;
-
-}
-
-
-.card-heading small{
-
-    color:#687771;
-
-    font-size:9px;
+    font-size: 16px;
 
 }
 
 
-/* Card body */
+.card-heading h2 {
 
-.card-body{
+    font-size: 13px;
 
-    padding:12px;
+    color:
+        #173c37;
 
 }
 
 
-.quick-link{
+.card-heading a {
 
-    display:flex;
+    color:
+        #176c61;
 
-    align-items:center;
+}
 
-    gap:9px;
 
-    padding:8px 7px;
+/* =====================================================
+   CARD BODY
+===================================================== */
+
+.card-body {
+
+    padding: 12px;
+
+}
+
+
+/* =====================================================
+   QUICK LINKS
+===================================================== */
+
+.quick-link {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 8px 7px;
 
     border-bottom:
-        1px solid #edf1ef;
+        1px solid
+        #edf1ef;
 
-    font-size:11px;
+    font-size: 11px;
 
-    color:#334c46;
-
-}
-
-
-.quick-link:last-child{
-
-    border-bottom:none;
+    color:
+        #334c46;
 
 }
 
 
-.quick-link:hover{
+.quick-link:last-child {
 
-    color:#096b5d;
-
-    background:#f3f8f6;
+    border-bottom: none;
 
 }
 
 
-.quick-link i{
+.quick-link:hover {
 
-    width:18px;
+    color:
+        #096b5d;
 
-    color:#638f85;
-
-}
-
-
-/* =========================================================
-   UJYAALO RADIO
-========================================================= */
-
-.radio-box{
-
-    margin-top:10px;
-
-    padding:10px;
-
-    border-radius:7px;
-
-    background:#f1f6f4;
+    background:
+        #f3f8f6;
 
 }
 
 
-.radio-title{
+.quick-link i {
 
-    font-size:10px;
+    width: 18px;
 
-    font-weight:700;
-
-    margin-bottom:6px;
-
-    color:#28524a;
+    color:
+        #638f85;
 
 }
 
 
-.radio-box audio{
+/* =====================================================
+   RADIO
+===================================================== */
 
-    width:100%;
+.radio-box {
 
-    height:30px;
+    margin-top: 10px;
+
+    padding: 10px;
+
+    border-radius: 7px;
+
+    background:
+        #f1f6f4;
 
 }
 
 
-/* =========================================================
-   LOWER RESOURCE AREA
-========================================================= */
+.radio-title {
 
-.resource-grid{
+    font-size: 10px;
 
-    margin-top:15px;
+    font-weight: 700;
 
-    display:grid;
+    margin-bottom: 6px;
+
+    color:
+        #28524a;
+
+}
+
+
+.radio-box audio {
+
+    width: 100%;
+
+    height: 30px;
+
+}
+
+
+/* =====================================================
+   ADDITIONAL RESOURCE GRID
+===================================================== */
+
+.resource-grid {
+
+    margin-top: 15px;
+
+    display: grid;
 
     grid-template-columns:
         repeat(3,1fr);
 
-    gap:10px;
+    gap: 10px;
 
 }
 
 
-.resource-item{
+.resource-item {
 
-    background:white;
+    background:
+        white;
 
     border:
-        1px solid #dce6e2;
+        1px solid
+        #dce6e2;
 
-    border-radius:8px;
+    border-radius: 8px;
 
-    padding:11px;
+    padding: 11px;
 
-    text-align:center;
+    text-align: center;
 
-    font-size:10px;
+    font-size: 10px;
 
-    color:#31534b;
+    color:
+        #31534b;
 
-    transition:.2s;
-
-}
-
-
-.resource-item:hover{
-
-    background:#e8f4ef;
-
-    border-color:#8bbbad;
+    transition: .2s;
 
 }
 
 
-.resource-item i{
+.resource-item:hover {
 
-    display:block;
+    background:
+        #e8f4ef;
 
-    font-size:19px;
-
-    color:#287b6d;
-
-    margin-bottom:4px;
+    border-color:
+        #8bbbad;
 
 }
 
 
-/* =========================================================
-   LAST BAND
-========================================================= */
+.resource-item i {
 
-.footer-band{
+    display: block;
 
-    height:6.6667vh;
+    font-size: 19px;
 
-    min-height:38px;
+    color:
+        #287b6d;
 
-    background:#102f2b;
+    margin-bottom: 4px;
 
-    color:#c7d8d3;
+}
 
-    display:flex;
 
-    align-items:center;
+/* =====================================================
+   FOOTER
+===================================================== */
 
-    justify-content:center;
+.footer-band {
 
-    text-align:center;
+    height: 6.6667vh;
 
-    font-size:10px;
+    min-height: 38px;
+
+    background:
+        #102f2b;
+
+    color:
+        #c7d8d3;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    font-size: 10px;
 
     border-top:
-        1px solid #1d5149;
+        1px solid
+        #1d5149;
 
 }
 
 
-/* =========================================================
+/* =====================================================
    RESPONSIVE
-========================================================= */
+===================================================== */
 
-@media(max-width:1000px){
+@media(max-width:1000px) {
 
-    .middle-band{
+    .middle-band {
 
         grid-template-columns:
             35% 65%;
-    }
-
-    .dashboard-grid{
-
-        grid-template-columns:1fr;
 
     }
 
-    .resource-grid{
+    .dashboard-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .resource-grid {
 
         grid-template-columns:
             repeat(2,1fr);
@@ -1309,71 +1292,75 @@ input{
 }
 
 
-@media(max-width:750px){
+@media(max-width:750px) {
 
-    .top-band{
+    .top-band {
 
-        padding:0 10px;
-
-    }
-
-    .top-title{
-
-        display:none;
+        padding:
+            0 10px;
 
     }
 
-    .datetime{
+    .top-title {
 
-        gap:8px;
-
-        font-size:9px;
+        display: none;
 
     }
 
-    .datetime strong{
+    .datetime {
 
-        font-size:10px;
+        gap: 8px;
+
+        font-size: 9px;
 
     }
 
+    .datetime strong {
 
-    .middle-band{
-
-        display:block;
+        font-size: 10px;
 
     }
 
 
-    .portfolio-panel{
+    .middle-band {
 
-        min-height:760px;
+        display: block;
 
-        border-right:none;
+    }
+
+
+    .portfolio-panel {
+
+        min-height: 760px;
+
+        border-right: none;
 
         border-bottom:
-            1px solid #cbd8d3;
+            1px solid
+            #cbd8d3;
 
     }
 
 
-    .dashboard{
+    .dashboard {
 
-        min-height:600px;
+        min-height: 600px;
 
-        padding:18px 12px;
-
-    }
-
-
-    .dashboard-grid{
-
-        grid-template-columns:1fr;
+        padding:
+            18px 12px;
 
     }
 
 
-    .resource-grid{
+    .dashboard-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .resource-grid {
 
         grid-template-columns:
             repeat(2,1fr);
@@ -1383,66 +1370,77 @@ input{
 }
 
 
-@media(max-width:450px){
+@media(max-width:450px) {
 
-    .datetime{
+    .datetime {
 
         flex-direction:
             column;
 
-        align-items:flex-end;
+        align-items:
+            flex-end;
 
-        gap:0;
-
-    }
-
-
-    .pentagon{
-
-        width:94%;
-
-        left:3%;
+        gap: 0;
 
     }
 
 
-    .profile-section{
+    .pentagon {
 
-        margin-top:245px;
+        width: 94%;
 
-    }
-
-
-    .profile-ring{
-
-        width:135px;
-        height:135px;
+        left: 3%;
 
     }
 
 
-    .resource-grid{
+    .profile-section {
 
-        grid-template-columns:1fr;
+        margin-top: 245px;
+
+    }
+
+
+    .profile-ring {
+
+        width: 135px;
+
+        height: 135px;
+
+    }
+
+
+    .resource-grid {
+
+        grid-template-columns:
+            1fr;
 
     }
 
 }
 
 </style>
+
 </head>
+
 
 
 <body>
 
 
-<!-- =========================================================
+<!-- =====================================================
      TOP BAND
-========================================================= -->
+===================================================== -->
 
 <header class="top-band">
 
-    <div style="display:flex;align-items:center;">
+
+    <div
+        style="
+            display:flex;
+            align-items:center;
+        ">
+
 
         <button
             class="menu-button"
@@ -1453,24 +1451,37 @@ input{
 
         </button>
 
+
         <div class="top-title">
+
             BIPIN KHATRI
+
         </div>
+
 
     </div>
 
 
+
+    <!-- DATE + TIME -->
+
     <div class="datetime">
 
+
         <div>
+
             <strong id="bsDate">
                 Loading BS...
             </strong>
+
             <br>
+
             <span id="adDate">
                 Loading AD...
             </span>
+
         </div>
+
 
         <div class="time">
 
@@ -1486,110 +1497,180 @@ input{
 
         </div>
 
+
     </div>
 
 </header>
 
 
 
-<!-- =========================================================
+<!-- =====================================================
      SIDEBAR
-========================================================= -->
+===================================================== -->
 
-<nav class="sidebar" id="sidebar">
+<nav
+    class="sidebar"
+    id="sidebar">
+
 
     <div class="sidebar-title">
+
         <i class="bi bi-grid"></i>
+
         Navigation
+
     </div>
 
 
+
     <a href="#">
+
         <i class="bi bi-house"></i>
+
         Home
+
     </a>
 
 
+
     <div class="sidebar-section">
+
         Personal Portfolio
+
     </div>
 
+
     <a href="#">
+
         <i class="bi bi-person"></i>
+
         About
+
     </a>
 
+
     <a href="#">
+
         <i class="bi bi-mortarboard"></i>
+
         Education
+
     </a>
 
+
     <a href="#">
+
         <i class="bi bi-briefcase"></i>
+
         Experience
+
     </a>
 
+
     <a href="#">
+
         <i class="bi bi-bar-chart"></i>
+
         Skills
+
     </a>
 
+
     <a href="#">
+
         <i class="bi bi-folder"></i>
+
         Portfolio
+
     </a>
+
 
 
     <div class="sidebar-section">
+
         Management Systems
+
     </div>
 
 
     <a href="LMS/index.html">
+
         <i class="bi bi-book"></i>
+
         Learning Management System
+
     </a>
 
+
     <a href="#">
+
         <i class="bi bi-kanban"></i>
+
         Work Management System
+
     </a>
+
 
 
     <div class="sidebar-section">
+
         Public Dashboard
+
     </div>
 
 
     <a href="Public dashboard/News/index.html">
+
         <i class="bi bi-newspaper"></i>
+
         News
+
     </a>
+
 
     <a href="Public dashboard/PSC/index.html">
+
         <i class="bi bi-building"></i>
+
         Public Service Commission
+
     </a>
+
 
     <a href="Public dashboard/Weather forecast/index.html">
+
         <i class="bi bi-cloud-sun"></i>
+
         Weather Forecast
+
     </a>
 
+
     <a href="Public dashboard/Government/index.html">
+
         <i class="bi bi-bank"></i>
+
         Government
+
     </a>
+
 
 
     <div class="sidebar-section">
+
         Contact
+
     </div>
 
+
     <a href="#">
+
         <i class="bi bi-envelope"></i>
+
         Contact
+
     </a>
+
 
 </nav>
 
@@ -1601,16 +1682,17 @@ input{
 
 
 
-<!-- =========================================================
+<!-- =====================================================
      MIDDLE BAND
-========================================================= -->
+===================================================== -->
 
 <main class="middle-band">
 
 
-<!-- =========================================================
-     LEFT SIDE
-========================================================= -->
+
+<!-- =====================================================
+     LEFT: PERSONAL PORTFOLIO
+===================================================== -->
 
 <section class="portfolio-panel">
 
@@ -1622,68 +1704,59 @@ input{
     </div>
 
 
-    <!-- Honeycomb background -->
 
-    <div class="honeycomb-area"></div>
-
-
-    <!-- =====================================================
+    <!-- ================================================
          INVERTED PENTAGON
-    ====================================================== -->
+    ================================================= -->
 
-    <div class="pentagon">
-
-        <div class="pentagon-honeycomb">
-
-            <div class="hex"></div>
-            <div class="hex"></div>
-            <div class="hex"></div>
-            <div class="hex"></div>
-
-            <div class="hex"></div>
-            <div class="hex"></div>
-            <div class="hex"></div>
-            <div class="hex"></div>
-
-            <div class="hex"></div>
-            <div class="hex"></div>
-            <div class="hex"></div>
-            <div class="hex"></div>
-
-        </div>
-
-    </div>
+    <div class="pentagon"></div>
 
 
 
-    <!-- =====================================================
-         PROFILE
-    ====================================================== -->
+    <!-- ================================================
+         PROFILE SECTION
+    ================================================= -->
 
     <div class="profile-section">
 
 
+        <!-- Profile Picture -->
+
         <div class="profile-ring">
 
+
             <div class="profile-inner">
+
 
                 <img
                     src="./image/profile.jpg"
                     alt="Bipin Khatri">
 
+
             </div>
 
+
         </div>
 
+
+
+        <!-- Name -->
 
         <div class="profile-name">
+
             Bipin Khatri
+
         </div>
 
+
+
+        <!-- Occupation -->
 
         <div class="profile-occupation">
 
-            B.Sc. Agriculture Graduate<br>
+            B.Sc. Agriculture Graduate
+
+            <br>
 
             Data Science & GIS Enthusiast
 
@@ -1691,9 +1764,10 @@ input{
 
 
 
-        <!-- =================================================
+        <!-- ============================================
              SOCIAL LINKS
-        ================================================== -->
+        ============================================= -->
+
 
         <div class="social-links">
 
@@ -1751,23 +1825,30 @@ input{
 
 
 
-        <!-- Decorative dots -->
+        <!-- ============================================
+             THREE DOTS
+        ============================================= -->
+
 
         <div class="decorative-dots">
 
             <span></span>
+
             <span></span>
+
             <span></span>
 
         </div>
 
 
 
-        <!-- =================================================
+        <!-- ============================================
              SECURITY CHECK
-        ================================================== -->
+        ============================================= -->
+
 
         <div class="security-box">
+
 
             <div class="security-title">
 
@@ -1803,13 +1884,15 @@ input{
                 id="securityMessage">
             </div>
 
+
         </div>
 
 
 
-        <!-- =================================================
-             CV
-        ================================================== -->
+        <!-- ============================================
+             REQUEST CV
+        ============================================= -->
+
 
         <a
             class="cv-button"
@@ -1829,9 +1912,9 @@ input{
 
 
 
-<!-- =========================================================
-     RIGHT SIDE - PUBLIC DASHBOARD
-========================================================= -->
+<!-- =====================================================
+     RIGHT: PUBLIC DASHBOARD
+===================================================== -->
 
 <section class="dashboard">
 
@@ -1852,28 +1935,31 @@ input{
 
 
 
-    <!-- =====================================================
-         MAIN DASHBOARD CARDS
-    ====================================================== -->
+    <!-- =================================================
+         DASHBOARD CARDS
+    ================================================== -->
 
     <div class="dashboard-grid">
 
 
 
-        <!-- =================================================
+        <!-- =============================================
              NEWS
-        ================================================== -->
+        ============================================== -->
 
         <div class="dashboard-card">
 
 
             <div class="card-heading">
 
+
                 <div class="card-heading-left">
 
                     <i class="bi bi-newspaper"></i>
 
-                    <h2>News</h2>
+                    <h2>
+                        News
+                    </h2>
 
                 </div>
 
@@ -1885,6 +1971,7 @@ input{
                     <i class="bi bi-box-arrow-up-right"></i>
 
                 </a>
+
 
             </div>
 
@@ -1916,7 +2003,10 @@ input{
                 </a>
 
 
+                <!-- Ujyaalo -->
+
                 <div class="radio-box">
+
 
                     <div class="radio-title">
 
@@ -1926,9 +2016,6 @@ input{
 
                     </div>
 
-
-                    <!-- Replace this source with your
-                         actual Xeno radio stream URL -->
 
                     <audio
                         controls
@@ -1943,7 +2030,9 @@ input{
 
                     </audio>
 
+
                 </div>
+
 
             </div>
 
@@ -1951,20 +2040,23 @@ input{
 
 
 
-        <!-- =================================================
+        <!-- =============================================
              PSC
-        ================================================== -->
+        ============================================== -->
 
         <div class="dashboard-card">
 
 
             <div class="card-heading">
 
+
                 <div class="card-heading-left">
 
                     <i class="bi bi-building"></i>
 
-                    <h2>Public Service Commission</h2>
+                    <h2>
+                        Public Service Commission
+                    </h2>
 
                 </div>
 
@@ -1976,6 +2068,7 @@ input{
                     <i class="bi bi-box-arrow-up-right"></i>
 
                 </a>
+
 
             </div>
 
@@ -2017,26 +2110,30 @@ input{
 
                 </a>
 
+
             </div>
 
         </div>
 
 
 
-        <!-- =================================================
+        <!-- =============================================
              WEATHER
-        ================================================== -->
+        ============================================== -->
 
         <div class="dashboard-card">
 
 
             <div class="card-heading">
 
+
                 <div class="card-heading-left">
 
                     <i class="bi bi-cloud-sun"></i>
 
-                    <h2>Weather Forecast</h2>
+                    <h2>
+                        Weather Forecast
+                    </h2>
 
                 </div>
 
@@ -2048,6 +2145,7 @@ input{
                     <i class="bi bi-box-arrow-up-right"></i>
 
                 </a>
+
 
             </div>
 
@@ -2088,26 +2186,30 @@ input{
 
                 </a>
 
+
             </div>
 
         </div>
 
 
 
-        <!-- =================================================
+        <!-- =============================================
              GOVERNMENT
-        ================================================== -->
+        ============================================== -->
 
         <div class="dashboard-card">
 
 
             <div class="card-heading">
 
+
                 <div class="card-heading-left">
 
                     <i class="bi bi-bank"></i>
 
-                    <h2>Government</h2>
+                    <h2>
+                        Government
+                    </h2>
 
                 </div>
 
@@ -2119,6 +2221,7 @@ input{
                     <i class="bi bi-box-arrow-up-right"></i>
 
                 </a>
+
 
             </div>
 
@@ -2140,8 +2243,7 @@ input{
 
                 <a
                     class="quick-link"
-                    href="#"
-                    target="_blank">
+                    href="#">
 
                     <i class="bi bi-flower1"></i>
 
@@ -2184,6 +2286,7 @@ input{
 
                 </a>
 
+
             </div>
 
         </div>
@@ -2193,9 +2296,9 @@ input{
 
 
 
-    <!-- =====================================================
+    <!-- =================================================
          ADDITIONAL RESOURCES
-    ====================================================== -->
+    ================================================== -->
 
     <div class="resource-grid">
 
@@ -2275,47 +2378,60 @@ input{
 
 
 
-<!-- =========================================================
-     LAST BAND
-========================================================= -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer class="footer-band">
 
     © <span id="footerYear"></span>
-    Bipin Khatri. All rights reserved.
+
+    Bipin Khatri.
+
+    All rights reserved.
 
 </footer>
 
 
 
-<!-- =========================================================
+<!-- =====================================================
      JAVASCRIPT
-========================================================= -->
+===================================================== -->
 
 <script>
 
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
+/* =====================================================
+   SIDEBAR
+===================================================== */
 
 const menuButton =
-    document.getElementById("menuButton");
+    document.getElementById(
+        "menuButton"
+    );
 
 const sidebar =
-    document.getElementById("sidebar");
+    document.getElementById(
+        "sidebar"
+    );
 
 const overlay =
-    document.getElementById("overlay");
+    document.getElementById(
+        "overlay"
+    );
 
 
 menuButton.addEventListener(
     "click",
-    function(){
+    function() {
 
-        sidebar.classList.toggle("active");
+        sidebar.classList.toggle(
+            "active"
+        );
 
-        overlay.classList.toggle("active");
+        overlay.classList.toggle(
+            "active"
+        );
 
     }
 );
@@ -2323,43 +2439,25 @@ menuButton.addEventListener(
 
 overlay.addEventListener(
     "click",
-    function(){
+    function() {
 
-        sidebar.classList.remove("active");
+        sidebar.classList.remove(
+            "active"
+        );
 
-        overlay.classList.remove("active");
+        overlay.classList.remove(
+            "active"
+        );
 
     }
 );
 
 
-/* Close sidebar after clicking a link */
-
-document
-    .querySelectorAll(".sidebar a")
-    .forEach(function(link){
-
-        link.addEventListener(
-            "click",
-            function(){
-
-                sidebar.classList.remove("active");
-
-                overlay.classList.remove("active");
-
-            }
-        );
-
-    });
-
-
-
-/* =========================================================
+/* =====================================================
    NEPAL TIME
-   GMT +5:45
-========================================================= */
+===================================================== */
 
-function updateNepalTime(){
+function updateNepalTime() {
 
     const now =
         new Date();
@@ -2393,7 +2491,9 @@ function updateNepalTime(){
 
 
     document
-        .getElementById("currentTime")
+        .getElementById(
+            "currentTime"
+        )
         .textContent = time;
 
 }
@@ -2408,12 +2508,11 @@ setInterval(
 );
 
 
-
-/* =========================================================
+/* =====================================================
    AD DATE
-========================================================= */
+===================================================== */
 
-function updateADDate(){
+function updateADDate() {
 
     const now =
         new Date();
@@ -2447,7 +2546,9 @@ function updateADDate(){
 
 
     document
-        .getElementById("adDate")
+        .getElementById(
+            "adDate"
+        )
         .textContent = date;
 
 }
@@ -2457,32 +2558,17 @@ updateADDate();
 
 
 
-/* =========================================================
-   BS DATE
-   Simple client-side Nepali date display.
+/* =====================================================
+   BS YEAR DISPLAY
+===================================================== */
 
-   For a fully exact long-term BS calendar,
-   replace this section with your preferred BS
-   calendar library/API.
-========================================================= */
-
-function updateBSDate(){
+function updateBSDate() {
 
     const now =
         new Date();
 
 
-    /*
-       Nepal calendar commonly uses Bikram Sambat.
-
-       This calculation provides a practical display
-       based on the current AD year and Nepal date.
-
-       The displayed BS date can later be replaced
-       with an exact BS calendar conversion library.
-    */
-
-    const adYear =
+    const year =
         Number(
             new Intl.DateTimeFormat(
                 "en-US",
@@ -2497,12 +2583,19 @@ function updateBSDate(){
         );
 
 
+    /*
+       Approximate BS year display.
+       Exact BS date conversion can be added later.
+    */
+
     const bsYear =
-        adYear + 57;
+        year + 57;
 
 
     document
-        .getElementById("bsDate")
+        .getElementById(
+            "bsDate"
+        )
         .textContent =
             "BS " + bsYear;
 
@@ -2513,20 +2606,22 @@ updateBSDate();
 
 
 
-/* =========================================================
+/* =====================================================
    FOOTER YEAR
-========================================================= */
+===================================================== */
 
 document
-    .getElementById("footerYear")
+    .getElementById(
+        "footerYear"
+    )
     .textContent =
         new Date().getFullYear();
 
 
 
-/* =========================================================
-   SECURITY CHECK
-========================================================= */
+/* =====================================================
+   LMS SECURITY CHECK
+===================================================== */
 
 const securityCode =
     document.getElementById(
@@ -2544,31 +2639,28 @@ const securityMessage =
     );
 
 
-function unlockLMS(){
+function unlockLMS() {
 
-    const entered =
+
+    const enteredCode =
         securityCode.value.trim();
 
 
-    if(
-        entered === "159357"
-    ){
+    if (
+        enteredCode === "159357"
+    ) {
+
 
         securityMessage.textContent =
             "Security verified. Opening LMS...";
+
 
         securityMessage.style.color =
             "#167653";
 
 
-        /*
-           LMS folder must contain:
-
-           LMS/index.html
-        */
-
         setTimeout(
-            function(){
+            function() {
 
                 window.location.href =
                     "LMS/index.html";
@@ -2577,15 +2669,19 @@ function unlockLMS(){
             500
         );
 
+
     }
 
-    else{
+    else {
+
 
         securityMessage.textContent =
             "Incorrect security code.";
 
+
         securityMessage.style.color =
             "#a52d3b";
+
 
         securityCode.value = "";
 
@@ -2602,15 +2698,15 @@ unlockButton.addEventListener(
 );
 
 
-/* Allow Enter key */
+/* Enter key */
 
 securityCode.addEventListener(
     "keydown",
-    function(event){
+    function(event) {
 
-        if(
+        if (
             event.key === "Enter"
-        ){
+        ) {
 
             unlockLMS();
 
@@ -2623,5 +2719,6 @@ securityCode.addEventListener(
 </script>
 
 </body>
+
 </html>
 ```
