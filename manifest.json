@@ -1,0 +1,18 @@
+
+{
+  "id": "./",
+  "name": "AgriPSC Learning Management System",
+  "short_name": "AgriPSC LMS",
+  "description": "Personal learning and preparation platform for Agriculture Officer examinations.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f5f7f5",
+  "theme_color": "#166534",
+  "categories": [
+    "education",
+    "productivity"
+  ],
+  "lang": "en"
+}

@@ -1,0 +1,336 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#166534">
+  <meta name="description" content="Agriculture Public Service Commission preparation and learning management system">
+  <title>AgriPSC LMS | Agriculture Officer Preparation</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+<div class="app-shell">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-icon"><i class="fa-solid fa-seedling"></i></div>
+      <div>
+        <h2>AgriPSC</h2>
+        <small>Learning Management System</small>
+      </div>
+    </div>
+
+    <div class="sidebar-profile">
+      <div class="avatar">BK</div>
+      <div>
+        <strong>My Learning Space</strong>
+        <small>Agriculture Officer · 7th Level</small>
+      </div>
+    </div>
+
+    <nav class="nav-menu">
+      <p class="nav-label">LEARNING</p>
+      <button class="nav-link active" data-page="dashboard">
+        <i class="fa-solid fa-chart-pie"></i> Dashboard
+      </button>
+      <button class="nav-link" data-page="syllabus">
+        <i class="fa-solid fa-book-open"></i> Syllabus Tracker
+      </button>
+      <button class="nav-link" data-page="planner">
+        <i class="fa-solid fa-calendar-check"></i> Study Planner
+      </button>
+      <button class="nav-link" data-page="mcq">
+        <i class="fa-solid fa-circle-question"></i> MCQ Practice
+      </button>
+      <button class="nav-link" data-page="revision">
+        <i class="fa-solid fa-rotate"></i> Revision Centre
+      </button>
+
+      <p class="nav-label">PERFORMANCE</p>
+      <button class="nav-link" data-page="analytics">
+        <i class="fa-solid fa-chart-line"></i> Analytics
+      </button>
+      <button class="nav-link" data-page="journal">
+        <i class="fa-solid fa-book"></i> Study Journal
+      </button>
+
+      <p class="nav-label">SYSTEM</p>
+      <button class="nav-link" data-page="backup">
+        <i class="fa-solid fa-database"></i> Backup & Restore
+      </button>
+      <button class="nav-link" data-page="settings">
+        <i class="fa-solid fa-gear"></i> Settings
+      </button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="goal-card">
+        <i class="fa-solid fa-bullseye"></i>
+        <strong>Daily Study Goal</strong>
+        <p>Build consistency, one topic at a time.</p>
+        <div class="progress-track">
+          <div class="progress-fill" id="dailyGoalBar"></div>
+        </div>
+        <small id="dailyGoalText">0 / 4 hours</small>
+      </div>
+      <small class="version">AgriPSC LMS · Version 1.0</small>
+    </div>
+  </aside>
+
+  <main class="main-area">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-btn" id="sidebarToggle" aria-label="Toggle sidebar">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div>
+          <h3 id="pageTitle">Dashboard</h3>
+          <small id="todayDate"></small>
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <span class="status-chip"><i class="fa-solid fa-circle"></i> Personal Workspace</span>
+        <button class="icon-btn" id="themeToggle" title="Toggle theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </header>
+
+    <div class="content-area">
+
+      <!-- DASHBOARD -->
+      <section class="page active" id="page-dashboard">
+        <div class="welcome-banner">
+          <div>
+            <span class="eyebrow">YOUR PREPARATION JOURNEY</span>
+            <h1>Welcome to AgriPSC LMS</h1>
+            <p>Plan, learn, practice and track your Agriculture Officer preparation.</p>
+          </div>
+          <div class="welcome-icon"><i class="fa-solid fa-leaf"></i></div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon green"><i class="fa-solid fa-book-open"></i></div>
+            <div><small>Syllabus Progress</small><h2 id="statSyllabus">0%</h2></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon blue"><i class="fa-solid fa-clock"></i></div>
+            <div><small>Study Hours</small><h2 id="statHours">0</h2></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon orange"><i class="fa-solid fa-circle-check"></i></div>
+            <div><small>MCQs Attempted</small><h2 id="statMCQ">0</h2></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon purple"><i class="fa-solid fa-bullseye"></i></div>
+            <div><small>Study Tasks</small><h2 id="statTasks">0</h2></div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="panel">
+            <div class="panel-heading">
+              <div><h3>Preparation Overview</h3><p>Your overall syllabus completion</p></div>
+              <button class="text-btn" data-go="syllabus">View syllabus</button>
+            </div>
+            <div class="overview-progress">
+              <div class="big-progress" id="overallRing">0%</div>
+              <div>
+                <h3 id="completedTopics">0 topics completed</h3>
+                <p>Keep moving forward with your preparation.</p>
+              </div>
+            </div>
+            <div class="progress-track large"><div class="progress-fill" id="overallBar"></div></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-heading">
+              <div><h3>Quick Actions</h3><p>Continue your preparation</p></div>
+            </div>
+            <div class="quick-actions">
+              <button class="quick-action" data-go="syllabus"><i class="fa-solid fa-list-check"></i><span>Update Syllabus</span></button>
+              <button class="quick-action" data-go="planner"><i class="fa-solid fa-calendar-plus"></i><span>Add Study Task</span></button>
+              <button class="quick-action" data-go="mcq"><i class="fa-solid fa-brain"></i><span>Practice MCQs</span></button>
+              <button class="quick-action" data-go="journal"><i class="fa-solid fa-pen"></i><span>Write Journal</span></button>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-heading">
+              <div><h3>Today's Study Plan</h3><p>Your scheduled activities</p></div>
+              <button class="text-btn" data-go="planner">Manage</button>
+            </div>
+            <div id="dashboardTasks" class="task-list empty-state">No study tasks scheduled yet.</div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-heading">
+              <div><h3>Study Distribution</h3><p>Paper-wise syllabus structure</p></div>
+            </div>
+            <div id="paperDistribution" class="distribution-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SYLLABUS -->
+      <section class="page" id="page-syllabus">
+        <div class="page-intro">
+          <div><h2>Syllabus Tracker</h2><p>Track your preparation against the uploaded Agriculture Officer curriculum.</p></div>
+        </div>
+        <div class="filter-row">
+          <input id="syllabusSearch" type="search" placeholder="Search syllabus topics...">
+          <select id="paperFilter">
+            <option value="all">All Papers</option>
+            <option value="paper1">Paper I</option>
+            <option value="paper2">Paper II</option>
+          </select>
+          <select id="statusFilter">
+            <option value="all">All Status</option>
+            <option value="pending">Not Started</option>
+            <option value="inprogress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+        <div id="syllabusContainer"></div>
+      </section>
+
+      <!-- PLANNER -->
+      <section class="page" id="page-planner">
+        <div class="page-intro">
+          <div><h2>Study Planner</h2><p>Organize your daily and weekly preparation schedule.</p></div>
+        </div>
+        <div class="panel form-panel">
+          <h3>Add a Study Task</h3>
+          <form id="taskForm" class="form-grid">
+            <label>Task title<input id="taskTitle" required placeholder="e.g. Study soil fertility"></label>
+            <label>Study date<input id="taskDate" type="date" required></label>
+            <label>Duration (hours)<input id="taskDuration" type="number" min="0.25" step="0.25" value="1"></label>
+            <label>Subject
+              <select id="taskSubject">
+                <option>General Awareness</option><option>General Reasoning</option>
+                <option>Agricultural Extension</option><option>Agricultural Economics</option>
+                <option>Soil Science</option><option>Agronomy</option>
+                <option>Horticulture</option><option>Plant Protection</option>
+                <option>General Technical Subject</option>
+              </select>
+            </label>
+            <button class="primary-btn" type="submit"><i class="fa-solid fa-plus"></i> Add Task</button>
+          </form>
+        </div>
+        <div class="panel">
+          <div class="panel-heading"><div><h3>My Study Tasks</h3><p>Mark activities as completed when finished.</p></div></div>
+          <div id="allTasks" class="task-list"></div>
+        </div>
+      </section>
+
+      <!-- MCQ -->
+      <section class="page" id="page-mcq">
+        <div class="page-intro">
+          <div><h2>MCQ Practice Centre</h2><p>Practice questions and monitor your performance.</p></div>
+        </div>
+        <div class="stats-grid compact-stats">
+          <div class="stat-card"><div><small>Attempted</small><h2 id="mcqAttempted">0</h2></div></div>
+          <div class="stat-card"><div><small>Correct</small><h2 id="mcqCorrect">0</h2></div></div>
+          <div class="stat-card"><div><small>Accuracy</small><h2 id="mcqAccuracy">0%</h2></div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-heading"><div><h3>Practice Session</h3><p>Select a subject to begin.</p></div></div>
+          <div class="filter-row">
+            <select id="mcqSubject">
+              <option value="all">All Subjects</option>
+              <option value="Agricultural Extension">Agricultural Extension</option>
+              <option value="Agricultural Economics">Agricultural Economics</option>
+              <option value="Soil Science">Soil Science</option>
+              <option value="Agronomy">Agronomy</option>
+              <option value="Horticulture">Horticulture</option>
+              <option value="Plant Protection">Plant Protection</option>
+            </select>
+            <button class="primary-btn" id="startMCQ">Start Practice</button>
+          </div>
+          <div id="mcqArea" class="mcq-area empty-state">Choose a subject and start a practice session.</div>
+        </div>
+      </section>
+
+      <!-- REVISION -->
+      <section class="page" id="page-revision">
+        <div class="page-intro"><div><h2>Revision Centre</h2><p>Review topics you have marked for revision.</p></div></div>
+        <div class="panel"><div id="revisionList" class="task-list empty-state">No revision topics yet. Mark syllabus topics for revision.</div></div>
+      </section>
+
+      <!-- ANALYTICS -->
+      <section class="page" id="page-analytics">
+        <div class="page-intro"><div><h2>Learning Analytics</h2><p>Monitor your study activity and learning progress.</p></div></div>
+        <div class="stats-grid">
+          <div class="stat-card"><div><small>Completion</small><h2 id="analyticsCompletion">0%</h2></div></div>
+          <div class="stat-card"><div><small>Total Study Hours</small><h2 id="analyticsHours">0</h2></div></div>
+          <div class="stat-card"><div><small>MCQ Accuracy</small><h2 id="analyticsAccuracy">0%</h2></div></div>
+          <div class="stat-card"><div><small>Tasks Completed</small><h2 id="analyticsTasks">0</h2></div></div>
+        </div>
+        <div class="panel"><h3>Paper-wise Progress</h3><div id="analyticsPapers"></div></div>
+      </section>
+
+      <!-- JOURNAL -->
+      <section class="page" id="page-journal">
+        <div class="page-intro"><div><h2>Study Journal</h2><p>Record learning reflections, important notes and daily achievements.</p></div></div>
+        <div class="panel form-panel">
+          <form id="journalForm">
+            <label>Journal title<input id="journalTitle" required placeholder="Today's learning reflection"></label>
+            <label>Notes<textarea id="journalContent" rows="5" required placeholder="What did you learn today?"></textarea></label>
+            <button class="primary-btn" type="submit">Save Journal Entry</button>
+          </form>
+        </div>
+        <div id="journalEntries" class="journal-grid"></div>
+      </section>
+
+      <!-- BACKUP -->
+      <section class="page" id="page-backup">
+        <div class="page-intro"><div><h2>Backup & Restore</h2><p>Export your personal learning data or restore a previous backup.</p></div></div>
+        <div class="panel backup-panel">
+          <h3><i class="fa-solid fa-download"></i> Export Backup</h3>
+          <p>Download your study progress, tasks, MCQ results and journal entries as a JSON file.</p>
+          <button class="primary-btn" id="exportBackup">Download Backup</button>
+          <hr>
+          <h3><i class="fa-solid fa-upload"></i> Restore Backup</h3>
+          <p>Choose a backup JSON file previously exported from this application.</p>
+          <input type="file" id="restoreFile" accept=".json,application/json">
+          <button class="secondary-btn" id="restoreBackup">Restore Data</button>
+        </div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="page" id="page-settings">
+        <div class="page-intro"><div><h2>Settings</h2><p>Configure your learning workspace.</p></div></div>
+        <div class="panel settings-panel">
+          <label>Daily study goal (hours)<input id="goalInput" type="number" min="1" max="24" value="4"></label>
+          <button class="primary-btn" id="saveSettings">Save Settings</button>
+          <hr>
+          <h3>Data Management</h3>
+          <p>Resetting will permanently remove local learning records from this browser.</p>
+          <button class="danger-btn" id="resetData">Reset All Learning Data</button>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="footer">
+      <span>AgriPSC LMS</span>
+      <span>A personal learning workspace for Agriculture Officer preparation</span>
+    </footer>
+  </main>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="syllabus.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
